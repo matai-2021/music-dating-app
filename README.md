@@ -1,9 +1,13 @@
-# Fullstack boilerplate
+# Music Dating App
 
-## Getting Started
+This app is about matching music listeners by genres and gender.
+Matched users can chat with each others.
 
-### From the Github UI
-See the instructions [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) to use Github's feature to create a new repo from a template.
+# Contributers
+[Carter](https://github.com/carter-bardellmunro)
+[Westley](https://github.com/westley-ms-harrison)
+[Dylan](https://github.com/dylan-toomey)
+[Ahmad](https://github.com/AhmedAnwarHafez)
 
 ### From the command line
 
@@ -15,15 +19,3 @@ npm run dev # to start the dev server
 ```
 
 You can find the server running on [http://localhost:3000](http://localhost:3000).
-
-## Details
-
-This repo includes:
-
-* a single, simple API endpoint (`/api/v1/fruits`)
-* a single React component (`<App />`)
-* an example database module (`server/db/fruits.js`)
-* an API client module (`client/apis/fruits.js`)
-* configuration for Jest and testing library
-* configuration for server-side debugging in VS Code
-* a single client-side test (`client/components/App.test.js`)
