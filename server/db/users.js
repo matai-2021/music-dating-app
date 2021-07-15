@@ -15,6 +15,14 @@ function addUser (user, db = connection) {
     })
 }
 
+function addGenres (userId, genreIds, db = connection) {
+  const promises = genreIds.map(id =>
+    db('users_genres')
+      .insert({ user_id: userId, genre_id: id })
+  )
+  return Promise.all(promises)
+}
+
 function userExists (username, db = connection) {
   return db('users')
     .count('username as n')
@@ -23,5 +31,6 @@ function userExists (username, db = connection) {
 }
 
 module.exports = {
-  addUser
+  addUser,
+  addGenres
 }

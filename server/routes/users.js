@@ -12,10 +12,11 @@ router.post('/register', async (req, res) => {
     fullname: user.fullname,
     username: user.username,
     usersecret: user.usersecret,
-    genres: user.genres,
     gender_id: user.genderId,
     created_at: new Date(Date.now())
   })
+
+  await db.addGenres(userIds[0], user.genres)
 
   res.json({
     id: userIds[0]
