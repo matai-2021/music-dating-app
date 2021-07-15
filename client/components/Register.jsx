@@ -32,8 +32,8 @@ function Register () {
   }
 
   return (
-    <>
-      <form>
+    <section className='whole-container'>
+      <form className='form-title'>
         <label name={form.name}>
           <input onChange={handleChange} type="text" name="name" placeholder="Name" value={form.name}/>
         </label>
@@ -43,6 +43,7 @@ function Register () {
         <label name={form.description}>
           <input onChange={handleChange} type="text" name="secret" placeholder="Password" value={form.secret}/>
         </label>
+        <br></br>
         <label htmlFor="genre">Choose a Genre of Music:
           <select name="genre" id="genre" onChange={handleChange}>
             <option value={form.genre}>Please Select an Option</option>
@@ -52,9 +53,9 @@ function Register () {
             <option value="Pop">Pop</option>
           </select>
         </label>
-        <button onClick={handleSubmit}>Register</button>
+        <button className='form-button-primary' onClick={handleSubmit}>Register</button>
       </form>
-    </>
+    </section>
   )
 }
 

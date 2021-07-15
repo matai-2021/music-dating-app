@@ -27,8 +27,8 @@ function Register () {
   }
 
   return (
-    <>
-      <form>
+    <section className='whole-container'>
+      <form className='form-title'>
         <label name={form.name}>
           <input onChange={handleChange} type="text" name="userName" placeholder="Username" value={form.userName}/>
         </label>
@@ -37,7 +37,7 @@ function Register () {
         </label>
         <button onClick={handleSubmit}>Sign In</button>
       </form>
-    </>
+    </section>
   )
 }
 

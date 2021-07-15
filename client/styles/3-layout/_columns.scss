@@ -11,10 +11,16 @@
 
 .flex-container {
   display: flex;
+  background-color: rgb(243, 193, 157);
   flex-direction: column;
   @include mixins.media-queries(mobile, min) {
     flex-direction: row;
   }
+  @include mixins.media-queries(tablet, min) {
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
 }
 
 .flex-column {
