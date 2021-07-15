@@ -15,6 +15,26 @@ function addUser (user, db = connection) {
     })
 }
 
+function getUser (username, db = connection) {
+  return db('users')
+    .where('username', username)
+    .select()
+    .first()
+}
+
+function getUserGenres (userId, db = connection) {
+  return db('users_genres')
+    .where('user_id', userId)
+    .join('genres', 'users_genres.genre_id', 'genres.id')
+    .select()
+    .then((results) =>
+      results.map(result => ({
+        genreId: result.genre_id,
+        name: result.name
+      }))
+    )
+}
+
 function addGenres (userId, genreIds, db = connection) {
   const promises = genreIds.map(id =>
     db('users_genres')
@@ -32,5 +52,7 @@ function userExists (username, db = connection) {
 
 module.exports = {
   addUser,
-  addGenres
+  addGenres,
+  getUser,
+  getUserGenres
 }

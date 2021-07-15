@@ -4,7 +4,7 @@ const db = require('../db/users')
 
 const router = express.Router()
 
-// POST /api/v1/users/
+// POST /api/v1/users/register
 router.post('/register', async (req, res) => {
   const user = req.body
 
@@ -29,17 +29,26 @@ router.post('/register', async (req, res) => {
   }
 })
 
-// GET /api/v1/users
-router.get('/', (req, res) => {
-  db.getFruits()
-    .then(results => {
-      res.json({ fruits: results.map(fruit => fruit.name) })
-      return null
+// POST /api/v1/users/signin
+router.post('/signin', async (req, res) => {
+  try {
+    const { username } = req.body
+    const user = await db.getUser(username)
+    console.log(user.id)
+    const genres = await db.getUserGenres(user.id)
+    res.json({
+      id: user.id,
+      username: user.username,
+      usersecret: user.usersecret,
+      fullname: user.fullname,
+      description: user.description,
+      gender_id: user.genderId,
+      genres: genres
     })
-    .catch(err => {
-      console.log(err)
-      res.status(500).json({ message: 'Somthing went wrong' })
-    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error)
+  }
 })
 
 module.exports = router
