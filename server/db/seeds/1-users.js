@@ -9,6 +9,7 @@ exports.seed = function (knex) {
           username: 'ahmad',
           usersecret: 'eda123',
           fullname: 'ahmad anwar',
+          description: 'I was ranked the first DJ on the first settlement on planet Mars',
           gender_id: 1,
           created_at: new Date(Date.now())
         },
