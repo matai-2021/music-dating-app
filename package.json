@@ -44,6 +44,7 @@
     "express": "^4.17.1",
     "knex": "^0.21.12",
     "pg": "^8.5.1",
+    "react-chat-engine": "^1.10.12",
     "superagent": "^6.1.0"
   },
   "devDependencies": {

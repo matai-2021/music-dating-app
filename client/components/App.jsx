@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import { fetchFruits } from '../actions'
 
+import Chat from './Chat'
+
 function App (props) {
   useEffect(() => {
     props.dispatch(fetchFruits())
@@ -18,6 +20,7 @@ function App (props) {
           ))}
         </ul>
       </div>
+      <Chat />
     </>
   )
 }
