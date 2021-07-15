@@ -18,7 +18,7 @@ router.post('/register', async (req, res) => {
       created_at: new Date(Date.now())
     })
 
-    await db.addGenres(userIds[0], user.genres)
+    await db.addGenres(userIds[0], user.genre)
 
     res.json({
       id: userIds[0]
