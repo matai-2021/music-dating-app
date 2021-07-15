@@ -1,19 +1,19 @@
-import { getFruits } from '../apis/fruits'
+import { getUser } from '../apis/users'
 
-export const SET_FRUITS = 'SET_FRUITS'
+export const SET_USER = 'SET_USER'
 
-export function setFruits (fruits) {
+export function setUser (user) {
   return {
-    type: SET_FRUITS,
-    fruits
+    type: SET_USER,
+    user
   }
 }
 
-export function fetchFruits () {
+export function fetchUser () {
   return dispatch => {
-    return getFruits()
-      .then(fruits => {
-        dispatch(setFruits(fruits))
+    return getUser()
+      .then(user => {
+        dispatch(setUser(user))
         return null
       })
   }
