@@ -13,7 +13,8 @@ router.post('/register', async (req, res) => {
     username,
     usersecret,
     genre,
-    gender_id: genderId
+    gender_id: genderId,
+    created_at: new Date(Date.now())
   })
 
   res.json({
