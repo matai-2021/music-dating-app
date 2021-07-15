@@ -4,7 +4,6 @@ exports.up = function (knex) {
     table.string('fullname')
     table.string('username')
     table.string('usersecret')
-    table.string('genre')
     table.string('description')
     table.string('gender_id').references('genders.id')
     table.timestamp('created_at')
