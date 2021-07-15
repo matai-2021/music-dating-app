@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
+import { Route } from 'react-router-dom'
 
-import { fetchFruits } from '../actions'
+import Header from './Header'
+import Register from './Register'
+import SignIn from './SignIn'
 
 import Chat from './Chat'
 
 function App (props) {
-  useEffect(() => {
-    props.dispatch(fetchFruits())
-  }, [])
-
   return (
     <>
       <div className='app'>
@@ -21,6 +20,9 @@ function App (props) {
         </ul>
       </div>
       <Chat />
+      <Route path="/" component={Header}/>
+      <Route path="/register" component={Register}/>
+      <Route path="/login" component={SignIn}/>
     </>
   )
 }
