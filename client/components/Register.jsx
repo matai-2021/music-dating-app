@@ -60,8 +60,8 @@ function Register (props) {
   }
 
   return (
-    <>
-      <form>
+    <section className='whole-container'>
+      <form className='form-title form-box'>
         <label name={form.fullname}>
           <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
         </label>
