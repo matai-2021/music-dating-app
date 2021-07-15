@@ -6,14 +6,14 @@ const router = express.Router()
 
 // POST /api/v1/users/
 router.post('/register', async (req, res) => {
-  const { fullname, username, usersecret, genre, genderId } = req.body
+  const user = req.body
 
   const userIds = await db.addUser({
-    fullname,
-    username,
-    usersecret,
-    genre,
-    gender_id: genderId,
+    fullname: user.fullname,
+    username: user.username,
+    usersecret: user.usersecret,
+    genres: user.genres,
+    gender_id: user.genderId,
     created_at: new Date(Date.now())
   })
 
