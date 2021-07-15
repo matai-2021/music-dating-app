@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 function Header (props) {
   const { user } = props
-  console.log(user)
 
   return (
     <>
