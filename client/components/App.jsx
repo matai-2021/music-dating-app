@@ -9,7 +9,7 @@ import SignIn from './SignIn'
 function App (props) {
   return (
     <>
-      <Route path="/" component={Header}/>
+      <Route exact path="/" component={Header}/>
       <Route path="/register" component={Register}/>
       <Route path="/login" component={SignIn}/>
     </>
