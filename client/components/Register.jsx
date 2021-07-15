@@ -1,34 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { createUser } from '../actions/index'
+import { createUser, fetchGenres } from '../actions/index'
 
 function Register (props) {
-  const aviableGenres = [
-    {
-      id: 1,
-      name: 'Indie Rock'
-    },
-    {
-      id: 2,
-      name: 'Grunge'
-    },
-    {
-      id: 3,
-      name: 'Death Metal'
-    },
-    {
-      id: 4,
-      name: 'Grime'
-    },
-    {
-      id: 5,
-      name: 'Samba'
-    }
-  ]
-  // useEffect(() => {
-  //   fetchGenres(props.dispatch)
-  // }, [])
+  const { genres } = props
+  // const aviableGenres = [
+  //   {
+  //     id: 1,
+  //     name: 'Indie Rock'
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Grunge'
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Death Metal'
+  //   },
+  //   {
+  //     id: 4,
+  //     name: 'Grime'
+  //   },
+  //   {
+  //     id: 5,
+  //     name: 'Samba'
+  //   }
+  // ]
+  useEffect(() => {
+    props.dispatch(fetchGenres())
+  }, [])
 
   const history = useHistory()
   const [form, setForm] = useState({
@@ -50,8 +51,6 @@ function Register (props) {
   }
 
   function handleCheck (genreId, event) {
-    const { checked } = event.target
-    console.log(checked)
     if (checked) {
       setGenresForm([...genresForm, genreId])
     } else {
@@ -91,9 +90,6 @@ function Register (props) {
         <label name={form.username}>
           <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username}/>
         </label>
-        <label name={form.usersecret}>
-          <input onChange={handleChange} type="text" name="usersecret" placeholder="Password" value={form.usersecret}/>
-        </label>
         <label name={form.description}>
           <textarea onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
         </label>
@@ -106,7 +102,7 @@ function Register (props) {
           </select>
         </label>
         <label htmlFor="genre">Choose a Genre of Music:
-          {aviableGenres.map(genre => (
+          {genres.map(genre => (
             <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id}/>{genre.name}</div>
           ))}
         </label>
@@ -116,10 +112,10 @@ function Register (props) {
   )
 }
 
-// const mapStateToProps = (globalState) => {
-//   return {
-//     genres: globalState.genres
-//   }
-// }
+const mapStateToProps = (globalState) => {
+  return {
+    genres: globalState.genres
+  }
+}
 
-export default connect()(Register)
+export default connect(mapStateToProps)(Register)

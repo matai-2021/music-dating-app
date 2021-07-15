@@ -13,7 +13,7 @@ export function setUser (user) {
 
 export function setGenres (genres) {
   return {
-    type: SET_USER,
+    type: SET_GENRES,
     genres
   }
 }
