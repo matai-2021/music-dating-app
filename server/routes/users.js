@@ -1,9 +1,27 @@
 const express = require('express')
 
-const db = require('../db/fruits')
+const db = require('../db/users')
 
 const router = express.Router()
 
+// POST /api/v1/users/
+router.post('/register', async (req, res) => {
+  const { fullname, username, usersecret, genre, genderId } = req.body
+
+  const userIds = await db.addUser({
+    fullname,
+    username,
+    usersecret,
+    genre,
+    gender_id: genderId
+  })
+
+  res.json({
+    id: userIds[0]
+  })
+})
+
+// GET /api/v1/users
 router.get('/', (req, res) => {
   db.getFruits()
     .then(results => {
