@@ -3,6 +3,8 @@ import { getGenres } from '../apis/genres'
 
 export const SET_USER = 'SET_USER'
 export const SET_GENRES = 'SET_GENRES'
+export const LOGIN_FAIL = 'LOGIN_FAIL'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 
 export function setUser (user) {
   return {
@@ -18,11 +20,28 @@ export function setGenres (genres) {
   }
 }
 
+export function loginFail (genres) {
+  return {
+    type: LOGIN_FAIL
+  }
+}
+
+export function loginSuccess () {
+  return {
+    type: LOGIN_SUCCESS
+  }
+}
+
 export function fetchUserName (username) {
   return dispatch => {
+    console.log(username, 'here Mate')
     return getUserByName(username)
       .then(res => {
         dispatch(setUser(res))
+        return null
+      })
+      .catch(() => {
+        dispatch(loginFail())
         return null
       })
   }
