@@ -25,7 +25,7 @@ function Register () {
   }
 
   return (
-    <section className='whole-container'>
+    <section>
       <form className='form-title'>
         <label name={form.name}>
           <input onChange={handleChange} type="text" name="userName" placeholder="Username" value={form.userName}/>
