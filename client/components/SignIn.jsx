@@ -4,8 +4,7 @@ import { useHistory } from 'react-router-dom'
 function Register () {
   const history = useHistory()
   const [form, setForm] = useState({
-    userName: '',
-    password: ''
+    userName: ''
   })
 
   function handleChange (event) {
@@ -20,8 +19,7 @@ function Register () {
     event.preventDefault()
     // createNewProduct(form, props.dispatch) Check if login .....
     setForm({
-      userName: '',
-      password: ''
+      userName: ''
     })
     history.push('/')
   }
@@ -31,9 +29,6 @@ function Register () {
       <form className='form-title'>
         <label name={form.name}>
           <input onChange={handleChange} type="text" name="userName" placeholder="Username" value={form.userName}/>
-        </label>
-        <label name={form.country}>
-          <input onChange={handleChange} autoComplete="on" type="password" name="password" placeholder="Password" value={form.password}/>
         </label>
         <button onClick={handleSubmit}>Sign In</button>
       </form>

@@ -9,10 +9,9 @@ function Header (props) {
     <>
       <div className='flex-container'>
         <nav>
-          {user
-            ? <> <Link to="/register"><h1 className='form-button-primary'>Register</h1></Link>
-            <Link to="/login"><h1 className='form-button-secondary'>Already a user? Sign-In</h1></Link></>
-            : <> <h1>Logout</h1> </>
+          {user.id
+            ? <> <h1>Logout</h1> </>
+            : <> <Link to="/login"><h1>Sign-In</h1></Link> <Link to="/register"><h1>Register</h1></Link> </>
           }
         </nav>
       </div>

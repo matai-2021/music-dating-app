@@ -1,11 +1,11 @@
-import { SET_USER } from '../actions'
+import { SET_GENRES } from '../actions'
 
-const initialState = {}
+const initialState = []
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_USER:
-      return action.user
+    case SET_GENRES:
+      return action.genres
     default:
       return state
   }
