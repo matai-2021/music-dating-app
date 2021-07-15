@@ -8,19 +8,25 @@ const router = express.Router()
 router.post('/register', async (req, res) => {
   const user = req.body
 
-  const userIds = await db.addUser({
-    fullname: user.fullname,
-    username: user.username,
-    usersecret: user.usersecret,
-    gender_id: user.genderId,
-    created_at: new Date(Date.now())
-  })
+  try {
+    const userIds = await db.addUser({
+      fullname: user.fullname,
+      username: user.username,
+      usersecret: user.usersecret,
+      description: user.description,
+      gender_id: user.genderId,
+      created_at: new Date(Date.now())
+    })
 
-  await db.addGenres(userIds[0], user.genres)
+    await db.addGenres(userIds[0], user.genres)
 
-  res.json({
-    id: userIds[0]
-  })
+    res.json({
+      id: userIds[0]
+    })
+  } catch (error) {
+    console.error(error)
+    res.sendStatus(500)
+  }
 })
 
 // GET /api/v1/users

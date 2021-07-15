@@ -33,8 +33,3 @@ exports.seed = function (knex) {
       ])
     })
 }
-{
-  id: 1,
-  user_id: 2,
-  genres_id: 5
-},
