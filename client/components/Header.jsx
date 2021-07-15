@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import SignIn from './SignIn'
 
 function Header (props) {
   const { user } = props
@@ -8,12 +9,18 @@ function Header (props) {
   return (
     <>
       <div>
-        <nav>
-          {user.id
-            ? <> <h1>Logout</h1> </>
-            : <> <Link to="/login"><h1>Sign-In</h1></Link> <Link to="/register"><h1>Register</h1></Link> </>
-          }
-        </nav>
+        <h1>Music</h1>
+      </div>
+      <div>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae amet minima quibusdam ratione! Quae praesentium alias reprehenderit molestiae hic libero ipsum quam tempora excepturi optio nostrum pariatur, rem quas aspernatur!
+        </p>
+      </div>
+      <div>
+        {user.id
+          ? <> <h1>Logout</h1> </>
+          : <> <SignIn /> <div><h1>Don't have an account? <Link to="/register">Register Now</Link></h1></div> </>
+        }
       </div>
 
     </>
