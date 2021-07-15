@@ -7,7 +7,6 @@ const router = express.Router()
 // POST /api/v1/users/register
 router.post('/register', async (req, res) => {
   const user = req.body
-
   try {
     const userIds = await db.addUser({
       fullname: user.fullname,
@@ -34,7 +33,6 @@ router.post('/signin', async (req, res) => {
   try {
     const { username } = req.body
     const user = await db.getUser(username)
-    console.log(user.id)
     const genres = await db.getUserGenres(user.id)
     res.json({
       id: user.id,

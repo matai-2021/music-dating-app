@@ -1,4 +1,4 @@
-import { getUserByName, postUser, getUserById } from '../apis/users'
+import { getUserByName, postUser } from '../apis/users'
 import { getGenres } from '../apis/genres'
 
 export const SET_USER = 'SET_USER'
@@ -18,21 +18,11 @@ export function setGenres (genres) {
   }
 }
 
-export function fetchUserName (userName) {
+export function fetchUserName (username) {
   return dispatch => {
-    return getUserByName(userName)
-      .then(user => {
-        dispatch(setUser(user))
-        return null
-      })
-  }
-}
-
-export function fetchUserId (id) {
-  return dispatch => {
-    return getUserById(id)
-      .then(user => {
-        dispatch(setUser(user))
+    return getUserByName(username)
+      .then(res => {
+        dispatch(setUser(res))
         return null
       })
   }
@@ -51,8 +41,8 @@ export function fetchGenres () {
 export function createUser (user) {
   return dispatch => {
     return postUser(user)
-      .then(id => {
-        getUserById(id)
+      .then(() => {
+        dispatch(fetchUserName(user))
         return null
       })
   }

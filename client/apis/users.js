@@ -2,11 +2,11 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1/users'
 
-export function getUserByName (userName) {
-  return request.get(rootUrl)
-    .send(userName)
+export function getUserByName (username) {
+  return request.post(rootUrl + '/signin')
+    .send(username)
     .then(res => {
-      return res.body.user
+      return res.body
     })
 }
 
@@ -15,13 +15,5 @@ export function postUser (user) {
     .send(user)
     .then(res => {
       return res.body.id
-    })
-}
-
-export function getUserById (id) {
-  return request.get(rootUrl)
-    .send(id)
-    .then(res => {
-      return res.body.user
     })
 }
