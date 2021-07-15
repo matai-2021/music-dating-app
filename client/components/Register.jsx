@@ -4,34 +4,9 @@ import { useHistory } from 'react-router-dom'
 import { createUser, fetchGenres } from '../actions/index'
 
 function Register (props) {
-  const { genres } = props
-  // const aviableGenres = [
-  //   {
-  //     id: 1,
-  //     name: 'Indie Rock'
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Grunge'
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'Death Metal'
-  //   },
-  //   {
-  //     id: 4,
-  //     name: 'Grime'
-  //   },
-  //   {
-  //     id: 5,
-  //     name: 'Samba'
-  //   }
-  // ]
-  useEffect(() => {
-    props.dispatch(fetchGenres())
-  }, [])
-
   const history = useHistory()
+  const { genres } = props
+  const [genresForm, setGenresForm] = useState([])
   const [form, setForm] = useState({
     fullname: '',
     username: '',
@@ -40,7 +15,9 @@ function Register (props) {
     description: ''
   })
 
-  const [genresForm, setGenresForm] = useState([])
+  useEffect(() => {
+    props.dispatch(fetchGenres())
+  }, [])
 
   function handleChange (event) {
     const { name, value } = event.target
@@ -51,6 +28,7 @@ function Register (props) {
   }
 
   function handleCheck (genreId, event) {
+    const { checked } = event.target
     if (checked) {
       setGenresForm([...genresForm, genreId])
     } else {
@@ -67,7 +45,7 @@ function Register (props) {
       usersecret: 'eda123',
       description,
       genderId,
-      genres: genresForm
+      genre: genresForm
     }
     props.dispatch(createUser(userForm))
     // createNewProduct(form, props.dispatch)
