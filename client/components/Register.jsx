@@ -35,7 +35,8 @@ function Register (props) {
     fullname: '',
     username: '',
     usersecret: '',
-    genderId: ''
+    genderId: '',
+    description: ''
   })
 
   const [genresForm, setGenresForm] = useState([])
@@ -60,11 +61,13 @@ function Register (props) {
 
   function handleSubmit (event) {
     event.preventDefault()
+    const { fullname, username, genderId, description } = form
     const userForm = {
-      fullname: '',
-      username: '',
-      usersecret: '',
-      genderId: '',
+      fullname,
+      username,
+      usersecret: 'eda123',
+      description,
+      genderId,
       genres: genresForm
     }
     props.dispatch(createUser(userForm))
@@ -73,6 +76,7 @@ function Register (props) {
       fullname: '',
       username: '',
       usersecret: '',
+      description: '',
       genderId: ''
     })
     history.push('/')
@@ -90,11 +94,14 @@ function Register (props) {
         <label name={form.usersecret}>
           <input onChange={handleChange} type="text" name="usersecret" placeholder="Password" value={form.usersecret}/>
         </label>
+        <label name={form.description}>
+          <textarea onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
+        </label>
         <label htmlFor="genderId">Gender:
           <select name="genderId" id="genderId" onChange={handleChange}>
             <option value={form.genre}>Please Select an Option</option>
             <option value="1">Male</option>
-            <option value="2">Femal</option>
+            <option value="2">Female</option>
             <option value="3">Non Binary/Other</option>
           </select>
         </label>
