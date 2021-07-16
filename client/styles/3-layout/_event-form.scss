@@ -76,12 +76,6 @@ input[type=text] {
   @include mixins.media-queries(tablet, min) {
     width: 60%;
   }
-
-  &:hover{
-    background-color: vars.$green;
-    border: none;
-    color: #ffffff;
-  }
 }
 
 

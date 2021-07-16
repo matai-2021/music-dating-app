@@ -13,7 +13,7 @@ function Header (props) {
 
   return (
     <>
-      <section className='background'>
+      <section>
         <div className='flex-container'>
           <h1 className='pre-title'>Music</h1>
         </div>

@@ -39,7 +39,7 @@ function Swipe (props) {
   }
 
   return (
-    <>
+    <section>
       <div>
         <GrChat />
         <CgProfile />
@@ -48,14 +48,14 @@ function Swipe (props) {
         <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
         <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
         <h1>React Tinder Card</h1>
-        <div className='cardContainer'>
+        <div className='cardContainer whole-container'>
           {swipee.map((cardSwipe) =>
             <TinderCard className='swipe' key={cardSwipe.username} onSwipe={(dir) => swiped(dir, cardSwipe.fullname)} onCardLeftScreen={() => outOfFrame(cardSwipe.fullname)}>
               <div style={{ backgroundImage: 'url(https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999)' }} className='card'>
                 <h3>{cardSwipe.fullname} ({cardSwipe.name})</h3>
               </div>
               <div className='card'>
-                <p>{cardSwipe.description}</p>
+                <h3>{cardSwipe.description}</h3>
                 <ul>
                   {cardSwipe.genres.map((genre) =>
                     <li key={genre.id}>{genre.name}</li>
@@ -71,7 +71,7 @@ function Swipe (props) {
         </div>
         {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
       </div>
-    </>
+    </section>
   )
 }
 
