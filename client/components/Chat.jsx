@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { ChatEngine, ChatList, ChatCard, ChatFeed, ChatHeader, MessageBubble, IsTyping, ConnectionBar, OptionsSettings, getOrCreateChat } from 'react-chat-engine'
+import { ChatEngine, ChatList, ChatCard, ChatFeed, ChatHeader, MessageBubble, IsTyping, ScrollDownBar, NewMessageForm, getOrCreateChat } from 'react-chat-engine'
 
 const ChatPage = () => {
   const [username, setUsername] = useState('')
@@ -26,8 +26,6 @@ const ChatPage = () => {
     )
   }
 
-  console.log(chatAppState)
-
   return (
     <ChatEngine
       height='100vh'
@@ -41,10 +39,14 @@ const ChatPage = () => {
       renderChatFeed={(chatAppState) => <ChatFeed {...chatAppState} />}
       renderChatHeader={(chat) => <ChatHeader />}
       renderMessageBubble={(creds, chat, lastMessage, message, nextMessage) => <MessageBubble lastMessage={lastMessage} message={message} nextMessage={nextMessage} chat={chat} />}
-      renderSendingMessage={(creds, chat, lastMessage, message, nextMessage) => <MessageBubble sending={true} lastMessage={lastMessage} message={message} nextMessage={nextMessage} chat={chat} />}
       renderIsTyping={(typers) => <IsTyping />}
-      renderConnectionBar={(chat) => <ConnectionBar />}
-      renderOptionsSettings={(creds, chat) => <OptionsSettings />}
+      renderScrollDownBar={(chat) => <ScrollDownBar chat={chat} />}
+      renderNewMessageForm={(creds, chatId) => <NewMessageForm />}
+      renderChatSettings={(chatAppState) => {}}
+      renderChatSettingsTop={(creds, chat) => {}}
+      renderPeopleSettings={(creds, chat) => {}}
+      renderPhotosSettings={(chat) => {}}
+      renderOptionsSettings={(creds, chat) => {}}
     />
   )
 }

@@ -48,7 +48,33 @@ function Register (props) {
       genre: genresForm
     }
     props.dispatch(createUser(userForm))
-    // createNewProduct(form, props.dispatch)
+
+    // Creating user in Chatengine
+    var axios = require('axios')
+    var data = {
+      username: form.username,
+      secret: 'eda123',
+      first_name: form.fullname
+    }
+
+    var config = {
+      method: 'post',
+      url: 'https://api.chatengine.io/users/',
+      headers: {
+        'PRIVATE-KEY': '{{ff67630c-b0eb-4c46-915a-f77c9d57a1b9}}'
+      },
+      data: data
+    }
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data))
+        return null
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+
     setForm({
       fullname: '',
       username: '',
@@ -56,6 +82,7 @@ function Register (props) {
       description: '',
       genderId: ''
     })
+
     history.push('/')
   }
 
