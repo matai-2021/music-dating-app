@@ -11,10 +11,10 @@ import Chat from './Chat'
 function App (props) {
   return (
     <>
-      <Route path="/users/chat" component={Chat}/>
       <Route path="/" component={Header}/>
-      <Route path="/register" component={Register}/>
-      <Route path="/login" component={SignIn}/>
+      <Route exact path="/register" component={Register}/>
+      <Route exact path="/login" component={SignIn}/>
+      <Route exact path="/users/chat" component={Chat}/>
     </>
   )
 }
