@@ -12,32 +12,43 @@ function Swipe (props) {
   const { user, swipee } = props
   const [lastDirection, setLastDirection] = useState()
 
-  const childRefs = useMemo(() => Array(swipee.length).fill(0).map(i => React.createRef()), [])
+  const childRefs = useMemo(() => Array(swipee?.length).fill(0).map(i => React.createRef()), [])
+  console.log(childRefs)
 
   useEffect(() => {
     user.id && props.dispatch(fetchUnMatchedUsers(user))
   }, [user])
 
-  const swiped = (direction, nameToDelete) => {
-    console.log('removing: ' + nameToDelete)
-    setLastDirection(direction)
-  }
-
-  const outOfFrame = (name) => {
-    console.log(name + ' left the screen!')
+  const swiped = (direction, meme) => {
+    switch (direction) {
+      case 'right':
+        setLastDirection('right')
+        break
+      case 'left':
+        setLastDirection('left')
+        break
+      case 'up':
+        setLastDirection('up')
+        break
+      case 'down':
+        setLastDirection('down')
+    }
   }
 
   const swipe = (direction) => {
-    const userLeft = swipee.filter(item => !alreadyRemoved.includes(item.id))
+    const userLeft = swipee.filter(item => !alreadyRemoved.includes(item.username))
     if (userLeft.length) {
-      const toBeRemoved = userLeft[userLeft.length - 1].id // Find the card object to be removed
-      const index = swipee.map(item => item.id).indexOf(toBeRemoved)
-      console.log(toBeRemoved + 'hi')// Find the index of which to make the reference to
+      const toBeRemoved = userLeft[userLeft.length - 1].username // Find the card object to be removed
+      const index = swipee.map(item => item.username).indexOf(toBeRemoved)
       alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
       childRefs[index].current.swipe(direction) // Swipe the card!
     }
   }
 
+  const outOfFrame = (username) => {
+    console.log(username + ' left the screen!')
+    swipee.filter(meme => meme.id !== username)
+  }
   return (
     <>
       <div>
@@ -49,8 +60,8 @@ function Swipe (props) {
         <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
         <h1>React Tinder Card</h1>
         <div className='cardContainer'>
-          {swipee.map((cardSwipe) =>
-            <TinderCard className='swipe' key={cardSwipe.username} onSwipe={(dir) => swiped(dir, cardSwipe.fullname)} onCardLeftScreen={() => outOfFrame(cardSwipe.fullname)}>
+          {swipee?.map((cardSwipe, index) =>
+            <TinderCard className='swipe' ref={childRefs[index]} key={cardSwipe.username} onSwipe={(dir) => swiped(dir, cardSwipe.username)} onCardLeftScreen={() => outOfFrame(cardSwipe.fullname)}>
               <div style={{ backgroundImage: 'url(https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999)' }} className='card'>
                 <h3>{cardSwipe.fullname} ({cardSwipe.name})</h3>
               </div>
