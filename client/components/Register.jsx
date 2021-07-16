@@ -56,7 +56,7 @@ function Register (props) {
       description: '',
       genderId: ''
     })
-    history.push('/')
+    history.push('/matching')
   }
 
   return (

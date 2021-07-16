@@ -17,3 +17,11 @@ export function postUser (user) {
       return res.body.id
     })
 }
+
+export function getUsersToMatch (user) {
+  return request.get(rootUrl + `/${user}/unmatched`)
+    .then(res => {
+      console.log(res.body)
+      return res.body
+    })
+}
