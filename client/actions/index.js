@@ -1,4 +1,4 @@
-import { getUserByName, postUser } from '../apis/users'
+import { getUserByName, postUser, getUsersToMatch } from '../apis/users'
 import { getGenres } from '../apis/genres'
 
 export const SET_USER = 'SET_USER'
@@ -6,6 +6,7 @@ export const SET_GENRES = 'SET_GENRES'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGOUT = 'LOGOUT'
+export const SET_MATCHEES = 'SET_MATCHEES'
 
 export function setUser (user) {
   return {
@@ -38,9 +39,15 @@ export function loginSuccess () {
   }
 }
 
+export function setMatchees (matchees) {
+  return {
+    type: SET_MATCHEES,
+    matchees
+  }
+}
+
 export function fetchUserName (username) {
   return dispatch => {
-    console.log(username, 'here Mate')
     return getUserByName(username)
       .then(res => {
         dispatch(setUser(res))
@@ -76,5 +83,15 @@ export function createUser (user) {
 export function logoutUser () {
   return dispatch => {
     return dispatch(resetUser())
+  }
+}
+
+export function fetchUnMatchedUsers (user) {
+  return dispatch => {
+    return getUsersToMatch(user.id)
+      .then((res) => {
+        dispatch(setMatchees(res))
+        return null
+      })
   }
 }
