@@ -143,11 +143,6 @@ exports.seed = function (knex) {
           genre_id: 6
         },
         {
-          id: 30,
-          user_id: 9,
-          genre_id: 6
-        },
-        {
           id: 31,
           user_id: 10,
           genre_id: 7
