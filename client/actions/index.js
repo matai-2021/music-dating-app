@@ -27,7 +27,7 @@ export function setGenres (genres) {
   }
 }
 
-export function loginFail (genres) {
+export function loginFail () {
   return {
     type: LOGIN_FAIL
   }
@@ -50,10 +50,12 @@ export function fetchUserName (username) {
   return dispatch => {
     return getUserByName(username)
       .then(res => {
+        console.log('logged in')
         dispatch(setUser(res))
         return null
       })
       .catch(() => {
+        console.log('Erorr with logging in')
         dispatch(loginFail())
         return null
       })
