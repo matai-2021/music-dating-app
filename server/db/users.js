@@ -27,6 +27,7 @@ function getUserGenres (userId, db = connection) {
     .where('user_id', userId)
     .join('genres', 'users_genres.genre_id', 'genres.id')
     .select()
+    .distinct()
     .then((results) =>
       results.map(result => ({
         genreId: result.genre_id,
