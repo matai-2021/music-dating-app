@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { fetchUserName } from '../actions'
+import { fetchUserName, loginSuccess } from '../actions'
 
 function SignIn (props) {
   const { loginError } = props
@@ -21,11 +21,22 @@ function SignIn (props) {
   function handleSubmit (event) {
     event.preventDefault()
     props.dispatch(fetchUserName(form))
-    // createNewProduct(form, props.dispatch)
-    setForm({
-      username: ''
-    })
-    history.push('/matching')
+      // .then(() => {
+      //   return props.dispatch(loginSuccess())
+      // })
+      .then(() => {
+        setForm({
+          username: ''
+        })
+        console.log(loginError)
+        if (!loginError) {
+          history.push('/matching')
+        }
+        return null
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   return (
@@ -48,7 +59,8 @@ function SignIn (props) {
 
 const mapStateToProps = (globalState) => {
   return {
-    loginError: globalState.loginError
+    loginError: globalState.loginError,
+    user: globalState.user
   }
 }
 

@@ -8,6 +8,9 @@ export function getUserByName (username) {
     .then(res => {
       return res.body
     })
+    .catch(err => {
+      throw err
+    })
 }
 
 export function postUser (user) {
