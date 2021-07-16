@@ -13,7 +13,6 @@ function Swipe (props) {
   const [lastDirection, setLastDirection] = useState()
 
   const childRefs = useMemo(() => Array(swipee?.length).fill(0).map(i => React.createRef()), [])
-  console.log(childRefs)
 
   useEffect(() => {
     user.id && props.dispatch(fetchUnMatchedUsers(user))
@@ -46,7 +45,6 @@ function Swipe (props) {
   }
 
   const outOfFrame = (username) => {
-    console.log(username + ' left the screen!')
     swipee.filter(meme => meme.id !== username)
   }
   return (
@@ -63,13 +61,13 @@ function Swipe (props) {
           {swipee?.map((cardSwipe, index) =>
             <TinderCard className='swipe' ref={childRefs[index]} key={cardSwipe.username} onSwipe={(dir) => swiped(dir, cardSwipe.username)} onCardLeftScreen={() => outOfFrame(cardSwipe.fullname)}>
               <div style={{ backgroundImage: 'url(https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999)' }} className='card'>
-                <h3>{cardSwipe.fullname} ({cardSwipe.name})</h3>
+                <h3>{cardSwipe.fullname} ({cardSwipe.gender})</h3>
               </div>
               <div className='card'>
                 <p>{cardSwipe.description}</p>
                 <ul>
                   {cardSwipe.genres.map((genre) =>
-                    <li key={genre.id}>{genre.name}</li>
+                    <li key={genre.genreId}>{genre.name}</li>
                   )}
                 </ul>
               </div>

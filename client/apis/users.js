@@ -21,7 +21,6 @@ export function postUser (user) {
 export function getUsersToMatch (user) {
   return request.get(rootUrl + `/${user}/unmatched`)
     .then(res => {
-      console.log(res.body)
       return res.body
     })
 }
