@@ -6,10 +6,13 @@ import Header from './Header'
 import Register from './Register'
 import Swipe from './Swipe'
 
+import Chat from './Chat'
+
 function App (props) {
   return (
     <>
-      <Route exact path="/" component={Header}/>
+      <Route path="/" component={Header}/>
+      <Route exact path="/users/chat" component={Chat}/>
       <Route path="/register" component={Register}/>
       <Route path="/matching" component={Swipe}/>
     </>
