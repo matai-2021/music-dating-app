@@ -86,11 +86,11 @@ export function logoutUser () {
   }
 }
 
-export function fetchMatchUsers (user) {
+export function fetchUnMatchedUsers (user) {
   return dispatch => {
-    return getUsersToMatch(user)
+    return getUsersToMatch(user.id)
       .then((res) => {
-        dispatch(setGenres(res))
+        dispatch(setMatchees(res))
         return null
       })
   }
