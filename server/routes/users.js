@@ -51,18 +51,37 @@ router.post('/signin', async (req, res) => {
 
 router.get('/:id/unmatched', async (req, res) => {
   try {
-    const users = await db.getUnmatchedUsers(req.params.id)
-
+    const userId = req.params.id
+    const users = await db.getUnmatchedUsers(userId)
+    const currentUsersGenres = await db.getUserGenres(userId)
     const promises = users.map(async user => ({
       ...user,
       genres: await db.getUserGenres(user.id)
     }))
 
-    res.json(await Promise.all(promises))
+    console.log(currentUsersGenres)
+    const unmatchedUsers = (await Promise.all(promises))
+      .filter(user => user.genres.some(genre => currentUsersGenres.map(obj => obj.genreId).includes(genre.genreId)))
+
+    res.json(unmatchedUsers)
   } catch (error) {
     console.log(error)
     res.status(500).send(error)
   }
 })
+
+// router.post('/swipe', (req, res) => {
+//   const { userId, receiver_id } = req.body
+//   await db.createSwipe(userId, receiver_id)
+//   const isMatch = await db.verifyMatch(userId, receiver_id)
+//   if(isMatch) {
+//     await createChatRoom(userId, { 'Project-ID': 'dsfdsfdsf', username: '', userSecret: '' })
+//     res.sendStatus(201)
+//   }else {
+
+//     await db.createSwipe(userId, receiver_id)
+//     res.sendStatus(201)
+//   }
+// })
 
 module.exports = router

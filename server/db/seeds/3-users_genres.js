@@ -39,6 +39,11 @@ exports.seed = function (knex) {
           id: 8,
           user_id: 4,
           genre_id: 3
+        },
+        {
+          id: 9,
+          user_id: 2,
+          genre_id: 7
         }
       ])
     })
