@@ -18,6 +18,7 @@ exports.seed = function (knex) {
           username: 'westley',
           usersecret: 'eda123',
           fullname: 'Westely',
+          description: 'I was ranked the first DJ on the first settlement on planet Mars',
           gender_id: 1,
           created_at: new Date(Date.now())
         },
@@ -26,6 +27,7 @@ exports.seed = function (knex) {
           username: 'dylan',
           usersecret: 'eda123',
           fullname: 'Dylan Dylan',
+          description: 'I was ranked the first DJ on the first settlement on planet Mars',
           gender_id: 1,
           created_at: new Date(Date.now())
         },
@@ -34,6 +36,7 @@ exports.seed = function (knex) {
           username: 'carter',
           usersecret: 'eda123',
           fullname: 'Carter',
+          description: 'I was ranked the first DJ on the first settlement on planet Mars',
           gender_id: 1,
           created_at: new Date(Date.now())
         }

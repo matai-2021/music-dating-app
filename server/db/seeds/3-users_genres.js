@@ -44,6 +44,46 @@ exports.seed = function (knex) {
           id: 9,
           user_id: 2,
           genre_id: 7
+        },
+        {
+          id: 10,
+          user_id: 2,
+          genre_id: 1
+        },
+        {
+          id: 11,
+          user_id: 2,
+          genre_id: 3
+        },
+        {
+          id: 12,
+          user_id: 2,
+          genre_id: 4
+        },
+        {
+          id: 13,
+          user_id: 2,
+          genre_id: 6
+        },
+        {
+          id: 14,
+          user_id: 2,
+          genre_id: 2
+        },
+        {
+          id: 15,
+          user_id: 2,
+          genre_id: 4
+        },
+        {
+          id: 16,
+          user_id: 2,
+          genre_id: 9
+        },
+        {
+          id: 17,
+          user_id: 2,
+          genre_id: 10
         }
       ])
     })

@@ -90,7 +90,6 @@ export function fetchUnMatchedUsers (user) {
   return dispatch => {
     return getUsersToMatch(user.id)
       .then((res) => {
-        console.log(res)
         dispatch(setMatchees(res))
         return null
       })
