@@ -11,7 +11,7 @@ import Chat from './Chat'
 function App (props) {
   return (
     <>
-      <Route path="/" component={Header}/>
+      <Route path="/home" component={Header}/>
       <Route exact path="/users/chat" component={Chat}/>
       <Route path="/register" component={Register}/>
       <Route path="/matching" component={Swipe}/>
