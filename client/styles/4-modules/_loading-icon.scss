@@ -1,0 +1,43 @@
+@use '../1-helpers/mixins';
+
+.waitIndicator {
+  position: absolute;
+  top: 1rem;
+  left: 12rem;
+
+  &--img {
+    width: 3.4em;
+    padding: 0.2em;
+    -webkit-animation: rotation 1.8s infinite linear;
+    -moz-animation: rotation 1.8s infinite linear;
+    animation: rotation 1.8s infinite linear;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    @include mixins.prefix((
+      transform: rotate(0deg)
+    ), webkit moz);
+  }
+  25% {
+    @include mixins.prefix((
+      transform: rotate(40deg)
+    ), webkit moz);
+  }
+  50% {
+    @include mixins.prefix((
+      transform: rotate(0deg)
+    ), webkit moz);
+  }
+  75% {
+    @include mixins.prefix((
+      transform: rotate(-40deg)
+    ), webkit moz);
+  }
+  100% {
+    @include mixins.prefix((
+      transform: rotate(0deg)
+    ), webkit moz);
+  }
+}

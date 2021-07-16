@@ -82,13 +82,12 @@ function Register (props) {
       description: '',
       genderId: ''
     })
-
-    history.push('/')
+    history.push('/matching')
   }
 
   return (
-    <>
-      <form>
+    <section className='whole-container'>
+      <form className='form-title form-box'>
         <label name={form.fullname}>
           <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
         </label>
@@ -113,7 +112,7 @@ function Register (props) {
         </label>
         <button onClick={handleSubmit}>Register</button>
       </form>
-    </>
+    </section>
   )
 }
 
