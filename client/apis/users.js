@@ -17,3 +17,11 @@ export function postUser (user) {
       return res.body.id
     })
 }
+
+export function getUsersToMatch (user) {
+  return request.post(rootUrl + '/match')
+    .send(user)
+    .then(res => {
+      return res.body
+    })
+}

@@ -20,13 +20,12 @@ function SignIn (props) {
 
   function handleSubmit (event) {
     event.preventDefault()
-    console.log(form)
     props.dispatch(fetchUserName(form))
     // createNewProduct(form, props.dispatch)
     setForm({
       username: ''
     })
-    history.push('/')
+    history.push('/matching')
   }
 
   return (
