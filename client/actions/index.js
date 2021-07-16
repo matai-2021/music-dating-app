@@ -5,6 +5,7 @@ export const SET_USER = 'SET_USER'
 export const SET_GENRES = 'SET_GENRES'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGOUT = 'LOGOUT'
 
 export function setUser (user) {
   return {
@@ -13,6 +14,11 @@ export function setUser (user) {
   }
 }
 
+export function resetUser () {
+  return {
+    type: LOGOUT
+  }
+}
 export function setGenres (genres) {
   return {
     type: SET_GENRES,
@@ -64,5 +70,11 @@ export function createUser (user) {
         dispatch(fetchUserName(user))
         return null
       })
+  }
+}
+
+export function logoutUser () {
+  return dispatch => {
+    return dispatch(resetUser())
   }
 }

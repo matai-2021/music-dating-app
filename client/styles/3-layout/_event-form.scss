@@ -8,6 +8,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0.5rem;
+}
+
+input[type=text] {
+  width: 102%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border-radius: vars.$base-size * 0.50;
+  border: none;
+  align-content: space-between;
 }
 
 .form-container {
@@ -35,7 +45,7 @@
 .form-button-primary {
   background-color: vars.$blue;
   padding: vars.$base-size;
-  border-radius: vars.$base-size * 0.10;
+  border-radius: vars.$base-size * 0.50;
   border: none;
   color: #ffffff;
   text-align: center;
@@ -54,6 +64,26 @@
     color: #ffffff;
   }
 }
+
+.form-button-signin {
+  color: #ffffff;
+  text-align: center;
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: vars.$base-size * 0.5;
+
+  @include mixins.media-queries(tablet, min) {
+    width: 60%;
+  }
+
+  &:hover{
+    background-color: vars.$green;
+    border: none;
+    color: #ffffff;
+  }
+}
+
 
 .form-button-secondary {
   padding: vars.$base-size;
@@ -88,7 +118,6 @@
 }
 
 .preview-title {
-  color: vars.$primary;
   font-family: vars.$heading;
   font-size: x-large;
   font-weight: bold;
@@ -125,5 +154,11 @@
 
 .form-box-height {
   height: vars.$base-size * 8;
-  width: vars.$base-size * 20
+  width: vars.$base-size * 20.4
+}
+
+.text-size {
+  font-size: medium;
+  border-radius: vars.$base-size * 0.50;
+  border: none;
 }

@@ -36,7 +36,7 @@ function SignIn (props) {
     <p>Username not found</p>
   </div>}
         <form className='form-title'>
-          <label name="UserName">
+          <label className='form-button-signin' name="UserName">
             <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username}/>
           </label>
           <button onClick={handleSubmit}>Sign In</button>
