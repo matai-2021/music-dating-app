@@ -28,6 +28,14 @@ exports.seed = function (knex) {
           fullname: 'Dylan Dylan',
           gender_id: 1,
           created_at: new Date(Date.now())
+        },
+        {
+          id: 4,
+          username: 'carter',
+          usersecret: 'eda123',
+          fullname: 'Carter',
+          gender_id: 1,
+          created_at: new Date(Date.now())
         }
       ])
     })

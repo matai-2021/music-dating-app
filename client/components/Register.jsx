@@ -1,14 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { createUser, fetchGenres } from '../actions/index'
 
-function Register () {
+function Register (props) {
   const history = useHistory()
+  const { genres } = props
+  const [genresForm, setGenresForm] = useState([])
   const [form, setForm] = useState({
-    name: '',
-    userName: '',
-    secret: '',
-    genre: ''
+    fullname: '',
+    username: '',
+    usersecret: '',
+    genderId: '',
+    description: ''
   })
+
+  useEffect(() => {
+    props.dispatch(fetchGenres())
+  }, [])
 
   function handleChange (event) {
     const { name, value } = event.target
@@ -18,44 +27,73 @@ function Register () {
     })
   }
 
+  function handleCheck (genreId, event) {
+    const { checked } = event.target
+    if (checked) {
+      setGenresForm([...genresForm, genreId])
+    } else {
+      setGenresForm(genresForm.filter(id => id !== genreId))
+    }
+  }
+
   function handleSubmit (event) {
     event.preventDefault()
-    console.log(form)
+    const { fullname, username, genderId, description } = form
+    const userForm = {
+      fullname,
+      username,
+      usersecret: 'eda123',
+      description,
+      genderId,
+      genre: genresForm
+    }
+    props.dispatch(createUser(userForm))
     // createNewProduct(form, props.dispatch)
     setForm({
-      name: '',
-      userName: '',
-      secret: '',
-      genre: 'None'
+      fullname: '',
+      username: '',
+      usersecret: '',
+      description: '',
+      genderId: ''
     })
-    history.push('/')
+    history.push('/matching')
   }
 
   return (
-    <>
-      <form>
-        <label name={form.name}>
-          <input onChange={handleChange} type="text" name="name" placeholder="Name" value={form.name}/>
+    <section className='whole-container'>
+      <form className='form-title form-box'>
+        <label name={form.fullname}>
+          <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
         </label>
-        <label name={form.country}>
-          <input onChange={handleChange} type="text" name="userName" placeholder="Username" value={form.userName}/>
+        <label name={form.username}>
+          <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username}/>
         </label>
         <label name={form.description}>
-          <input onChange={handleChange} type="text" name="secret" placeholder="Password" value={form.secret}/>
+          <textarea onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
+        </label>
+        <label htmlFor="genderId">Gender:
+          <select name="genderId" id="genderId" onChange={handleChange}>
+            <option value={form.genre}>Please Select an Option</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+            <option value="3">Non Binary/Other</option>
+          </select>
         </label>
         <label htmlFor="genre">Choose a Genre of Music:
-          <select name="genre" id="genre" onChange={handleChange}>
-            <option value={form.genre}>Please Select an Option</option>
-            <option value="Rock">Rock</option>
-            <option value="K-Pop">K-Pop</option>
-            <option value="Indie Rock">Indie Rock</option>
-            <option value="Pop">Pop</option>
-          </select>
+          {genres.map(genre => (
+            <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id}/>{genre.name}</div>
+          ))}
         </label>
         <button onClick={handleSubmit}>Register</button>
       </form>
-    </>
+    </section>
   )
 }
 
-export default Register
+const mapStateToProps = (globalState) => {
+  return {
+    genres: globalState.genres
+  }
+}
+
+export default connect(mapStateToProps)(Register)

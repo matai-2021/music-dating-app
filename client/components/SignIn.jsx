@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { fetchUserName } from '../actions'
 
-function Register () {
+function SignIn (props) {
+  const { loginError } = props
   const history = useHistory()
   const [form, setForm] = useState({
-    userName: '',
-    password: ''
+    username: ''
   })
 
   function handleChange (event) {
@@ -18,27 +20,36 @@ function Register () {
 
   function handleSubmit (event) {
     event.preventDefault()
-    // createNewProduct(form, props.dispatch) Check if login .....
+    props.dispatch(fetchUserName(form))
+    // createNewProduct(form, props.dispatch)
     setForm({
-      userName: '',
-      password: ''
+      username: ''
     })
-    history.push('/')
+    history.push('/matching')
   }
 
   return (
     <>
-      <form>
-        <label name={form.name}>
-          <input onChange={handleChange} type="text" name="userName" placeholder="Username" value={form.userName}/>
-        </label>
-        <label name={form.country}>
-          <input onChange={handleChange} autoComplete="on" type="password" name="password" placeholder="Password" value={form.password}/>
-        </label>
-        <button onClick={handleSubmit}>Sign In</button>
-      </form>
+      <section>
+        {loginError &&
+  <div>
+    <p>Username not found</p>
+  </div>}
+        <form className='form-title'>
+          <label name="UserName">
+            <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username}/>
+          </label>
+          <button onClick={handleSubmit}>Sign In</button>
+        </form>
+      </section>
     </>
   )
 }
 
-export default Register
+const mapStateToProps = (globalState) => {
+  return {
+    loginError: globalState.loginError
+  }
+}
+
+export default connect(mapStateToProps)(SignIn)

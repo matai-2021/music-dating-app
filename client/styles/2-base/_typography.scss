@@ -1,0 +1,11 @@
+@use '../1-helpers/vars';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 1rem;
+    font-family: vars.$paragraph;
+    line-height: 1.5;
+}
