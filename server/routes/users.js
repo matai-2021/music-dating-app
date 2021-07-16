@@ -49,6 +49,7 @@ router.post('/signin', async (req, res) => {
   }
 })
 
+// GET /api/v1/users/:id/unmatched
 router.get('/:id/unmatched', async (req, res) => {
   try {
     const userId = req.params.id
@@ -59,7 +60,7 @@ router.get('/:id/unmatched', async (req, res) => {
       genres: await db.getUserGenres(user.id)
     }))
 
-    console.log(currentUsersGenres)
+    console.log('dsfdsf', currentUsersGenres)
     const unmatchedUsers = (await Promise.all(promises))
       .filter(user => user.genres.some(genre => currentUsersGenres.map(obj => obj.genreId).includes(genre.genreId)))
 
