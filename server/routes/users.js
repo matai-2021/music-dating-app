@@ -51,4 +51,20 @@ router.post('/signin', async (req, res) => {
   }
 })
 
+router.get('/:id/unmatched', async (req, res) => {
+  try {
+    const users = await db.getUnmatchedUsers(req.params.id)
+
+    const promises = users.map(async user => ({
+      ...user,
+      genres: await db.getUserGenres(user.id)
+    }))
+
+    res.json(await Promise.all(promises))
+  } catch (error) {
+    console.log(error)
+    res.status(500).send(error)
+  }
+})
+
 module.exports = router
