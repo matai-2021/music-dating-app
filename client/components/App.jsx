@@ -4,14 +4,12 @@ import { Route } from 'react-router-dom'
 
 import Header from './Header'
 import Register from './Register'
-import SignIn from './SignIn'
 
 function App (props) {
   return (
     <>
-      <Route path="/" component={Header}/>
+      <Route exact path="/" component={Header}/>
       <Route path="/register" component={Register}/>
-      <Route path="/login" component={SignIn}/>
     </>
   )
 }
