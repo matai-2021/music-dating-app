@@ -50,9 +50,23 @@ function userExists (username, db = connection) {
     .then(count => count[0].n > 0)
 }
 
+function getUnmatchedUsers (id, db = connection) {
+  return db('users')
+    .join('genders', 'users.gender_id', 'genders.id')
+    .select('*')
+    .whereNotExists(function () {
+      this.select('*')
+        .from('users_swipe')
+        .where('sender_id', id)
+        .whereRaw('receiver_id = users.id')
+    })
+    .whereNot('users.id', id)
+}
+
 module.exports = {
   addUser,
   addGenres,
   getUser,
-  getUserGenres
+  getUserGenres,
+  getUnmatchedUsers
 }
