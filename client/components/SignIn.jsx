@@ -30,10 +30,9 @@ function SignIn (props) {
   }
 
   return (
-    <>
       <section>
         {loginError &&
-  <div>
+  <div className='preview-title'>
     <p>Username not found</p>
   </div>}
         <form className='form-title'>
@@ -43,7 +42,6 @@ function SignIn (props) {
           <button onClick={handleSubmit}>Sign In</button>
         </form>
       </section>
-    </>
   )
 }
 

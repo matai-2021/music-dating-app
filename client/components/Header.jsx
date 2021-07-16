@@ -19,7 +19,7 @@ function Header (props) {
       </div>
       <div>
         {user.id
-          ? <> <h1>Logout</h1> </>
+          ? <> <h1 className='pre-title'>Logout</h1> </>
           : <> <SignIn className='form-button-secondary' /> <div><h1 className='preview-title'>{`Don't have an account? `}<Link className='form-button-primary' to="/register">Register Now</Link></h1></div> </>
         }
       </div>
