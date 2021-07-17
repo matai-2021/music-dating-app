@@ -23,9 +23,9 @@ function SignIn (props) {
 
   async function handleSubmit (event) {
     event.preventDefault()
-    const { username, password } = form
+    const { username } = form
     try {
-      await signIn({ username, password }, { baseUrl: `${baseUrl}` })
+      await signIn({ username, password: 'eda123' }, { baseUrl })
       if (isAuthenticated()) {
         props.dispatch(fetchUserName(form))
         history.push('/matching')

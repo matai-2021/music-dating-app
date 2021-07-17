@@ -51,7 +51,7 @@ function Register (props) {
     }
     props.dispatch(createUser(userForm))
 
-    register({ username, usersecret: userForm.usersecret }, { baseUrl: `${baseUrl}/users/register` })
+    register({ username, password: userForm.usersecret }, { baseUrl })
       .then(() => {
         if (isAuthenticated()) {
           props.history.push('/')

@@ -3,7 +3,7 @@ exports.up = function (knex) {
     table.increments('id').primary()
     table.string('fullname')
     table.string('username')
-    table.string('usersecret')
+    table.binary('hash')
     table.string('description')
     table.string('gender_id').references('genders.id')
     table.timestamp('created_at')

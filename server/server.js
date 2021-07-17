@@ -12,6 +12,6 @@ server.use(express.static(path.join(__dirname, 'public')))
 
 server.use('/api/v1/users', userRoutes)
 server.use('/api/v1/genres', genreRoutes)
-server.use('/api/v1/auth', authRoutes)
+server.use('/api/v1', authRoutes)
 
 module.exports = server
