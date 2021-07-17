@@ -13,6 +13,7 @@ function App (props) {
   return (
     <>
       <Route path="/" component={Nav}/>
+      <Route exact path="/" component={Header}/>
       <Route exact path="/signin" component={Header}/>
       <Route exact path="/chat" component={Chat}/>
       <Route exact path="/register" component={Register}/>

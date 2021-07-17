@@ -15,8 +15,6 @@ function Swipe (props) {
     user.id && props.dispatch(fetchUnMatchedUsers(user))
   }, [user])
 
-  // const childRefs = useMemo(() => Array(swipee.length).fill(0).map(i => React.createRef()), [])
-
   const swiped = (direction, card) => {
     if (direction === 'right' || direction === 'up') {
       const swipe = {
@@ -39,25 +37,13 @@ function Swipe (props) {
     }
   }
 
-  // const swipe = (direction) => {
-  //   console.log(childRefs)
-  //   const memesLeft = swipee.filter(item => !alreadyRemoved.includes(item.id))
-  //   if (memesLeft.length) {
-  //     const toBeRemoved = memesLeft[memesLeft.length - 1].id // Find the card object to be removed
-  //     const index = swipee.map(meme => swipee.id).indexOf(toBeRemoved)
-  //     console.log(toBeRemoved + 'hi')// Find the index of which to make the reference to
-  //     alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
-  //     childRefs[index].current.swipe(direction) // Swipe the card!
-  //   }
-  // }
-
   const outOfFrame = (username) => {
     swipee.filter(meme => meme.id !== username)
   }
   return (
     <>
       <div>
-        <GrChat />
+        <Link to="/chat"><GrChat /></Link>
         <Link to="/profile"><CgProfile /></Link>
       </div>
       <div>

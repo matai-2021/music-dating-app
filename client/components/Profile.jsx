@@ -16,7 +16,7 @@ function Profile (props) {
   })
 
   const usersGenres = () => {
-    return genres.map(genre => { if (user.genres.map(genre => genre.genreId).find(element => element == genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
+    return genres.map(genre => { if (user.genres.map(genre => genre.genreId).find(element => element === genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
   }
 
   useEffect(() => {
@@ -46,7 +46,6 @@ function Profile (props) {
     const userForm = {
       fullname,
       username,
-      usersecret: 'eda123',
       description,
       genderId,
       genre: genresForm
@@ -57,7 +56,6 @@ function Profile (props) {
     setForm({
       fullname: '',
       username: '',
-      usersecret: '',
       description: '',
       genderId: ''
     })
