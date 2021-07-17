@@ -12,7 +12,9 @@ function Swipe (props) {
   const [checkingMatch, setCheckingMatch] = useState({})
 
   useEffect(() => {
-    user.id && props.dispatch(fetchUnMatchedUsers(user))
+    if (user.id) {
+      props.dispatch(fetchUnMatchedUsers(user))
+    }
   }, [user])
 
   const swiped = (direction, card) => {
@@ -54,7 +56,7 @@ function Swipe (props) {
           {swipee?.map((cardSwipe, index) =>
             <TinderCard className='swipe' key={cardSwipe.id} onSwipe={(dir) => swiped(dir, cardSwipe.id)} onCardLeftScreen={() => outOfFrame(cardSwipe.id)}>
               <div style={{ backgroundImage: 'url(https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999)' }} className='card'>
-                <h3>{cardSwipe.fullname} ({cardSwipe.gender})</h3>
+                <h3>{cardSwipe.fullname}</h3>
               </div>
               <div className='card'>
                 <p>{cardSwipe.description}</p>

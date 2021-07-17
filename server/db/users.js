@@ -63,7 +63,7 @@ function userExists (username, db = connection) {
 function getUnmatchedUsers (id, db = connection) {
   return db('users')
     .join('genders', 'users.gender_id', 'genders.id')
-    .select('genders.id as genderId', 'name as gender', 'users.id as id', 'fullname', 'description', 'username', 'usersecret')
+    .select('genders.id as genderId', 'name as gender', 'users.id as id', 'fullname', 'description', 'username')
     .whereNotExists(function () {
       this.select('*')
         .from('users_swipe')

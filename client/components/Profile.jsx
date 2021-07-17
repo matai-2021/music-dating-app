@@ -15,9 +15,9 @@ function Profile (props) {
     description: user.description
   })
 
-  const usersGenres = () => {
-    return genres.map(genre => { if (user.genres.map(genre => genre.genreId).find(element => element === genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
-  }
+  // const usersGenres = () => {
+  //   const userGenres = genres.map(genre => { if (user.genres.map(genre => genre.genreId).find(element => element === genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
+  // }
 
   useEffect(() => {
     props.dispatch(fetchGenres())
@@ -50,7 +50,6 @@ function Profile (props) {
       genderId,
       genre: genresForm
     }
-    console.log(userForm)
     // props.dispatch(createUser(userForm))
 
     setForm({
@@ -84,9 +83,9 @@ function Profile (props) {
             </select>
           </label>
           <label htmlFor="genre">Choose a Genre of Music:
-            {usersGenres.map(genre => (
+            {/* {usersGenres.map(genre => (
               <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked}/>{genre.name} </div>
-            ))}
+            ))} */}
           </label>
           <button onClick={handleSubmit}>Register</button>
         </form>
