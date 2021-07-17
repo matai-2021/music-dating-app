@@ -19,15 +19,41 @@ afterAll(() => {
   return testDb.destroy()
 })
 
-describe('gerUser', () => {
+describe('getUser', () => {
   it('returns the choosen user', () => {
     return db.getUser('ahmad', testDb)
-      .then((event) => {
-        expect(event.id).toBe(1)
-        expect(event.fullname).toBe('ahmad anwar')
-        expect(event.description).toMatch('DJ')
-        expect(event.hash).toBeDefined()
-        expect(event.gender_id).toBe('1')
+      .then((user) => {
+        expect(user.id).toBe(1)
+        expect(user.fullname).toBe('ahmad anwar')
+        expect(user.description).toMatch('DJ')
+        expect(user.hash).toBeDefined()
+        expect(user.gender_id).toBe('1')
+        return null
+      })
+  })
+})
+
+describe('getUserById', () => {
+  it('returns the choosen user', () => {
+    return db.getUserById(1, testDb)
+      .then((user) => {
+        expect(user.id).toBe(1)
+        expect(user.fullname).toBe('ahmad anwar')
+        expect(user.description).toMatch('DJ')
+        expect(user.genderName).toBe('Male')
+        expect(user.genderId).toBe(1)
+        return null
+      })
+  })
+})
+
+describe('getUserGenres', () => {
+  it('return genres', () => {
+    return db.getUserGenres(1, testDb)
+      .then((genres) => {
+        expect(genres).toHaveLength(2)
+        expect(genres).toContainEqual({ genreId: 3, name: 'Electronic' })
+        expect(genres).toContainEqual({ genreId: 7, name: 'Hip hop' })
         return null
       })
   })
