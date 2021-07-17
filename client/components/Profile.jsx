@@ -11,13 +11,11 @@ function Profile (props) {
   const [form, setForm] = useState({
     fullname: user.fullname,
     username: user.username,
-    genderId: user.gender,
+    genderName: user.ganderName,
     description: user.description
   })
-
-  // const usersGenres = () => {
-  //   const userGenres = genres.map(genre => { if (user.genres.map(genre => genre.genreId).find(element => element === genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
-  // }
+  console.log(user)
+  const userGenres = genres.map(genre => { if (user.genres.map(genre => genre.genreId).find(element => element === genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
 
   useEffect(() => {
     props.dispatch(fetchGenres())
@@ -76,16 +74,16 @@ function Profile (props) {
           </label>
           <label htmlFor="genderId">Gender:
             <select name="genderId" id="genderId" onChange={handleChange}>
-              <option value={form.genderId}>{form.gender}</option>
+              <option value={form.genderId}>{form.genderName}</option>
               <option value="1">Male</option>
               <option value="2">Female</option>
               <option value="3">Non Binary/Other</option>
             </select>
           </label>
           <label htmlFor="genre">Choose a Genre of Music:
-            {/* {usersGenres.map(genre => (
+            {userGenres.map(genre => (
               <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked}/>{genre.name} </div>
-            ))} */}
+            ))}
           </label>
           <button onClick={handleSubmit}>Register</button>
         </form>

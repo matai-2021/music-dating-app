@@ -2,7 +2,7 @@ import { isAuthenticated, signIn } from 'authenticare/client'
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { fetchUserName, invalidUsername } from '../actions'
+import { fetchUserName } from '../actions'
 import { baseUrl } from '../config'
 
 function SignIn (props) {
@@ -32,7 +32,7 @@ function SignIn (props) {
     } catch (error) {
       // console.log(error)
       if (error.message === 'INVALID_CREDENTIALS') {
-        props.dispatch(invalidUsername())
+        // props.dispatch(invalidUsername())
       }
     }
   }

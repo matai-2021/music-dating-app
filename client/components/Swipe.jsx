@@ -21,7 +21,7 @@ function Swipe (props) {
     if (direction === 'right' || direction === 'up') {
       const swipe = {
         userId: user.id,
-        recieverId: card,
+        receiverId: card,
         isMatch: true
       }
       setCheckingMatch(swipe)
@@ -30,7 +30,7 @@ function Swipe (props) {
     } else {
       const swipe = {
         userId: user.id,
-        recieverId: card,
+        receiverId: card,
         isMatch: false
       }
       setLastDirection('left')
