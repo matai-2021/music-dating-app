@@ -11,6 +11,8 @@ function Swipe (props) {
   const [lastDirection, setLastDirection] = useState()
   const [checkingMatch, setCheckingMatch] = useState({})
 
+  console.log(match)
+
   useEffect(() => {
     if (user.id) {
       props.dispatch(fetchUnMatchedUsers(user))
@@ -69,7 +71,7 @@ function Swipe (props) {
             </TinderCard>
           )}
         </div>
-        {match && <p>You matched with {swipee.find(item => item.id === checkingMatch.recieverId).username}</p>}
+        {/* {match && <p>You matched with {swipee.find(item => item.id === checkingMatch.recieverId).username}</p>} */}
         {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
       </div>
     </>
