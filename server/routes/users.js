@@ -29,12 +29,32 @@ router.post('/register', async (req, res) => {
   }
 })
 
-// GET /api/v1/users/:username
+// GET /api/v1/users/:id
 router.get('/:id', async (req, res) => {
   const { id } = req.params
   try {
     const user = await db.getUserById(id)
     const currentUsersGenres = await db.getUserGenres(id)
+    res.json({
+      username: user.username,
+      fullname: user.fullname,
+      description: user.description,
+      genres: currentUsersGenres,
+      genderId: user.genderId,
+      genderName: user.genderName
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error)
+  }
+})
+
+// GET /api/v1/users/username/:username
+router.get('/username/:username', async (req, res) => {
+  const { username } = req.params
+  try {
+    const user = await db.getUser(username)
+    const currentUsersGenres = await db.getUserGenres(user.id)
     res.json({
       username: user.username,
       fullname: user.fullname,
