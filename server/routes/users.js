@@ -56,6 +56,7 @@ router.get('/username/:username', async (req, res) => {
     const user = await db.getUser(username)
     const currentUsersGenres = await db.getUserGenres(user.id)
     res.json({
+      id: user.id,
       username: user.username,
       fullname: user.fullname,
       description: user.description,
