@@ -22,6 +22,13 @@ function getUser (username, db = connection) {
     .first()
 }
 
+function getUserById (id, db = connection) {
+  return db('users')
+    .where('id', id)
+    .select()
+    .first()
+}
+
 function getUserGenres (userId, db = connection) {
   return db('users_genres')
     .where('user_id', userId)
@@ -63,9 +70,9 @@ function getUnmatchedUsers (id, db = connection) {
     .whereNot('users.id', id)
 }
 
-function createSwipe (userId, recieverId, isMatch, db = connection) {
+function createSwipe (userId, receiverId, isMatch, db = connection) {
   return db('users_swipe')
-    .insert({ sender_id: userId, reciever_id: recieverId, is_match: isMatch, created_at: new Date(Date.now()) })
+    .insert({ sender_id: userId, receiver_id: receiverId, is_match: isMatch, created_at: new Date(Date.now()) })
 }
 
 function varifyMatch (userId, receiverId, db = connection) {
@@ -88,5 +95,6 @@ module.exports = {
   getUserGenres,
   getUnmatchedUsers,
   createSwipe,
-  varifyMatch
+  varifyMatch,
+  getUserById
 }

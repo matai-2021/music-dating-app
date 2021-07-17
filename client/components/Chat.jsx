@@ -1,16 +1,18 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
 import { ChatEngine, ChatList, ChatCard, ChatFeed, ChatHeader, MessageBubble, IsTyping, ScrollDownBar, NewMessageForm } from 'react-chat-engine'
 
 const ChatPage = (props) => {
+  console.log(props.user.username)
   return (
     <>
       <h2><Link to={'/'}>Matching</Link></h2>
       <ChatEngine
         height='100vh'
-        userName='dylantoomeygaa'
+        userName={props.user.username}
         userSecret='eda123'
         projectID='7565a494-51c5-49c2-943c-7c65ca00e965'
         renderNewChatForm={(creds) => {}}
@@ -33,4 +35,10 @@ const ChatPage = (props) => {
   )
 }
 
-export default ChatPage
+const mapStateToProps = (globalState) => {
+  return {
+    user: globalState.user
+  }
+}
+
+export default connect(mapStateToProps)(ChatPage)

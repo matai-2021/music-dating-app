@@ -1,3 +1,4 @@
+const request = require('superagent')
 const express = require('express')
 
 const db = require('../db/users')
@@ -72,12 +73,24 @@ router.get('/:id/unmatched', async (req, res) => {
 
 router.post('/swipe', async (req, res) => {
   const { userId, receiverId, isMatch } = req.body
-  // await db.createSwipe(userId, receiverId, isMatch)
+  await db.createSwipe(userId, receiverId, isMatch)
   try {
-    const checkIfMatch = await db.varifyMatch(userId, receiverId, isMatch)
+    const checkIfMatch = true // await db.varifyMatch(userId, receiverId)
     if (checkIfMatch) {
-    // await createChatRoom(userId, { 'Project-ID': '7565a494-51c5-49c2-943c-7c65ca00e965', username: '', userSecret: '' })
-      res.sendStatus(201)
+      const { username } = await db.getUserById(userId)
+      const header = {
+        projectid: '7565a494-51c5-49c2-943c-7c65ca00e965',
+        username: username,
+        usersecret: 'eda123'
+      }
+      const { username: receiverUsername } = await db.getUserById(receiverId)
+
+      const body = {
+        usernames: [username, receiverUsername],
+        is_direct_chat: true
+      }
+      await createChatRoom(header, body)
+      // res.sendStatus(201)
     }
     console.log(checkIfMatch)
     res.sendStatus(201)
@@ -85,5 +98,17 @@ router.post('/swipe', async (req, res) => {
     console.error(error)
   }
 })
+
+function createChatRoom (header, body) {
+  console.log(header)
+  console.log(body)
+  return request.put('https://api.chatengine.io/chats/')
+    .send(body)
+    .type('application/json')
+    .set('Project-ID', header['projectid'])
+    .set('User-Name', header['username'])
+    .set('User-Secret', header['usersecret'])
+    .catch(console.error)
+}
 
 module.exports = router
