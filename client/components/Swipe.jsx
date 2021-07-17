@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import TinderCard from 'react-tinder-card'
 import { fetchUnMatchedUsers } from '../actions'
 import { GrChat } from 'react-icons/gr'
@@ -50,7 +51,7 @@ function Swipe (props) {
   return (
     <>
       <div>
-        <GrChat />
+        <Link to={'/users/chat'}><GrChat /></Link> 
         <CgProfile />
       </div>
       <div>

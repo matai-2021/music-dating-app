@@ -75,7 +75,7 @@ router.post('/swipe', async (req, res) => {
   const { userId, receiverId, isMatch } = req.body
   await db.createSwipe(userId, receiverId, isMatch)
   try {
-    const checkIfMatch = true // await db.varifyMatch(userId, receiverId)
+    const checkIfMatch = await db.varifyMatch(userId, receiverId)
     if (checkIfMatch) {
       const { username } = await db.getUserById(userId)
       const header = {
@@ -90,10 +90,9 @@ router.post('/swipe', async (req, res) => {
         is_direct_chat: true
       }
       await createChatRoom(header, body)
-      // res.sendStatus(201)
     }
     console.log(checkIfMatch)
-    res.sendStatus(201)
+    res.sendStatus(201).send(checkIfMatch)
   } catch (error) {
     console.error(error)
   }
