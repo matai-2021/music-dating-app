@@ -79,7 +79,7 @@ function createSwipe (userId, receiverId, isMatch, db = connection) {
 }
 
 function varifyMatch (userId, receiverId, db = connection) {
-  const query = db('users_swipe')
+  return db('users_swipe')
     .count('* as n')
     .where('is_match', true)
     .where((whereBuilder) =>
@@ -92,11 +92,17 @@ function varifyMatch (userId, receiverId, db = connection) {
         .where('sender_id', receiverId)
         .orWhere('receiver_id', receiverId)
     )
-  console.log(query.toString())
-  return query
     .then((result) => {
       return result[0].n > 2
     })
+}
+
+function getGender (userId, db = connection) {
+  return db('users')
+    .where('users.id', userId)
+    .join('genders', 'users.gender_id', 'genders.id')
+    .select('genders.id as genderId', 'name as genderName')
+    .first()
 }
 
 module.exports = {
@@ -107,5 +113,6 @@ module.exports = {
   getUnmatchedUsers,
   createSwipe,
   varifyMatch,
-  getUserById
+  getUserById,
+  getGender
 }

@@ -53,6 +53,7 @@ router.get('/username/:username', async (req, res) => {
   const { username } = req.params
   try {
     const user = await db.getUser(username)
+    const { genderName, genderId } = await db.getGender(user.id)
     const currentUsersGenres = await db.getUserGenres(user.id)
     res.json({
       id: user.id,
@@ -60,8 +61,8 @@ router.get('/username/:username', async (req, res) => {
       fullname: user.fullname,
       description: user.description,
       genres: currentUsersGenres,
-      genderId: user.genderId,
-      genderName: user.genderName
+      genderId: genderId,
+      genderName: genderName
     })
   } catch (error) {
     console.error(error)
