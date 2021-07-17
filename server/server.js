@@ -3,6 +3,7 @@ const path = require('path')
 
 const userRoutes = require('./routes/users')
 const genreRoutes = require('./routes/genres')
+const authRoutes = require('./routes/auth')
 
 const server = express()
 
@@ -11,5 +12,6 @@ server.use(express.static(path.join(__dirname, 'public')))
 
 server.use('/api/v1/users', userRoutes)
 server.use('/api/v1/genres', genreRoutes)
+server.use('/api/v1/auth', authRoutes)
 
 module.exports = server
