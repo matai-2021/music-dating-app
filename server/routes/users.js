@@ -92,27 +92,30 @@ router.get('/:id/unmatched', async (req, res) => {
 
 router.post('/swipe', async (req, res) => {
   const { userId, receiverId, isMatch } = req.body
-  await db.createSwipe(userId, receiverId, isMatch)
   try {
-    const checkIfMatch = true // await db.varifyMatch(userId, receiverId)
-    if (checkIfMatch) {
-      const { username } = await db.getUserById(userId)
-      const header = {
-        projectid: '7565a494-51c5-49c2-943c-7c65ca00e965',
-        username: username,
-        usersecret: 'eda123'
-      }
-      const { username: receiverUsername } = await db.getUserById(receiverId)
+    if (isMatch) {
+      await db.createSwipe(userId, receiverId, isMatch)
+      const checkIfMatch = await db.varifyMatch(userId, receiverId)
+      if (checkIfMatch) {
+        const { username } = await db.getUserById(userId)
+        const header = {
+          projectid: '7565a494-51c5-49c2-943c-7c65ca00e965',
+          username: username,
+          usersecret: 'eda123'
+        }
+        const { username: receiverUsername } = await db.getUserById(receiverId)
 
-      const body = {
-        usernames: [username, receiverUsername],
-        is_direct_chat: true
+        const body = {
+          usernames: [username, receiverUsername],
+          is_direct_chat: true
+        }
+        res.json({ isMatch: true })
+        await createChatRoom(header, body)
       }
-      await createChatRoom(header, body)
-      // res.sendStatus(201)
+    } else {
+      await db.createSwipe(userId, receiverId, isMatch)
+      res.json({ isMatch: false })
     }
-    console.log(checkIfMatch)
-    res.sendStatus(201)
   } catch (error) {
     console.error(error)
   }

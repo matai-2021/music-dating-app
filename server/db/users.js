@@ -79,15 +79,23 @@ function createSwipe (userId, receiverId, isMatch, db = connection) {
 }
 
 function varifyMatch (userId, receiverId, db = connection) {
-  return db('users_swipe')
+  const query = db('users_swipe')
     .count('* as n')
     .where('is_match', true)
-    .orWhere('sender_id', userId)
-    .andWhere('receiver_id', receiverId)
-    .orWhere('receiver_id', userId)
-    .andWhere('sender_id', receiverId)
+    .where((whereBuilder) =>
+      whereBuilder
+        .where('receiver_id', userId)
+        .orWhere('sender_id', userId)
+    )
+    .where((whereBuilder) =>
+      whereBuilder
+        .where('sender_id', receiverId)
+        .orWhere('receiver_id', receiverId)
+    )
+  console.log(query.toString())
+  return query
     .then((result) => {
-      return result[0].n === 2
+      return result[0].n > 2
     })
 }
 
