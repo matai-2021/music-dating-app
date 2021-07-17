@@ -93,7 +93,7 @@ function varifyMatch (userId, receiverId, db = connection) {
         .orWhere('receiver_id', receiverId)
     )
     .then((result) => {
-      return result[0].n > 2
+      return result[0].n >= 2
     })
 }
 
