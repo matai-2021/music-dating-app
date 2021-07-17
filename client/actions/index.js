@@ -55,16 +55,15 @@ export function setMatchees (matchees) {
   }
 }
 
-export function fetchUserName (username) {
+export function fetchUserName (user) {
   return dispatch => {
-    return getUserByName(username)
+    return getUserByName(user.username)
       .then(res => {
-        console.log('logged in')
         dispatch(setUser(res))
         return null
       })
-      .catch(() => {
-        console.log('Erorr with logging in')
+      .catch(error => {
+        console.error(error)
         dispatch(loginFail())
         return null
       })
@@ -104,6 +103,7 @@ export function fetchUnMatchedUsers (user) {
         dispatch(setMatchees(res))
         return null
       })
+      .catch(console.error)
   }
 }
 

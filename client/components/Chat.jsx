@@ -11,7 +11,7 @@ const ChatPage = (props) => {
       <ChatEngine
         height='100vh'
         userName='dylantoomeygaa'
-        userSecret='eda123'
+        userSeceret='eda123'
         projectID='7565a494-51c5-49c2-943c-7c65ca00e965'
         renderNewChatForm={(creds) => {}}
         // Customising the UI

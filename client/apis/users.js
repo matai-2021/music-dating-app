@@ -3,8 +3,7 @@ import request from 'superagent'
 const rootUrl = '/api/v1/users'
 
 export function getUserByName (username) {
-  return request.post(rootUrl + '/signin')
-    .send(username)
+  return request.get(`${rootUrl}/${username}`)
     .then(res => {
       return res.body
     })

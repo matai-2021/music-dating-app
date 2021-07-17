@@ -28,20 +28,15 @@ router.post('/register', async (req, res) => {
   }
 })
 
-// POST /api/v1/users/signin
-router.post('/signin', async (req, res) => {
+// GET /api/v1/users/:username
+router.get('/:username', async (req, res) => {
+  const { username } = req.params
   try {
-    const { username } = req.body
     const user = await db.getUser(username)
-    const genres = await db.getUserGenres(user.id)
     res.json({
-      id: user.id,
-      username: user.username,
-      usersecret: user.usersecret,
+      username,
       fullname: user.fullname,
-      description: user.description,
-      gender_id: user.genderId,
-      genres: genres
+      description: user.description
     })
   } catch (error) {
     console.error(error)
