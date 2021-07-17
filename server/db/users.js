@@ -26,8 +26,9 @@ function getUser (username, db = connection) {
 
 function getUserById (id, db = connection) {
   return db('users')
-    .where('id', id)
-    .select()
+    .where('users.id', id)
+    .join('genders', 'users.gender_id', 'genders.id')
+    .select('genders.id as genderId', 'genders.name as genderName', 'users.id as id', 'fullname', 'description', 'username')
     .first()
 }
 

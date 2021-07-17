@@ -31,16 +31,17 @@ router.post('/register', async (req, res) => {
 
 // GET /api/v1/users/:username
 router.get('/:id', async (req, res) => {
-  const { username } = req.params
+  const { id } = req.params
   try {
-    const user = await db.getUser(username)
-    const currentUsersGenres = await db.getUserGenres(user.id)
+    const user = await db.getUserById(id)
+    const currentUsersGenres = await db.getUserGenres(id)
     res.json({
-      username,
+      username: user.username,
       fullname: user.fullname,
       description: user.description,
       genres: currentUsersGenres,
-      genderId: user.genderId
+      genderId: user.genderId,
+      genderName: user.genderName
     })
   } catch (error) {
     console.error(error)
@@ -103,9 +104,9 @@ function createChatRoom (header, body) {
   return request.put('https://api.chatengine.io/chats/')
     .send(body)
     .type('application/json')
-    .set('Project-ID', header['projectid'])
-    .set('User-Name', header['username'])
-    .set('User-Secret', header['usersecret'])
+    .set('Project-ID', header.projectid)
+    .set('User-Name', header.username)
+    .set('User-Secret', header.usersecret)
     .catch(console.error)
 }
 
