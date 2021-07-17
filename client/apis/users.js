@@ -1,6 +1,7 @@
 import request from 'superagent'
 
 const rootUrl = '/api/v1/users'
+// const authUrl = 'api/vi/'
 
 export function getUserByName (username) {
   return request.get(`${rootUrl}/${username}`)

@@ -11,7 +11,6 @@ router.post('/register', async (req, res) => {
     const userIds = await db.addUser({
       fullname: user.fullname,
       username: user.username,
-      usersecret: user.usersecret,
       description: user.description,
       gender_id: user.genderId,
       created_at: new Date(Date.now())

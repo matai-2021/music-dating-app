@@ -2,8 +2,7 @@ import { isAuthenticated, signIn } from 'authenticare/client'
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { fetchUserName } from '../actions'
-// import { fetchUserName, loginSuccess } from '../actions'
+import { fetchUserName, invalidUsername } from '../actions'
 import { baseUrl } from '../config'
 
 function SignIn (props) {
@@ -31,9 +30,9 @@ function SignIn (props) {
         history.push('/matching')
       }
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       if (error.message === 'INVALID_CREDENTIALS') {
-        console.error('Username and password combination not found')
+        props.dispatch(invalidUsername())
       }
     }
   }

@@ -12,7 +12,6 @@ function Register (props) {
   const [form, setForm] = useState({
     fullname: '',
     username: '',
-    usersecret: '',
     genderId: '',
     description: ''
   })
@@ -44,14 +43,13 @@ function Register (props) {
     const userForm = {
       fullname,
       username,
-      usersecret: 'eda123',
       description,
       genderId,
       genre: genresForm
     }
     props.dispatch(createUser(userForm))
 
-    register({ username, password: userForm.usersecret }, { baseUrl })
+    register({ username }, { baseUrl })
       .then(() => {
         if (isAuthenticated()) {
           props.history.push('/')
@@ -90,7 +88,6 @@ function Register (props) {
     setForm({
       fullname: '',
       username: '',
-      usersecret: '',
       description: '',
       genderId: ''
     })

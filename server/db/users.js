@@ -68,5 +68,6 @@ module.exports = {
   addGenres,
   getUser,
   getUserGenres,
-  getUnmatchedUsers
+  getUnmatchedUsers,
+  userExists
 }

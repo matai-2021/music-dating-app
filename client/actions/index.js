@@ -116,3 +116,9 @@ export function checkForMatch (swipe) {
       })
   }
 }
+
+export function invalidUsername () {
+  return dispatch => {
+    return dispatch(loginFail())
+  }
+}

@@ -11,13 +11,13 @@ function Profile (props) {
   const [form, setForm] = useState({
     fullname: user.fullname,
     username: user.username,
-    usersecret: '',
     genderId: user.gender,
     description: user.description
   })
 
-  const userGenreIds = user.genres.map(genre => genre.genreId)
-  const userGenreChecked = genres.map(genre => { if (userGenreIds.find(element => element == genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
+  const usersGenres = () => {
+    return genres.map(genre => { if (user.genres.map(genre => genre.genreId).find(element => element == genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
+  }
 
   useEffect(() => {
     props.dispatch(fetchGenres())
@@ -64,8 +64,6 @@ function Profile (props) {
     history.push('/matching')
   }
 
-  console.log(userGenreChecked)
-
   return (
     <>
       <section className='whole-container'>
@@ -88,7 +86,7 @@ function Profile (props) {
             </select>
           </label>
           <label htmlFor="genre">Choose a Genre of Music:
-            {userGenreChecked.map(genre => (
+            {usersGenres.map(genre => (
               <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked}/>{genre.name} </div>
             ))}
           </label>
