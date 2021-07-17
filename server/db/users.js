@@ -20,8 +20,7 @@ function addUser (user, db = connection) {
 function getUser (username, db = connection) {
   return db('users')
     .where('username', username)
-    .join('genders', 'users.gender_id', 'genders.id')
-    .select('genders.id as genderId', 'name as gender', 'users.id as id', 'fullname', 'description', 'username')
+    .select()
     .first()
 }
 
