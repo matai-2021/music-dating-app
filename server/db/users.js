@@ -1,3 +1,4 @@
+const { generateHash } = require('authenticare/server')
 const connection = require('./connection')
 
 function addUser (user, db = connection) {
@@ -9,9 +10,10 @@ function addUser (user, db = connection) {
         return false
       }
     })
-    .then(() => {
+    .then(async () => {
+      const hash = await generateHash('eda123')
       return db('users')
-        .insert(user)
+        .insert({ ...user, hash })
     })
 }
 
@@ -19,6 +21,14 @@ function getUser (username, db = connection) {
   return db('users')
     .where('username', username)
     .select()
+    .first()
+}
+
+function getUserById (id, db = connection) {
+  return db('users')
+    .where('users.id', id)
+    .join('genders', 'users.gender_id', 'genders.id')
+    .select('genders.id as genderId', 'genders.name as genderName', 'users.id as id', 'fullname', 'description', 'username')
     .first()
 }
 
@@ -63,11 +73,31 @@ function getUnmatchedUsers (id, db = connection) {
     .whereNot('users.id', id)
 }
 
+function createSwipe (userId, receiverId, isMatch, db = connection) {
+  return db('users_swipe')
+    .insert({ sender_id: userId, receiver_id: receiverId, is_match: isMatch, created_at: new Date(Date.now()) })
+}
+
+function varifyMatch (userId, receiverId, db = connection) {
+  return db('users_swipe')
+    .count('* as n')
+    .where('is_match', true)
+    .orWhere('sender_id', userId)
+    .andWhere('receiver_id', receiverId)
+    .orWhere('receiver_id', userId)
+    .andWhere('sender_id', receiverId)
+    .then((result) => {
+      return result[0].n === 2
+    })
+}
+
 module.exports = {
   addUser,
   addGenres,
   getUser,
   getUserGenres,
   getUnmatchedUsers,
-  userExists
+  createSwipe,
+  varifyMatch,
+  getUserById
 }

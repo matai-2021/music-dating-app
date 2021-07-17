@@ -4,7 +4,7 @@ const rootUrl = '/api/v1/users'
 // const authUrl = 'api/vi/'
 
 export function getUserByName (username) {
-  return request.get(`${rootUrl}/${username}`)
+  return request.get(`${rootUrl}/username/${username}`)
     .then(res => {
       return res.body
     })

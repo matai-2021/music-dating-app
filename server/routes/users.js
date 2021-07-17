@@ -1,3 +1,4 @@
+const request = require('superagent')
 const express = require('express')
 
 const db = require('../db/users')
@@ -27,15 +28,39 @@ router.post('/register', async (req, res) => {
   }
 })
 
-// GET /api/v1/users/:username
-router.get('/:username', async (req, res) => {
+// GET /api/v1/users/:id
+router.get('/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const user = await db.getUserById(id)
+    const currentUsersGenres = await db.getUserGenres(id)
+    res.json({
+      username: user.username,
+      fullname: user.fullname,
+      description: user.description,
+      genres: currentUsersGenres,
+      genderId: user.genderId,
+      genderName: user.genderName
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error)
+  }
+})
+
+// GET /api/v1/users/username/:username
+router.get('/username/:username', async (req, res) => {
   const { username } = req.params
   try {
     const user = await db.getUser(username)
+    const currentUsersGenres = await db.getUserGenres(user.id)
     res.json({
-      username,
+      username: user.username,
       fullname: user.fullname,
-      description: user.description
+      description: user.description,
+      genres: currentUsersGenres,
+      genderId: user.genderId,
+      genderName: user.genderName
     })
   } catch (error) {
     console.error(error)
@@ -64,18 +89,44 @@ router.get('/:id/unmatched', async (req, res) => {
   }
 })
 
-// router.post('/swipe', (req, res) => {
-//   const { userId, receiver_id } = req.body
-//   await db.createSwipe(userId, receiver_id)
-//   const isMatch = await db.verifyMatch(userId, receiver_id)
-//   if(isMatch) {
-//     await createChatRoom(userId, { 'Project-ID': 'dsfdsfdsf', username: '', userSecret: '' })
-//     res.sendStatus(201)
-//   }else {
+router.post('/swipe', async (req, res) => {
+  const { userId, receiverId, isMatch } = req.body
+  await db.createSwipe(userId, receiverId, isMatch)
+  try {
+    const checkIfMatch = true // await db.varifyMatch(userId, receiverId)
+    if (checkIfMatch) {
+      const { username } = await db.getUserById(userId)
+      const header = {
+        projectid: '7565a494-51c5-49c2-943c-7c65ca00e965',
+        username: username,
+        usersecret: 'eda123'
+      }
+      const { username: receiverUsername } = await db.getUserById(receiverId)
 
-//     await db.createSwipe(userId, receiver_id)
-//     res.sendStatus(201)
-//   }
-// })
+      const body = {
+        usernames: [username, receiverUsername],
+        is_direct_chat: true
+      }
+      await createChatRoom(header, body)
+      // res.sendStatus(201)
+    }
+    console.log(checkIfMatch)
+    res.sendStatus(201)
+  } catch (error) {
+    console.error(error)
+  }
+})
+
+function createChatRoom (header, body) {
+  console.log(header)
+  console.log(body)
+  return request.put('https://api.chatengine.io/chats/')
+    .send(body)
+    .type('application/json')
+    .set('Project-ID', header.projectid)
+    .set('User-Name', header.username)
+    .set('User-Secret', header.usersecret)
+    .catch(console.error)
+}
 
 module.exports = router
