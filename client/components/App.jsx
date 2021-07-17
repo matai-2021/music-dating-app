@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom'
 import Header from './Header'
 import Register from './Register'
 import Swipe from './Swipe'
-
+import Profile from './Profile'
 import Chat from './Chat'
 
 function App (props) {
@@ -15,6 +15,7 @@ function App (props) {
       <Route exact path="/users/chat" component={Chat}/>
       <Route exact path="/register" component={Register}/>
       <Route exact path="/matching" component={Swipe}/>
+      <Route exact path='/profile' component={Profile}/>
     </>
   )
 }

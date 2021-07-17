@@ -1,4 +1,5 @@
 import { getUserByName, postUser, getUsersToMatch } from '../apis/users'
+import { checkForMatchApi } from '../apis/swipe'
 import { getGenres } from '../apis/genres'
 
 export const SET_USER = 'SET_USER'
@@ -7,6 +8,7 @@ export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGOUT = 'LOGOUT'
 export const SET_MATCHEES = 'SET_MATCHEES'
+export const MATCH = 'MATCH'
 
 export function setUser (user) {
   return {
@@ -36,6 +38,13 @@ export function loginFail () {
 export function loginSuccess () {
   return {
     type: LOGIN_SUCCESS
+  }
+}
+
+export function setMatch (isMatch) {
+  return {
+    type: MATCH,
+    isMatch: isMatch
   }
 }
 
@@ -93,6 +102,16 @@ export function fetchUnMatchedUsers (user) {
     return getUsersToMatch(user.id)
       .then((res) => {
         dispatch(setMatchees(res))
+        return null
+      })
+  }
+}
+
+export function checkForMatch (swipe) {
+  return dispatch => {
+    return checkForMatchApi(swipe)
+      .then((res) => {
+        dispatch(setMatch(res))
         return null
       })
   }
