@@ -70,18 +70,20 @@ router.get('/:id/unmatched', async (req, res) => {
   }
 })
 
-// router.post('/swipe', (req, res) => {
-//   const { userId, receiver_id } = req.body
-//   await db.createSwipe(userId, receiver_id)
-//   const isMatch = await db.verifyMatch(userId, receiver_id)
-//   if(isMatch) {
-//     await createChatRoom(userId, { 'Project-ID': 'dsfdsfdsf', username: '', userSecret: '' })
-//     res.sendStatus(201)
-//   }else {
-
-//     await db.createSwipe(userId, receiver_id)
-//     res.sendStatus(201)
-//   }
-// })
+router.post('/swipe', async (req, res) => {
+  const { userId, receiverId, isMatch } = req.body
+  // await db.createSwipe(userId, receiverId, isMatch)
+  try {
+    const checkIfMatch = await db.varifyMatch(userId, receiverId, isMatch)
+    if (checkIfMatch) {
+    // await createChatRoom(userId, { 'Project-ID': '7565a494-51c5-49c2-943c-7c65ca00e965', username: '', userSecret: '' })
+      res.sendStatus(201)
+    }
+    console.log(checkIfMatch)
+    res.sendStatus(201)
+  } catch (error) {
+    console.error(error)
+  }
+})
 
 module.exports = router
