@@ -110,9 +110,12 @@ router.post('/swipe', async (req, res) => {
           usernames: [username, receiverUsername],
           is_direct_chat: true
         }
-        res.json({ isMatch: true })
         await createChatRoom(header, body)
+        res.json({ isMatch: true })
+        return null
       }
+
+      res.json({ isMatch: false })
     } else {
       await db.createSwipe(userId, receiverId, isMatch)
       res.json({ isMatch: false })
