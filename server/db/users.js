@@ -1,3 +1,4 @@
+const { generateHash } = require('authenticare/server')
 const connection = require('./connection')
 
 function addUser (user, db = connection) {
@@ -9,16 +10,18 @@ function addUser (user, db = connection) {
         return false
       }
     })
-    .then(() => {
+    .then(async () => {
+      const hash = await generateHash('eda123')
       return db('users')
-        .insert(user)
+        .insert({ ...user, hash })
     })
 }
 
 function getUser (username, db = connection) {
   return db('users')
     .where('username', username)
-    .select()
+    .join('genders', 'users.gender_id', 'genders.id')
+    .select('genders.id as genderId', 'name as gender', 'users.id as id', 'fullname', 'description', 'username')
     .first()
 }
 

@@ -29,14 +29,17 @@ router.post('/register', async (req, res) => {
 })
 
 // GET /api/v1/users/:username
-router.get('/:username', async (req, res) => {
+router.get('/:id', async (req, res) => {
   const { username } = req.params
   try {
     const user = await db.getUser(username)
+    const currentUsersGenres = await db.getUserGenres(user.id)
     res.json({
       username,
       fullname: user.fullname,
-      description: user.description
+      description: user.description,
+      genres: currentUsersGenres,
+      genderId: user.genderId
     })
   } catch (error) {
     console.error(error)
