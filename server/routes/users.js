@@ -110,9 +110,9 @@ router.post('/swipe', async (req, res) => {
           usernames: [username, receiverUsername],
           is_direct_chat: true
         }
-        await createChatRoom(header, body)
         res.json({ isMatch: true })
-        return null
+        await createChatRoom(header, body)
+        return
       }
 
       res.json({ isMatch: false })
@@ -126,8 +126,6 @@ router.post('/swipe', async (req, res) => {
 })
 
 function createChatRoom (header, body) {
-  console.log(header)
-  console.log(body)
   return request.put('https://api.chatengine.io/chats/')
     .send(body)
     .type('application/json')
