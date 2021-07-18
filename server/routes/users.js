@@ -48,6 +48,21 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+// PATCH /api/v1/users/:id
+router.patch('/:id', async (req, res) => {
+  const { id } = req.params
+  const { fullname, description, genderId, genres } = req.body
+  try {
+    await db.updateUser(id, { fullname, description, gender_id: genderId })
+    await db.deleteUserGenres(id)
+    await db.addGenres(id, genres)
+    res.sendStatus(200)
+  } catch (error) {
+    console.error(error)
+    res.sendStatus(500)
+  }
+})
+
 // GET /api/v1/users/username/:username
 router.get('/username/:username', async (req, res) => {
   const { username } = req.params
