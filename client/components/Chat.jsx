@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { MdQueueMusic } from 'react-icons/md'
+
 import { Link } from 'react-router-dom'
 
 import { ChatEngine, ChatList, ChatCard, ChatFeed, ChatHeader, MessageBubble, IsTyping, ScrollDownBar, NewMessageForm } from 'react-chat-engine'
@@ -9,7 +11,7 @@ const ChatPage = (props) => {
   console.log(props.user.username)
   return (
     <>
-      <h2><Link to={'/'}>Matching</Link></h2>
+      <Link to={'/matching'}><MdQueueMusic /></Link>
       <ChatEngine
         height='100vh'
         userName={props.user.username}

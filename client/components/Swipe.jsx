@@ -51,7 +51,7 @@ function Swipe (props) {
   return (
     <>
       <div>
-        <Link to={'/users/chat'}><GrChat /></Link> 
+        <Link to={'/users/chat'}><GrChat /></Link>
         <CgProfile />
       </div>
       <div>
