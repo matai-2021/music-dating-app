@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { MdQueueMusic } from 'react-icons/md'
 
 function Profile (props) {
   const { user, genres } = props
@@ -49,14 +50,16 @@ function Profile (props) {
 
   function handleSubmit (event) {
     event.preventDefault()
-    // const { fullname, username, genderId, description } = form
-    // const userForm = {
-    //   fullname,
-    //   username,
-    //   description,
-    //   genderId,
-    //   genre: genresForm
-    // }
+    const { fullname, username, genderId, description } = form
+    const genderIds = genresForm.filter(gender => gender.checked === true).map(genders => genders.id)
+    const userForm = {
+      fullname,
+      username,
+      description,
+      genderId: Number(genderId) || gendersForm[0].id,
+      genre: genderIds
+    }
+
     setForm({
       fullname: '',
       username: '',
@@ -68,13 +71,18 @@ function Profile (props) {
 
   return (
     <>
+      <div>
+        <Link to="/matching">
+          <MdQueueMusic />
+        </Link>
+      </div>
       <section className='whole-container'>
         <form className='form-title form-box'>
+          <label name={form.username}>Username:
+            <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username} disabled/>
+          </label>
           <label name={form.fullname}>Fullname:
             <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
-          </label>
-          <label name={form.username}>Username:
-            <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username}/>
           </label>
           <label name={form.description}>Profile Description:
             <textarea onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
