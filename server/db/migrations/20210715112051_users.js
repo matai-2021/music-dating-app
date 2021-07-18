@@ -5,6 +5,7 @@ exports.up = function (knex) {
     table.string('username')
     table.binary('hash')
     table.string('description')
+    table.string('image_url')
     table.string('gender_id').references('genders.id')
     table.timestamp('created_at')
   })
