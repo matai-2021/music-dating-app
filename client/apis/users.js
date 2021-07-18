@@ -29,7 +29,9 @@ export function getUsersToMatch (user) {
 }
 
 export function patchUserApi (user) {
-  return request.patch(rootUrl + `/${user}/unmatched`)
+  console.log(user)
+  return request.patch(rootUrl + `/${user.userId}`)
+    .send(user)
     .then(res => {
       return res.body
     })

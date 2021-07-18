@@ -17,6 +17,10 @@ function Swipe (props) {
     }
   }, [user])
 
+  useEffect(() => {
+      props.dispatch(fetchUnMatchedUsers(user))
+  }, [])
+
   const swiped = (direction, card) => {
     if (direction === 'right' || direction === 'up') {
       const swipe = {

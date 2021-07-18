@@ -72,6 +72,7 @@ export function setFalseMatch () {
 }
 
 export function fetchUserName (user) {
+  console.log('is this working')
   return dispatch => {
     return getUserByName(user.username)
       .then(res => {
@@ -144,7 +145,7 @@ export function pathUserInformation (user) {
   return dispatch => {
     return patchUserApi(user)
       .then(() => {
-        return fetchUserName(user)
+        return null
       })
       .catch(err => {
         console.log(err)

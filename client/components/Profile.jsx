@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { MdQueueMusic } from 'react-icons/md'
+import { fetchUserName, pathUserInformation } from '../actions'
 
 function Profile (props) {
   const { user, genres } = props
   const history = useHistory()
   const [genresForm, setGenresForm] = useState(false)
   const [form, setForm] = useState({
+    userId: user.id,
     fullname: user.fullname,
     username: user.username,
     genderId: '',
@@ -50,15 +52,18 @@ function Profile (props) {
 
   function handleSubmit (event) {
     event.preventDefault()
-    const { fullname, username, genderId, description } = form
-    const genderIds = genresForm.filter(gender => gender.checked === true).map(genders => genders.id)
+    const { userId, fullname, username, genderId, description } = form
+    const genreIds = genresForm.filter(gender => gender.checked === true).map(genders => genders.id)
     const userForm = {
+      userId,
       fullname,
       username,
       description,
       genderId: Number(genderId) || gendersForm[0].id,
-      genre: genderIds
+      genres: genreIds
     }
+    props.dispatch(pathUserInformation(userForm))
+    props.dispatch(fetchUserName(userForm))
 
     setForm({
       fullname: '',
@@ -99,7 +104,7 @@ function Profile (props) {
               <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked}/>{genre.name} </div>
             ))}
           </label>
-          <button onClick={handleSubmit}>Register</button>
+          <button onClick={handleSubmit}>Update Information</button>
         </form>
       </section>
     </>
