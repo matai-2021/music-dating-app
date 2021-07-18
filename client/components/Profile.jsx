@@ -49,14 +49,14 @@ function Profile (props) {
 
   function handleSubmit (event) {
     event.preventDefault()
-    const { fullname, username, genderId, description } = form
-    const userForm = {
-      fullname,
-      username,
-      description,
-      genderId,
-      genre: genresForm
-    }
+    // const { fullname, username, genderId, description } = form
+    // const userForm = {
+    //   fullname,
+    //   username,
+    //   description,
+    //   genderId,
+    //   genre: genresForm
+    // }
     setForm({
       fullname: '',
       username: '',
