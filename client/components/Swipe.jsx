@@ -5,7 +5,6 @@ import TinderCard from 'react-tinder-card'
 import { fetchUnMatchedUsers, checkForMatch } from '../actions'
 import { GrChat } from 'react-icons/gr'
 import { CgProfile } from 'react-icons/cg'
-import { Link } from 'react-router-dom'
 
 function Swipe (props) {
   const { user, swipee, match } = props

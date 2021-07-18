@@ -32,6 +32,7 @@ exports.seed = function (knex) {
           fullname: 'Dylan Toomey',
           description: 'Always vibing out to Cardi B, Megan Thee Stallion, and Nicki Minaj. I like it like that.',
           gender_id: 1,
+          image_url: 'https://ca.slack-edge.com/T02SQPVAC-U01TELWDVUN-506adbf85b8f-512',
           created_at: new Date(Date.now())
         },
         {
@@ -249,7 +250,7 @@ exports.seed = function (knex) {
           username: 'jaredpinfold',
           hash: hash,
           fullname: 'Jared Pinfold',
-          description: 'The music I like must contain the three H\'s. Hard, heavy, and ',
+          description: 'The music I like must contain the three H\'s. Hard, heavy, and headbandingly good.',
           gender_id: 2,
           image_url: 'https://ca.slack-edge.com/T02SQPVAC-U01UC76B679-6c9b42c0fb9a-512',
           created_at: new Date(Date.now())
