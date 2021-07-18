@@ -1,3 +1,4 @@
+const { generateHash } = require('authenticare/server')
 const connection = require('./connection')
 
 function addUser (user, db = connection) {
@@ -9,9 +10,10 @@ function addUser (user, db = connection) {
         return false
       }
     })
-    .then(() => {
+    .then(async () => {
+      const hash = await generateHash('eda123')
       return db('users')
-        .insert(user)
+        .insert({ ...user, hash })
     })
 }
 
@@ -24,8 +26,9 @@ function getUser (username, db = connection) {
 
 function getUserById (id, db = connection) {
   return db('users')
-    .where('id', id)
-    .select()
+    .where('users.id', id)
+    .join('genders', 'users.gender_id', 'genders.id')
+    .select('genders.id as genderId', 'genders.name as genderName', 'users.id as id', 'fullname', 'description', 'username')
     .first()
 }
 
@@ -60,7 +63,13 @@ function userExists (username, db = connection) {
 function getUnmatchedUsers (id, db = connection) {
   return db('users')
     .join('genders', 'users.gender_id', 'genders.id')
-    .select('genders.id as genderId', 'name as gender', 'users.id as id', 'fullname', 'description', 'username', 'usersecret')
+    .select('genders.id as genderId',
+      'name as gender',
+      'users.id as id',
+      'fullname',
+      'description',
+      'image_url as imageUrl',
+      'username')
     .whereNotExists(function () {
       this.select('*')
         .from('users_swipe')
@@ -79,13 +88,27 @@ function varifyMatch (userId, receiverId, db = connection) {
   return db('users_swipe')
     .count('* as n')
     .where('is_match', true)
-    .orWhere('sender_id', userId)
-    .andWhere('receiver_id', receiverId)
-    .orWhere('receiver_id', userId)
-    .andWhere('sender_id', receiverId)
+    .where((whereBuilder) =>
+      whereBuilder
+        .where('receiver_id', userId)
+        .orWhere('sender_id', userId)
+    )
+    .where((whereBuilder) =>
+      whereBuilder
+        .where('sender_id', receiverId)
+        .orWhere('receiver_id', receiverId)
+    )
     .then((result) => {
-      return result[0].n === 2
+      return result[0].n >= 2
     })
+}
+
+function getGender (userId, db = connection) {
+  return db('users')
+    .where('users.id', userId)
+    .join('genders', 'users.gender_id', 'genders.id')
+    .select('genders.id as genderId', 'name as genderName')
+    .first()
 }
 
 module.exports = {
@@ -96,5 +119,6 @@ module.exports = {
   getUnmatchedUsers,
   createSwipe,
   varifyMatch,
-  getUserById
+  getUserById,
+  getGender
 }

@@ -1,4 +1,5 @@
 import { getUserByName, postUser, getUsersToMatch } from '../apis/users'
+import { checkForMatchApi } from '../apis/swipe'
 import { getGenres } from '../apis/genres'
 
 export const SET_USER = 'SET_USER'
@@ -7,6 +8,8 @@ export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGOUT = 'LOGOUT'
 export const SET_MATCHEES = 'SET_MATCHEES'
+export const MATCH = 'MATCH'
+export const RESET_MATCH = 'RESET_MATCH'
 
 export function setUser (user) {
   return {
@@ -39,6 +42,13 @@ export function loginSuccess () {
   }
 }
 
+export function setMatch (isMatch) {
+  return {
+    type: MATCH,
+    isMatch: isMatch
+  }
+}
+
 export function setMatchees (matchees) {
   return {
     type: SET_MATCHEES,
@@ -46,16 +56,22 @@ export function setMatchees (matchees) {
   }
 }
 
-export function fetchUserName (username) {
+export function setFalseMatch () {
+  return {
+    type: RESET_MATCH,
+    matchees: false
+  }
+}
+
+export function fetchUserName (user) {
   return dispatch => {
-    return getUserByName(username)
+    return getUserByName(user.username)
       .then(res => {
-        console.log('logged in')
         dispatch(setUser(res))
         return null
       })
-      .catch(() => {
-        console.log('Erorr with logging in')
+      .catch(error => {
+        console.error(error)
         dispatch(loginFail())
         return null
       })
@@ -84,6 +100,7 @@ export function createUser (user) {
 
 export function logoutUser () {
   return dispatch => {
+    dispatch(setFalseMatch())
     return dispatch(resetUser())
   }
 }
@@ -95,5 +112,22 @@ export function fetchUnMatchedUsers (user) {
         dispatch(setMatchees(res))
         return null
       })
+      .catch(console.error)
+  }
+}
+
+export function checkForMatch (swipe) {
+  return dispatch => {
+    return checkForMatchApi(swipe)
+      .then((res) => {
+        dispatch(setMatch(res))
+        return null
+      })
+  }
+}
+
+export function invalidUsername () {
+  return dispatch => {
+    return dispatch(loginFail())
   }
 }

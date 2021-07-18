@@ -1,7 +1,9 @@
+import { isAuthenticated, signIn } from 'authenticare/client'
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { fetchUserName, loginSuccess } from '../actions'
+import { fetchUserName, invalidUsername } from '../actions'
+import { baseUrl } from '../config'
 
 function SignIn (props) {
   const { loginError } = props
@@ -18,25 +20,21 @@ function SignIn (props) {
     })
   }
 
-  function handleSubmit (event) {
+  async function handleSubmit (event) {
     event.preventDefault()
-    props.dispatch(fetchUserName(form))
-      // .then(() => {
-      //   return props.dispatch(loginSuccess())
-      // })
-      .then(() => {
-        setForm({
-          username: ''
-        })
-        console.log(loginError)
-        if (!loginError) {
-          history.push('/matching')
-        }
-        return null
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    const { username } = form
+    try {
+      await signIn({ username, password: 'eda123' }, { baseUrl })
+      if (isAuthenticated()) {
+        props.dispatch(fetchUserName(form))
+        history.push('/matching')
+      }
+    } catch (error) {
+      // console.log(error)
+      if (error.message === 'INVALID_CREDENTIALS') {
+        props.dispatch(invalidUsername())
+      }
+    }
   }
 
   return (

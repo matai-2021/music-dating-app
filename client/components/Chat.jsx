@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom'
 import { ChatEngine, ChatList, ChatCard, ChatFeed, ChatHeader, MessageBubble, IsTyping, ScrollDownBar, NewMessageForm } from 'react-chat-engine'
 
 const ChatPage = (props) => {
-  console.log(props.user.username)
   return (
     <>
       <Link to={'/matching'}><MdQueueMusic /></Link>

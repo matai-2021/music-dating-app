@@ -1,7 +1,9 @@
+import { isAuthenticated, register } from 'authenticare/client'
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { createUser, fetchGenres } from '../actions/index'
+import { baseUrl } from '../config'
 
 function Register (props) {
   const history = useHistory()
@@ -10,7 +12,6 @@ function Register (props) {
   const [form, setForm] = useState({
     fullname: '',
     username: '',
-    usersecret: '',
     genderId: '',
     description: ''
   })
@@ -42,43 +43,51 @@ function Register (props) {
     const userForm = {
       fullname,
       username,
-      usersecret: 'eda123',
       description,
       genderId,
       genre: genresForm
     }
     props.dispatch(createUser(userForm))
 
-    // Creating user in Chatengine
-    var axios = require('axios')
-    var data = {
-      username: form.username,
-      secret: 'eda123',
-      first_name: form.fullname
-    }
-
-    var config = {
-      method: 'post',
-      url: 'https://api.chatengine.io/users/',
-      headers: {
-        'PRIVATE-KEY': '{{ff67630c-b0eb-4c46-915a-f77c9d57a1b9}}'
-      },
-      data: data
-    }
-
-    axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data))
+    register({ username }, { baseUrl })
+      .then(() => {
+        if (isAuthenticated()) {
+          props.history.push('/')
+        }
         return null
       })
-      .catch(function (error) {
-        console.log(error)
+      .catch(err => {
+        console.error(err)
       })
+    // // Creating user in Chatengine
+    // var axios = require('axios')
+    // var data = {
+    //   username: form.username,
+    //   secret: 'eda123',
+    //   first_name: form.fullname
+    // }
+
+    // var config = {
+    //   method: 'post',
+    //   url: 'https://api.chatengine.io/users/',
+    //   headers: {
+    //     'PRIVATE-KEY': '{{ff67630c-b0eb-4c46-915a-f77c9d57a1b9}}'
+    //   },
+    //   data: data
+    // }
+
+    // axios(config)
+    //   .then(function (response) {
+    //     console.log(JSON.stringify(response.data))
+    //     return null
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error)
+    //   })
 
     setForm({
       fullname: '',
       username: '',
-      usersecret: '',
       description: '',
       genderId: ''
     })
