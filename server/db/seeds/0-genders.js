@@ -4,7 +4,7 @@ exports.seed = function (knex) {
       return knex('genders').insert([
         { id: 1, name: 'Male' },
         { id: 2, name: 'Female' },
-        { id: 3, name: 'Other' }
+        { id: 3, name: 'Non Binary/Other' }
       ])
     })
 }
