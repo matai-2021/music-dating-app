@@ -21,7 +21,7 @@ afterAll(() => {
 
 describe('getUser', () => {
   it('returns the choosen user', () => {
-    return db.getUser('ahmad', testDb)
+    return db.getUser('ahmadanwar', testDb)
       .then((user) => {
         expect(user.id).toBe(1)
         expect(user.fullname).toBe('ahmad anwar')
