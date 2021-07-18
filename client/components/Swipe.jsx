@@ -55,7 +55,7 @@ function Swipe (props) {
         <div className='cardContainer'>
           {swipee && swipee?.map((cardSwipe, index) =>
             <TinderCard className='swipe' key={cardSwipe.id} onSwipe={(dir) => swiped(dir, cardSwipe.id)} onCardLeftScreen={() => outOfFrame(cardSwipe.id)}>
-              <div style={{ backgroundImage: `$url(${cardSwipe.imageUrl})` }} className='card'>
+              <div style={{ backgroundImage: `url(${cardSwipe.imageUrl}` }} className='card'>
                 <h3>{cardSwipe.fullname}</h3>
               </div>
               <div className='card'>
