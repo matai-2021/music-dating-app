@@ -24,7 +24,7 @@ describe('getUser', () => {
     return db.getUser('ahmadanwar', testDb)
       .then((user) => {
         expect(user.id).toBe(1)
-        expect(user.fullname).toBe('ahmad anwar')
+        expect(user.fullname).toBe('Ahmad Anwar')
         expect(user.description).toMatch('DJ')
         expect(user.hash).toBeDefined()
         expect(user.gender_id).toBe('1')
@@ -38,7 +38,7 @@ describe('getUserById', () => {
     return db.getUserById(1, testDb)
       .then((user) => {
         expect(user.id).toBe(1)
-        expect(user.fullname).toBe('ahmad anwar')
+        expect(user.fullname).toBe('Ahmad Anwar')
         expect(user.description).toMatch('DJ')
         expect(user.genderName).toBe('Male')
         expect(user.genderId).toBe(1)
