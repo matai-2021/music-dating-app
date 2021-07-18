@@ -72,7 +72,6 @@ export function setFalseMatch () {
 }
 
 export function fetchUserName (user) {
-  console.log('is this working')
   return dispatch => {
     return getUserByName(user.username)
       .then(res => {
