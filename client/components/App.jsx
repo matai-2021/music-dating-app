@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
+import { isAuthenticated } from 'authenticare/client'
 
 import Header from './Header'
 import Register from './Register'
@@ -15,10 +16,42 @@ function App (props) {
       <Route path="/" component={Nav}/>
       <Route exact path="/" component={Header}/>
       <Route exact path="/signin" component={Header}/>
-      <Route exact path="/chat" component={Chat}/>
-      <Route exact path="/register" component={Register}/>
-      <Route exact path="/matching" component={Swipe}/>
-      <Route exact path='/profile' component={Profile}/>
+
+      <Route
+        path='/register'
+        render={() => {
+          return isAuthenticated()
+            ? <Redirect to="/matching" />
+            : <Register />
+        }}
+      />
+
+      <Route
+        path='/chat'
+        render={() => {
+          return !isAuthenticated()
+            ? <Redirect to="/" />
+            : <Chat />
+        }}
+      />
+
+      <Route
+        path='/matching'
+        render={() => {
+          return !isAuthenticated()
+            ? <Redirect to="/" />
+            : <Swipe />
+        }}
+      />
+
+      <Route
+        path='/profile'
+        render={() => {
+          return !isAuthenticated()
+            ? <Redirect to="/" />
+            : <Profile />
+        }}
+      />
 
     </>
   )

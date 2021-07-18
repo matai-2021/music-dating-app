@@ -14,7 +14,7 @@ function Nav (props) {
   return (
     <div>
       <IfAuthenticated>
-        <NavLink to="#" onClick={logout}>Sign Off</NavLink>
+        <NavLink to="/" onClick={logout}>Sign Off</NavLink>
         <div><NavLink to="/profile" onClick={logOff}>My Profile</NavLink></div>
       </IfAuthenticated>
       <IfNotAuthenticated>
