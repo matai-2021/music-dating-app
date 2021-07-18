@@ -10,6 +10,7 @@ function Nav (props) {
     logOff()
     props.dispatch(logoutUser())
   }
+
   return (
     <div>
       <IfAuthenticated>

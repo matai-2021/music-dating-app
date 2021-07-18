@@ -11,8 +11,6 @@ function Swipe (props) {
   const [lastDirection, setLastDirection] = useState()
   const [checkingMatch, setCheckingMatch] = useState({})
 
-  console.log(match)
-
   useEffect(() => {
     if (user.id) {
       props.dispatch(fetchUnMatchedUsers(user))
@@ -55,7 +53,7 @@ function Swipe (props) {
         <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
         <h1>React Tinder Card</h1>
         <div className='cardContainer'>
-          {swipee?.map((cardSwipe, index) =>
+          {swipee && swipee?.map((cardSwipe, index) =>
             <TinderCard className='swipe' key={cardSwipe.id} onSwipe={(dir) => swiped(dir, cardSwipe.id)} onCardLeftScreen={() => outOfFrame(cardSwipe.id)}>
               <div style={{ backgroundImage: 'url(https://techcommunity.microsoft.com/t5/image/serverpage/image-id/217078i525F6A9EF292601F/image-size/large?v=v2&px=999)' }} className='card'>
                 <h3>{cardSwipe.fullname}</h3>
@@ -71,7 +69,7 @@ function Swipe (props) {
             </TinderCard>
           )}
         </div>
-        {/* {match && <p>You matched with {swipee.find(item => item.id === checkingMatch.recieverId).username}</p>} */}
+        {match.isMatch && <p>You matched with {swipee.find(item => item.id === checkingMatch.receiverId).fullname} <Link to="/chat">Chat Now</Link></p>}
         {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
       </div>
     </>

@@ -7,7 +7,7 @@ exports.seed = function (knex) {
       return knex('users').insert([
         {
           id: 1,
-          username: 'ahmad',
+          username: 'ahmadanwar',
           hash: hash,
           fullname: 'ahmad anwar',
           description: 'I was ranked the first DJ on the first settlement on planet Mars',
@@ -16,7 +16,7 @@ exports.seed = function (knex) {
         },
         {
           id: 2,
-          username: 'westley',
+          username: 'westharrison',
           hash: hash,
           fullname: 'Westely',
           description: 'I was ranked the first DJ on the first settlement on planet Mars',
@@ -25,7 +25,7 @@ exports.seed = function (knex) {
         },
         {
           id: 3,
-          username: 'dylan',
+          username: 'dylantoomey',
           hash: hash,
           fullname: 'Dylan Dylan',
           description: 'I was ranked the first DJ on the first settlement on planet Mars',
@@ -34,7 +34,7 @@ exports.seed = function (knex) {
         },
         {
           id: 4,
-          username: 'carter',
+          username: 'cartermunro',
           hash: hash,
           fullname: 'Carter',
           description: 'I was ranked the first DJ on the first settlement on planet Mars',
@@ -43,7 +43,7 @@ exports.seed = function (knex) {
         },
         {
           id: 5,
-          username: 'rodrigo',
+          username: 'rodrigonovaes',
           hash: hash,
           fullname: 'Rodrigo',
           description: 'Metal head to the bone',
@@ -52,7 +52,7 @@ exports.seed = function (knex) {
         },
         {
           id: 6,
-          username: 'koko',
+          username: 'kokoono',
           hash: hash,
           fullname: 'Koko',
           description: 'Frequent visitor to any and all opera events.',
@@ -61,7 +61,7 @@ exports.seed = function (knex) {
         },
         {
           id: 7,
-          username: 'sujie',
+          username: 'sujicho',
           hash: hash,
           fullname: 'The Suj',
           description: 'K-pop is life',
@@ -70,7 +70,7 @@ exports.seed = function (knex) {
         },
         {
           id: 8,
-          username: 'eleanor',
+          username: 'eleanorwoodhouse',
           hash: hash,
           fullname: 'Eleanor',
           description: '10 years of playing the Piano and a big fan of Ketty Perry',
@@ -79,7 +79,7 @@ exports.seed = function (knex) {
         },
         {
           id: 9,
-          username: 'josh',
+          username: 'joshlake',
           hash: hash,
           fullname: 'Josh',
           description: 'People keep dreaming of me playing the guitar, so I\'v decided to fulfil their dreams',
@@ -97,7 +97,7 @@ exports.seed = function (knex) {
         },
         {
           id: 11,
-          username: 'james',
+          username: 'jamespearce',
           hash: hash,
           fullname: 'Schwimmy',
           description: 'A philosopher and thinker who is trying to find answers to difficult questions',
@@ -106,7 +106,7 @@ exports.seed = function (knex) {
         },
         {
           id: 12,
-          username: 'kris',
+          username: 'kriswood',
           hash: hash,
           fullname: 'Kris',
           description: 'My beautiful kids got me into listening into Metal genre and I don`t regret it :P',
@@ -115,7 +115,7 @@ exports.seed = function (knex) {
         },
         {
           id: 13,
-          username: 'kritika',
+          username: 'kritikaanita',
           hash: hash,
           fullname: 'Kritika',
           description: 'I view music and dancing as a mean of expressing my self',

@@ -14,7 +14,7 @@ function Profile (props) {
     genderName: user.ganderName,
     description: user.description
   })
-  console.log(user)
+
   const userGenres = genres.map(genre => { if (user.genres.map(genre => genre.genreId).find(element => element === genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
 
   useEffect(() => {

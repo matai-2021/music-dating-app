@@ -1,12 +1,17 @@
 import React from 'react'
+import { logOff } from 'authenticare/client'
 import { Link, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { logOff } from 'authenticare/client'
+import { logoutUser } from '../actions'
 import SignIn from './SignIn'
 
 function Header (props) {
   const { user } = props
-  console.log(user)
+
+  function logout () {
+    logOff()
+    props.dispatch(logoutUser())
+  }
 
   return (
     <>
@@ -21,7 +26,7 @@ function Header (props) {
         </div>
         <div>
           {user.id
-            ? <> <NavLink to="#" onClick={logOff}>Sign Off</NavLink> </>
+            ? <> <NavLink to="#" onClick={logout}>Sign Off</NavLink> </>
             : <> <SignIn className='form-button-secondary' /> <div><h1 className='preview-title'>{'Don\'t have an account? '}<Link className='form-button-primary' to="/register">Register Now</Link></h1></div> </>
           }
         </div>
