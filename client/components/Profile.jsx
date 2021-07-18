@@ -2,24 +2,37 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { fetchGenres } from '../actions/index'
-
 function Profile (props) {
   const { user, genres } = props
   const history = useHistory()
-  const [genresForm, setGenresForm] = useState([])
+  const [genresForm, setGenresForm] = useState(false)
   const [form, setForm] = useState({
     fullname: user.fullname,
     username: user.username,
-    genderName: user.ganderName,
+    genderId: '',
     description: user.description
   })
 
-  const userGenres = genres.map(genre => { if (user.genres.map(genre => genre.genreId).find(element => element === genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
+  const [gendersForm, setGendersForm] = useState(null)
+
+  const genders = [
+    { id: 1, genderName: 'Male' },
+    { id: 2, genderName: 'Female' },
+    { id: 3, genderName: 'Non Binary/Other' }
+  ]
 
   useEffect(() => {
-    props.dispatch(fetchGenres())
-  }, [])
+    if (genres) {
+      const updateGenreForm = genres.map(genre => { if (user.genres.map(genre => genre.genreId).find(element => element === genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
+      setGenresForm(updateGenreForm)
+    }
+  }, [user])
+
+  useEffect(() => {
+    if (user.genderName) {
+      setGendersForm([...genders.filter(element => element.genderName === user.genderName), ...genders.filter(element => element.genderName !== user.genderName)])
+    }
+  }, [user])
 
   function handleChange (event) {
     const { name, value } = event.target
@@ -29,13 +42,9 @@ function Profile (props) {
     })
   }
 
-  function handleCheck (genreId, event) {
-    const { checked } = event.target
-    if (checked) {
-      setGenresForm([...genresForm, genreId])
-    } else {
-      setGenresForm(genresForm.filter(id => id !== genreId))
-    }
+  function handleCheck (genreId) {
+    const updateForm = genresForm.map(element => element.id === genreId ? { ...element, checked: !element.checked } : { ...element })
+    setGenresForm(updateForm)
   }
 
   function handleSubmit (event) {
@@ -48,8 +57,6 @@ function Profile (props) {
       genderId,
       genre: genresForm
     }
-    // props.dispatch(createUser(userForm))
-
     setForm({
       fullname: '',
       username: '',
@@ -74,14 +81,13 @@ function Profile (props) {
           </label>
           <label htmlFor="genderId">Gender:
             <select name="genderId" id="genderId" onChange={handleChange}>
-              <option value={form.genderId}>{form.genderName}</option>
-              <option value="1">Male</option>
-              <option value="2">Female</option>
-              <option value="3">Non Binary/Other</option>
+              {gendersForm && gendersForm.map(gender => (
+                <option key={gender.id} value={gender.id}>{gender.genderName}</option>
+              ))}
             </select>
           </label>
           <label htmlFor="genre">Choose a Genre of Music:
-            {userGenres.map(genre => (
+            {genresForm && genresForm.map(genre => (
               <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked}/>{genre.name} </div>
             ))}
           </label>
