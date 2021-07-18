@@ -9,6 +9,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGOUT = 'LOGOUT'
 export const SET_MATCHEES = 'SET_MATCHEES'
 export const MATCH = 'MATCH'
+export const RESET_MATCH = 'RESET_MATCH'
 
 export function setUser (user) {
   return {
@@ -55,6 +56,13 @@ export function setMatchees (matchees) {
   }
 }
 
+export function setFalseMatch () {
+  return {
+    type: RESET_MATCH,
+    matchees: false
+  }
+}
+
 export function fetchUserName (user) {
   return dispatch => {
     return getUserByName(user.username)
@@ -92,6 +100,7 @@ export function createUser (user) {
 
 export function logoutUser () {
   return dispatch => {
+    dispatch(setFalseMatch())
     return dispatch(resetUser())
   }
 }

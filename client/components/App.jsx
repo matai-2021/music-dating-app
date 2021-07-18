@@ -19,6 +19,7 @@ function App (props) {
       <Route exact path="/register" component={Register}/>
       <Route exact path="/matching" component={Swipe}/>
       <Route exact path='/profile' component={Profile}/>
+
     </>
   )
 }
