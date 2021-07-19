@@ -38,3 +38,11 @@ export function patchUserApi (user) {
       return res.body
     })
 }
+
+export function createUserGenres (user, genres) {
+  return request.post(rootUrl + `/addgenres/${user}`)
+    .send(genres)
+    .then(res => {
+      return res.body
+    })
+}

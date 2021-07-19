@@ -53,7 +53,7 @@ function Profile (props) {
   function handleSubmit (event) {
     event.preventDefault()
     const { userId, fullname, username, genderId, description } = form
-    const genreIds = genresForm.filter(gender => gender.checked === true).map(genders => genders.id)
+    const genreIds = genresForm.filter(genreForm => genreForm.checked === true).map(genres2 => genres2.id)
     const userForm = {
       userId,
       fullname,

@@ -1,8 +1,8 @@
-import { isAuthenticated, register, getDecodedToken, getEncodedToken } from 'authenticare/client'
+import { isAuthenticated, register, getDecodedToken } from 'authenticare/client'
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { createUser, fetchGenres } from '../actions/index'
+import { fetchGenres, fetchUserName, setUsersGenres } from '../actions/index'
 import { baseUrl } from '../config'
 import checkURL from '../utils/image-auth'
 
@@ -57,12 +57,23 @@ function Register (props) {
     }
     // props.dispatch(createUser(userForm))
 
+    const filteredGenres = genres.map(genre => {
+      if (genresForm.map(genreSelected => genreSelected).find(element => element === genre.id)) {
+        return { genreId: genre.id, name: genre.name }
+      } else return null
+    }).filter(element => element !== null)
+
     register(userForm, { baseUrl })
       .then(() => {
         if (isAuthenticated()) {
           const { id } = getDecodedToken()
-          props.history.push('/')
+          return props.dispatch(setUsersGenres(id, filteredGenres))
         }
+        return null
+      })
+      .then(() => {
+        props.dispatch(fetchUserName(userForm))
+        history.push('/matching')
         return null
       })
       .catch(err => {
@@ -100,7 +111,6 @@ function Register (props) {
       description: '',
       genderId: ''
     })
-    history.push('/matching')
   }
 
   return (
