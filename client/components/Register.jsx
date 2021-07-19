@@ -107,7 +107,7 @@ function Register (props) {
     <section className='profile-container'>
       <img className='logo-image'  src='/resonatelogoS.png' alt="resonatelogo" />
       <div>
-        <img src={image && image}/>
+        <img className='profile-img' src={image && image}/>
       </div>
       <form className='form-title form-box'>
         <label name={form.fullname}>

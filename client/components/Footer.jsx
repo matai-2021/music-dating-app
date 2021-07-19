@@ -5,7 +5,7 @@ import { AiOutlineTwitter, AiFillFacebook, AiFillInstagram } from 'react-icons/a
 function Footer () {
   return (
     <>
-      <div>
+      <div className='footer'>
         <p>@weResonate</p>
       </div>
       <div>
