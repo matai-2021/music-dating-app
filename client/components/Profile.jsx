@@ -3,6 +3,7 @@ import { useHistory, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { MdQueueMusic } from 'react-icons/md'
 import { fetchUserName, pathUserInformation } from '../actions'
+import checkURL from '../utils/image-auth'
 
 function Profile (props) {
   const { user, genres } = props
@@ -13,6 +14,7 @@ function Profile (props) {
     fullname: user.fullname,
     username: user.username,
     genderId: '',
+    imageUrl: user.imageUrl,
     description: user.description
   })
 
@@ -52,13 +54,14 @@ function Profile (props) {
 
   function handleSubmit (event) {
     event.preventDefault()
-    const { userId, fullname, username, genderId, description } = form
+    const { userId, fullname, username, genderId, description, imageUrl } = form
     const genreIds = genresForm.filter(genreForm => genreForm.checked === true).map(genres2 => genres2.id)
     const userForm = {
       userId,
       fullname,
       username,
       description,
+      imageUrl,
       genderId: Number(genderId) || gendersForm[0].id,
       genres: genreIds
     }
@@ -69,7 +72,8 @@ function Profile (props) {
       fullname: '',
       username: '',
       description: '',
-      genderId: ''
+      genderId: '',
+      imageUrl: ''
     })
     history.push('/matching')
   }
@@ -83,11 +87,14 @@ function Profile (props) {
       </div>
       <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
       <div>
-        <img className='profile-img' src={user.imageUrl ? user.imageUrl : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}/>
+        <img className='profile-img' src={checkURL(form.imageUrl) ? form.imageUrl : user.imageUrl}/>
       </div>
       <form className='form-title form-box'>
         <label name={form.username}>Username:
           <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username} disabled/>
+        </label>
+        <label name={form.imageUrl}>Image:
+          <input onChange={handleChange} type="text" name="imageUrl" placeholder="Image Url" value={form.imageUrl}/>
         </label>
         <label name={form.fullname}>Fullname:
           <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
@@ -102,11 +109,11 @@ function Profile (props) {
             ))}
           </select>
         </label>
-        <label htmlFor="genre">Choose a Genre of Music:
-          {genresForm && genresForm.map(genre => (
-            <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked}/>{genre.name} </div>
-          ))}
-        </label>
+        {genresForm && genresForm.map(genre => (
+          <label key={genre.id} className="para-description" htmlFor={genre.id}>
+            <div ><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked}/>{genre.name} </div>
+          </label>
+        ))}
         <button onClick={handleSubmit}>Update Information</button>
       </form>
     </section>
