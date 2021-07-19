@@ -9,9 +9,9 @@ import { ChatEngine, ChatList, ChatCard, ChatFeed, ChatHeader, MessageBubble, Is
 
 const ChatPage = (props) => {
   return (
-    <>
-      <Link to={'/matching'}><MdQueueMusic /></Link>
-      <img src='/resonatelogoS.png' alt="resonatelogo" />
+    <section className='profile-container'>
+      <Link className='pre-title' to={'/matching'}><h1><MdQueueMusic /></h1></Link>
+      <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
       <ChatEngine
         height='100vh'
         userName={props.user.username}
@@ -33,7 +33,7 @@ const ChatPage = (props) => {
         renderPhotosSettings={(chat) => {}}
         renderOptionsSettings={(creds, chat) => {}}
       />
-    </>
+    </section>
   )
 }
 

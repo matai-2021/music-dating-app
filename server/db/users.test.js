@@ -58,3 +58,35 @@ describe('getUserGenres', () => {
       })
   })
 })
+
+describe('addUser', () => {
+  it('returns an error', () => {
+    const user = {
+      username: 'ahmadanwar'
+    }
+    return db.addUser(user, testDb)
+      .catch(error => {
+        expect(error).toStrictEqual(Error('User already exists'))
+      })
+  })
+
+  it('returns a new user', () => {
+    const user = {
+      username: 'newusername',
+      fullname: 'fullname',
+      description: 'description',
+      gender_id: 1,
+      image_url: 'imageurl'
+    }
+    return db.addUser(user, testDb)
+      .then(() => db.getUser(user.username, testDb))
+      .then(newUser => {
+        expect(newUser.username).toBe('newusername')
+        expect(newUser.fullname).toBe('fullname')
+        expect(newUser.description).toBe('description')
+        expect(newUser.gender_id).toBe('1')
+        expect(newUser.image_url).toBe('imageurl')
+        return null
+      })
+  })
+})

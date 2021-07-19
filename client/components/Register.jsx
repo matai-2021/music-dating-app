@@ -114,8 +114,8 @@ function Register (props) {
   }
 
   return (
-    <section className='whole-container'>
-      <img src='/resonatelogoS.png' alt="resonatelogo" />
+    <section className='profile-container'>
+      <img className='logo-image'  src='/resonatelogoS.png' alt="resonatelogo" />
       <div>
         <img src={image && image}/>
       </div>

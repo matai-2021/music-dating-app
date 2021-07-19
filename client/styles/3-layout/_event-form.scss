@@ -21,7 +21,10 @@ input[type=text] {
 }
 
 .form-container {
-  width: functions.colWidth(12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 
   @include mixins.media-queries(tablet, min) {
       width: functions.colWidth(5);
@@ -166,7 +169,6 @@ input[type=text] {
    margin: 0 auto;
    margin-top: vars.$base-size * 0.5;
    color: #ffffff;
-  text-align: right;
   display: flex;
   width: 50%;
   margin: 0 auto;
@@ -174,6 +176,12 @@ input[type=text] {
 
   @include mixins.media-queries(tablet, min) {
     width: 60%;
+  }
+
+  .image-size {
+    font-size: xx-large;
+    font-weight: bolder;
+    text-align: center;
   }
 
   &:hover{

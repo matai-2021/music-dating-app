@@ -9,6 +9,7 @@ import Swipe from './Swipe'
 import Profile from './Profile'
 import Chat from './Chat'
 import Nav from './Nav'
+import Footer from './Footer'
 
 function App (props) {
   return (
@@ -53,6 +54,7 @@ function App (props) {
         }}
       />
 
+      <Route path="/" component={Footer}/>
     </>
   )
 }
