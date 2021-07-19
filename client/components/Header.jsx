@@ -15,7 +15,7 @@ function Header (props) {
 
   return (
     <>
-      <section className='background'>
+      <section>
         <div className='flex-container'>
           <img src='/resonatelogo.png' alt="resonatelogo" />
         </div>

@@ -14,7 +14,7 @@ router.post('/register', async (req, res) => {
       username: user.username,
       description: user.description,
       gender_id: user.genderId,
-      image_ur: user.imageUrl,
+      image_url: user.imageUrl,
       created_at: new Date(Date.now())
     })
 

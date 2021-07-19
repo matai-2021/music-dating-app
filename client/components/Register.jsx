@@ -1,9 +1,10 @@
-import { isAuthenticated, register } from 'authenticare/client'
+import { isAuthenticated, register, getDecodedToken, getEncodedToken } from 'authenticare/client'
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { createUser, fetchGenres } from '../actions/index'
 import { baseUrl } from '../config'
+import checkURL from '../utils/image-auth'
 
 function Register (props) {
   const history = useHistory()
@@ -13,8 +14,10 @@ function Register (props) {
     fullname: '',
     username: '',
     genderId: '',
+    imageUrl: '',
     description: ''
   })
+  const [image, setImage] = useState(null)
 
   useEffect(() => {
     props.dispatch(fetchGenres())
@@ -26,6 +29,11 @@ function Register (props) {
       ...form,
       [name]: value
     })
+    if (name === 'imageUrl' && checkURL(value)) {
+      setImage(value)
+    } else if (name === 'imageUrl' && !checkURL(value)) {
+      setImage(null)
+    }
   }
 
   function handleCheck (genreId, event) {
@@ -39,19 +47,20 @@ function Register (props) {
 
   function handleSubmit (event) {
     event.preventDefault()
-    const { fullname, username, genderId, description } = form
+    const { fullname, imageUrl, username, genderId, description } = form
     const userForm = {
       fullname,
       username,
       description,
-      genderId,
-      genre: genresForm
+      gender_id: genderId,
+      image_url: imageUrl
     }
-    props.dispatch(createUser(userForm))
+    // props.dispatch(createUser(userForm))
 
-    register({ username }, { baseUrl })
+    register(userForm, { baseUrl })
       .then(() => {
         if (isAuthenticated()) {
+          const { id } = getDecodedToken()
           props.history.push('/')
         }
         return null
@@ -97,6 +106,9 @@ function Register (props) {
   return (
     <section className='whole-container'>
       <img src='/resonatelogoS.png' alt="resonatelogo" />
+      <div>
+        <img src={image && image}/>
+      </div>
       <form className='form-title form-box'>
         <label name={form.fullname}>
           <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
@@ -104,8 +116,11 @@ function Register (props) {
         <label name={form.username}>
           <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username}/>
         </label>
+        <label name={form.imageUrl}>
+          <input onChange={handleChange} type="text" name="imageUrl" placeholder="Image Url" value={form.imageUrl}/>
+        </label>
         <label name={form.description}>
-          <textarea onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
+          <textarea className='form-box-height text-size' onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
         </label>
         <label htmlFor="genderId">Gender:
           <select name="genderId" id="genderId" onChange={handleChange}>
@@ -115,12 +130,13 @@ function Register (props) {
             <option value="3">Non Binary/Other</option>
           </select>
         </label>
-        <label htmlFor="genre">Choose a Genre of Music:
+        <label className="para-description" htmlFor="genre">Choose a Genre of Music:
           {genres.map(genre => (
             <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id}/>{genre.name}</div>
           ))}
         </label>
-        <button onClick={handleSubmit}>Register</button>
+        <br></br>
+        <button className='form-button-primary' onClick={handleSubmit}>Register</button>
       </form>
     </section>
   )

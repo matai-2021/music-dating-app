@@ -16,8 +16,6 @@ function Profile (props) {
     description: user.description
   })
 
-  console.log(user)
-
   const [gendersForm, setGendersForm] = useState(null)
 
   const genders = [
