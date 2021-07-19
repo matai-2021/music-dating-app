@@ -21,6 +21,7 @@ afterAll(() => {
 
 describe('getUser', () => {
   it('returns the choosen user', () => {
+    expect.assertions(5)
     return db.getUser('ahmadanwar', testDb)
       .then((user) => {
         expect(user.id).toBe(1)
@@ -35,6 +36,7 @@ describe('getUser', () => {
 
 describe('getUserById', () => {
   it('returns the choosen user', () => {
+    expect.assertions(5)
     return db.getUserById(1, testDb)
       .then((user) => {
         expect(user.id).toBe(1)
@@ -49,6 +51,7 @@ describe('getUserById', () => {
 
 describe('getUserGenres', () => {
   it('return genres', () => {
+    expect.assertions(3)
     return db.getUserGenres(1, testDb)
       .then((genres) => {
         expect(genres).toHaveLength(2)
@@ -78,6 +81,7 @@ describe('addUser', () => {
       gender_id: 1,
       image_url: 'imageurl'
     }
+    expect.assertions(5)
     return db.addUser(user, testDb)
       .then(() => db.getUser(user.username, testDb))
       .then(newUser => {
@@ -100,6 +104,8 @@ describe('updateUser', () => {
       gender_id: 2,
       image_url: 'newimageurl'
     }
+
+    expect.assertions(5)
     return db.updateUser(1, user, testDb)
       .then(() => db.getUser(user.username, testDb))
       .then((updatedUser) => {
@@ -108,6 +114,71 @@ describe('updateUser', () => {
         expect(updatedUser.description).toBe('newdescription')
         expect(updatedUser.gender_id).toBe('2')
         expect(updatedUser.image_url).toBe('newimageurl')
+        return null
+      })
+  })
+})
+
+describe('addGenres', () => {
+  it('should add genre for a given user', () => {
+    const userId = 1
+    const genreIds = [2, 4]
+    expect.assertions(3)
+    return db.addGenres(userId, genreIds, testDb)
+      .then(() => db.getUserGenres(userId, testDb))
+      .then(genres => {
+        expect(genres).toHaveLength(4)
+        expect(genres).toContainEqual({ genreId: 2, name: 'Country' })
+        expect(genres).toContainEqual({ genreId: 4, name: 'Euro-Dance' })
+        return null
+      })
+  })
+})
+
+describe('deleteUserGenres', () => {
+  it('should delete all genres for a given user', () => {
+    const userId = 1
+    return db.deleteUserGenres(userId, testDb)
+      .then(() => db.getUserGenres(userId, testDb))
+      .then(genres => {
+        expect(genres).toHaveLength(0)
+        return null
+      })
+  })
+})
+
+describe('userExists', () => {
+  it('should return true', () => {
+    const username = 'ahmadanwar'
+    return db.userExists(username, testDb)
+      .then(exists => {
+        expect(exists).toBeTruthy()
+        return null
+      })
+  })
+  it('should return false', () => {
+    const username = 'username that does not exist'
+    return db.userExists(username, testDb)
+      .then(exists => {
+        expect(exists).toBeFalsy()
+        return null
+      })
+  })
+})
+
+describe('createSwipe', () => {
+  it('should create a record', () => {
+    const userId = 1
+    const receiverId = 2
+    return db.createSwipe(userId, receiverId, true, testDb)
+      .then(() => {
+        return testDb('users_swipe')
+          .where('sender_id', userId)
+          .where('receiver_id', receiverId)
+          .select()
+      })
+      .then(swipes => {
+        expect(swipes).toHaveLength(2)
         return null
       })
   })
