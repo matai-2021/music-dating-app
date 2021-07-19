@@ -15,7 +15,6 @@ function Nav (props) {
     <div>
       <IfAuthenticated>
         <NavLink to="/" onClick={logout}>Sign Off</NavLink>
-        <div><NavLink to="/profile">My Profile</NavLink></div>
       </IfAuthenticated>
       <IfNotAuthenticated>
         <NavLink to="/signin">Sign in</NavLink>
