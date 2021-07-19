@@ -78,7 +78,8 @@ router.get('/username/:username', async (req, res) => {
       description: user.description,
       genres: currentUsersGenres,
       genderId: genderId,
-      genderName: genderName
+      genderName: genderName,
+      imageUrl: user.image_url
     })
   } catch (error) {
     console.error(error)
