@@ -1,4 +1,4 @@
-import { getUserByName, postUser, getUsersToMatch, patchUserApi } from '../apis/users'
+import { getUserByName, postUser, getUsersToMatch, patchUserApi, createUserGenres } from '../apis/users'
 import { checkForMatchApi } from '../apis/swipe'
 import { getGenres } from '../apis/genres'
 
@@ -143,6 +143,18 @@ export function invalidUsername () {
 export function pathUserInformation (user) {
   return dispatch => {
     return patchUserApi(user)
+      .then(() => {
+        return null
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}
+
+export function setUsersGenres (user, genres) {
+  return dispatch => {
+    return createUserGenres(user, genres)
       .then(() => {
         return null
       })
