@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { MdQueueMusic } from 'react-icons/md'
 import { fetchUserName, pathUserInformation } from '../actions'
 import checkURL from '../utils/image-auth'
 
@@ -80,12 +79,6 @@ function Profile (props) {
 
   return (
     <section className='profile-container'>
-      <div>
-        <Link className='pre-title' to="/matching">
-          <h1><MdQueueMusic/></h1>
-        </Link>
-      </div>
-      <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
       <div>
         <img className='profile-img' src={checkURL(form.imageUrl) ? form.imageUrl : user.imageUrl}/>
       </div>

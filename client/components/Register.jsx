@@ -115,7 +115,6 @@ function Register (props) {
 
   return (
     <section className='profile-container'>
-      <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
       <div>
         <img className='profile-img' src={image && image}/>
       </div>
