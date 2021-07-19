@@ -47,3 +47,29 @@ describe('GET /api/v1/users/:id', () => {
       })
   })
 })
+
+describe('POST /api/v1/users/register', () => {
+  it('returns a user', () => {
+    const id = 1
+    const user = {
+      username: 'username',
+      fullname: 'fullname',
+      genres: [{ id: 1, name: 'genre' }],
+      imageUrl: 'imageurl',
+      description: 'description',
+      genderId: 1,
+      genderName: 'gendername'
+    }
+
+    db.addUser.mockImplementation(() => Promise.resolve([id]))
+    db.addGenres.mockImplementation(() => Promise.resolve())
+    expect.assertions(1)
+    return request(server)
+      .post('/api/v1/users/register')
+      .send(user)
+      .then(res => {
+        expect(res.body.id).toBe(1)
+        return null
+      })
+  })
+})
