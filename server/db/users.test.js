@@ -90,3 +90,25 @@ describe('addUser', () => {
       })
   })
 })
+
+describe('updateUser', () => {
+  it('should update the user', () => {
+    const user = {
+      username: 'newusername',
+      fullname: 'newfullname',
+      description: 'newdescription',
+      gender_id: 2,
+      image_url: 'newimageurl'
+    }
+    return db.updateUser(1, user, testDb)
+      .then(() => db.getUser(user.username, testDb))
+      .then((updatedUser) => {
+        expect(updatedUser.username).toBe('newusername')
+        expect(updatedUser.fullname).toBe('newfullname')
+        expect(updatedUser.description).toBe('newdescription')
+        expect(updatedUser.gender_id).toBe('2')
+        expect(updatedUser.image_url).toBe('newimageurl')
+        return null
+      })
+  })
+})
