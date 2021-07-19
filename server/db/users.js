@@ -2,7 +2,7 @@ const { generateHash } = require('authenticare/server')
 const connection = require('./connection')
 
 function addUser (user, db = connection) {
-  return userExists(user.username)
+  return userExists(user.username, db)
     .then((exists) => {
       if (exists) {
         throw new Error('User already exists')
@@ -15,7 +15,6 @@ function addUser (user, db = connection) {
       return db('users')
         .insert({ ...user, hash })
     })
-    .catch(console.error)
 }
 
 function updateUser (id, user, db = connection) {
