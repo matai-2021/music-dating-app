@@ -56,7 +56,7 @@ function Swipe (props) {
       <div>
         <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
         <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
-        <h1>React Tinder Card</h1>
+        <h1>Resonate</h1>
         <div className='cardContainer'>
           {swipee && swipee?.map((cardSwipe, index) =>
             <TinderCard className='swipe' key={cardSwipe.id} onSwipe={(dir) => swiped(dir, cardSwipe.id)} onCardLeftScreen={() => outOfFrame(cardSwipe.id)}>
