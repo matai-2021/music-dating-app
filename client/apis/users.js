@@ -1,12 +1,15 @@
 import request from 'superagent'
 
 const rootUrl = '/api/v1/users'
+// const authUrl = 'api/vi/'
 
 export function getUserByName (username) {
-  return request.post(rootUrl + '/signin')
-    .send(username)
+  return request.get(`${rootUrl}/username/${username}`)
     .then(res => {
       return res.body
+    })
+    .catch(err => {
+      throw err
     })
 }
 
@@ -21,7 +24,14 @@ export function postUser (user) {
 export function getUsersToMatch (user) {
   return request.get(rootUrl + `/${user}/unmatched`)
     .then(res => {
-      console.log(res.body)
+      return res.body
+    })
+}
+
+export function patchUserApi (user) {
+  return request.patch(rootUrl + `/${user.userId}`)
+    .send(user)
+    .then(res => {
       return res.body
     })
 }

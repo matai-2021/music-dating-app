@@ -12,6 +12,9 @@ Table users as U {
   usersecret varchar
   fullname varchar
   gender_id int
+  hash varchar
+  description varchar
+  image_url varchar
   created_at timestamp
   
 }
@@ -19,7 +22,17 @@ Table users as U {
 Table genders as G {
   id int [pk, increment] 
   name varchar
-  
+}
+
+Table genres as gen {
+  id int [pk, increment] 
+  name varchar
+}
+
+Table user_genres as ugen {
+  id int [pk, increment] 
+  user_id int
+  genre_id int
 }
 
 
@@ -31,11 +44,9 @@ Table users_swipe as us {
   created_at timestamp
  }
 
-// Creating references
-// You can also define relaionship separately
-// > many-to-one; < one-to-many; - one-to-one
 Ref: us.sender_id > U.id
 Ref: us.reciever_id > U.id
 Ref: U.gender_id > G.id
-
+Ref: ugen.genre_id > gen.id
+Ref: ugen.user_id > U.id
 ```

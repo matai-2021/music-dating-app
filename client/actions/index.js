@@ -1,4 +1,5 @@
-import { getUserByName, postUser, getUsersToMatch } from '../apis/users'
+import { getUserByName, postUser, getUsersToMatch, patchUserApi } from '../apis/users'
+import { checkForMatchApi } from '../apis/swipe'
 import { getGenres } from '../apis/genres'
 
 export const SET_USER = 'SET_USER'
@@ -7,10 +8,20 @@ export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGOUT = 'LOGOUT'
 export const SET_MATCHEES = 'SET_MATCHEES'
+export const MATCH = 'MATCH'
+export const RESET_MATCH = 'RESET_MATCH'
+export const UPDATED_USER = 'UPDATED_USER'
 
 export function setUser (user) {
   return {
     type: SET_USER,
+    user
+  }
+}
+
+export function updateUserInformation (user) {
+  return {
+    type: UPDATED_USER,
     user
   }
 }
@@ -27,7 +38,7 @@ export function setGenres (genres) {
   }
 }
 
-export function loginFail (genres) {
+export function loginFail () {
   return {
     type: LOGIN_FAIL
   }
@@ -39,6 +50,13 @@ export function loginSuccess () {
   }
 }
 
+export function setMatch (isMatch) {
+  return {
+    type: MATCH,
+    isMatch: isMatch
+  }
+}
+
 export function setMatchees (matchees) {
   return {
     type: SET_MATCHEES,
@@ -46,14 +64,22 @@ export function setMatchees (matchees) {
   }
 }
 
-export function fetchUserName (username) {
+export function setFalseMatch () {
+  return {
+    type: RESET_MATCH,
+    matchees: false
+  }
+}
+
+export function fetchUserName (user) {
   return dispatch => {
-    return getUserByName(username)
+    return getUserByName(user.username)
       .then(res => {
         dispatch(setUser(res))
         return null
       })
-      .catch(() => {
+      .catch(error => {
+        console.error(error)
         dispatch(loginFail())
         return null
       })
@@ -82,6 +108,7 @@ export function createUser (user) {
 
 export function logoutUser () {
   return dispatch => {
+    dispatch(setFalseMatch())
     return dispatch(resetUser())
   }
 }
@@ -92,6 +119,35 @@ export function fetchUnMatchedUsers (user) {
       .then((res) => {
         dispatch(setMatchees(res))
         return null
+      })
+      .catch(console.error)
+  }
+}
+
+export function checkForMatch (swipe) {
+  return dispatch => {
+    return checkForMatchApi(swipe)
+      .then((res) => {
+        dispatch(setMatch(res))
+        return null
+      })
+  }
+}
+
+export function invalidUsername () {
+  return dispatch => {
+    return dispatch(loginFail())
+  }
+}
+
+export function pathUserInformation (user) {
+  return dispatch => {
+    return patchUserApi(user)
+      .then(() => {
+        return null
+      })
+      .catch(err => {
+        console.log(err)
       })
   }
 }

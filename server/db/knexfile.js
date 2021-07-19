@@ -14,7 +14,13 @@ module.exports = {
     connection: {
       filename: ':memory:'
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
+    seeds: {
+      directory: path.join(__dirname, 'seeds')
+    },
+    migrations: {
+      directory: path.join(__dirname, 'migrations')
+    }
   },
 
   production: {
