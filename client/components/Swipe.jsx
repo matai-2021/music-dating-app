@@ -46,6 +46,7 @@ function Swipe (props) {
     <>
       <div>
         <Link to="/chat"><GrChat /></Link>
+        <img src='/resonatelogoS.png' alt="resonatelogo" />
         <Link to="/profile"><CgProfile /></Link>
       </div>
       <div>

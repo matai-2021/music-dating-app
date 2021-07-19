@@ -252,7 +252,7 @@ exports.seed = function (knex) {
           fullname: 'Jared Pinfold',
           description: 'The music I like must contain the three H\'s. Hard, heavy, and headbandingly good.',
           gender_id: 2,
-          image_url: 'https://ca.slack-edge.com/T02SQPVAC-U01UC76B679-6c9b42c0fb9a-512',
+          image_url: 'https://ca.slack-edge.com/T02SQPVAC-U01KHB6BVHU-f7d6ded39c48-512',
           created_at: new Date(Date.now())
         }
       ])

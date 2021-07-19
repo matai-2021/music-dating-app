@@ -61,6 +61,7 @@ function Profile (props) {
 
   return (
     <>
+      <img src='/resonatelogoS.png' alt="resonatelogo" />
       <section className='whole-container'>
         <form className='form-title form-box'>
           <label name={form.fullname}>Fullname:
