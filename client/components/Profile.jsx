@@ -78,6 +78,7 @@ function Profile (props) {
 
   return (
     <>
+      <img src='/resonatelogoS.png' alt="resonatelogo" />
       <div>
         <Link to="/matching">
           <MdQueueMusic />

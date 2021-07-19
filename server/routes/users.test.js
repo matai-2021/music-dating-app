@@ -17,3 +17,33 @@ describe('PATCH /api/v1/users/:id', () => {
       })
   })
 })
+
+describe('GET /api/v1/users/:id', () => {
+  it('returns a user', () => {
+    const user = {
+      username: 'username',
+      fullname: 'fullname',
+      genres: [{ id: 1, name: 'genre' }],
+      imageUrl: 'imageurl',
+      description: 'description',
+      genderId: 1,
+      genderName: 'gendername'
+    }
+    db.getUserById.mockImplementation(() => Promise.resolve(user))
+    db.getUserGenres.mockImplementation(() => Promise.resolve(user.genres))
+    expect.assertions(8)
+    return request(server)
+      .get('/api/v1/users/1')
+      .then(res => {
+        expect(res.body.username).toBe('username')
+        expect(res.body.fullname).toBe('fullname')
+        expect(res.body.imageUrl).toBe('imageurl')
+        expect(res.body.description).toBe('description')
+        expect(res.body.genderId).toBe(1)
+        expect(res.body.genderName).toBe('gendername')
+        expect(res.body.genres).toHaveLength(1)
+        expect(res.body.genres).toContainEqual({ id: 1, name: 'genre' })
+        return null
+      })
+  })
+})

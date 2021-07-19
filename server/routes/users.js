@@ -14,6 +14,7 @@ router.post('/register', async (req, res) => {
       username: user.username,
       description: user.description,
       gender_id: user.genderId,
+      image_ur: user.imageUrl,
       created_at: new Date(Date.now())
     })
 
@@ -41,7 +42,7 @@ router.get('/:id', async (req, res) => {
       genres: currentUsersGenres,
       genderId: user.genderId,
       genderName: user.genderName,
-      imageUrl: user.image_url
+      imageUrl: user.imageUrl
     })
   } catch (error) {
     console.error(error)
@@ -52,9 +53,9 @@ router.get('/:id', async (req, res) => {
 // PATCH /api/v1/users/:id
 router.patch('/:id', async (req, res) => {
   const { id } = req.params
-  const { fullname, description, genderId, genres } = req.body
+  const { fullname, description, genderId, genres, imageUrl } = req.body
   try {
-    await db.updateUser(id, { fullname, description, gender_id: genderId })
+    await db.updateUser(id, { fullname, description, gender_id: genderId, image_url: imageUrl })
     await db.deleteUserGenres(id)
     await db.addGenres(id, genres)
     res.sendStatus(200)
