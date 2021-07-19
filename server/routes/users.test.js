@@ -49,7 +49,7 @@ describe('GET /api/v1/users/:id', () => {
 })
 
 describe('POST /api/v1/users/register', () => {
-  it('returns a user', () => {
+  it('returns the id of the created usr', () => {
     const id = 1
     const user = {
       username: 'username',
@@ -73,3 +73,27 @@ describe('POST /api/v1/users/register', () => {
       })
   })
 })
+
+// describe('GET /api/v1/users/:id/unmatched', () => {
+//   it('return a list of users', () => {
+//     const currentUser = {
+//       username: 'username',
+//       fullname: 'fullname',
+//       genres: [{ id: 1, name: 'genre' }],
+//       imageUrl: 'imageurl',
+//       description: 'description',
+//       genderId: 1,
+//       genderName: 'gendername'
+//     }
+//     db.getUnmatchedUsers.mockImplementation(() => Promise.resolve(currentUser))
+//     db.getUserGenres.mockImplementation(() => Promise.resolve([{ id: 1, name: 'genre' }]))
+//     expect.assertions(1)
+//     return request(server)
+//       .get('/api/v1/users/1/unmatched')
+//       .then(res => {
+//         expect(res.body).toHaveLength(1)
+//         // expect(res.body.genres).toContainEqual(currentUser)
+//         return null
+//       })
+//   })
+// })

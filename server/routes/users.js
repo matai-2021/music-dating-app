@@ -50,6 +50,19 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+// POST /api/v1/users/addgenres/:id
+router.post('/addgenres/:id', async (req, res) => {
+  const { id } = req.params
+  const genres = req.body
+  try {
+    await db.addGenres(id, genres.map(({ genreId }) => genreId))
+    res.sendStatus(200)
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+})
+
 // PATCH /api/v1/users/:id
 router.patch('/:id', async (req, res) => {
   const { id } = req.params
