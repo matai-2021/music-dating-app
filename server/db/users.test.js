@@ -183,3 +183,14 @@ describe('createSwipe', () => {
       })
   })
 })
+
+describe('getGender', () => {
+  it('should return gender', () => {
+    const userId = 1
+    return db.getGender(userId, testDb)
+      .then(gender => {
+        expect(gender).toEqual({ genderId: 1, genderName: 'Male' })
+        return null
+      })
+  })
+})
