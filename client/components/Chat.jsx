@@ -1,17 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { MdQueueMusic } from 'react-icons/md'
-
-import { Link } from 'react-router-dom'
-
 import { ChatEngine, ChatList, ChatCard, ChatFeed, ChatHeader, MessageBubble, IsTyping, ScrollDownBar, NewMessageForm } from 'react-chat-engine'
 
 const ChatPage = (props) => {
   return (
     <section className='profile-container'>
-      <Link className='pre-title' to={'/matching'}><h1><MdQueueMusic /></h1></Link>
-      <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
       <ChatEngine
         height='100vh'
         userName={props.user.username}
