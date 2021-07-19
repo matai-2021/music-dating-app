@@ -5,12 +5,8 @@
 
 .container {
   position: relative;
-  max-width: 100%;
+  max-width: 102%;
   padding: 0 vars.$base-size * 3;
-}
-
-.background {
-  background-color: rgb(243, 193, 157);
 }
 
 .flex-container {

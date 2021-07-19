@@ -47,11 +47,11 @@ function Swipe (props) {
     swipee.filter(meme => meme.id !== username)
   }
   return (
-    <>
+    <section>
       <div>
-        <Link to="/chat"><GrChat /></Link>
+        <Link className='img-size' to="/chat"><GrChat /></Link>
         <img src='/resonatelogoS.png' alt="resonatelogo" />
-        <Link to="/profile"><CgProfile /></Link>
+        <Link className='img-size' to="/profile"><CgProfile /></Link>
       </div>
       <div>
         <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
@@ -64,7 +64,7 @@ function Swipe (props) {
                 <h3>{cardSwipe.fullname}</h3>
               </div>
               <div className='card'>
-                <p>{cardSwipe.description}</p>
+                <h3>{cardSwipe.description}</h3>
                 <ul>
                   {cardSwipe.genres.map((genre) =>
                     <li key={genre.genreId}>{genre.name}</li>
@@ -77,7 +77,7 @@ function Swipe (props) {
         {match.isMatch && <p>You matched with {swipee.find(item => item.id === checkingMatch.receiverId).fullname} <Link to="/chat">Chat Now</Link></p>}
         {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
       </div>
-    </>
+    </section>
   )
 }
 

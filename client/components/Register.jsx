@@ -120,7 +120,7 @@ function Register (props) {
           <input onChange={handleChange} type="text" name="imageUrl" placeholder="Image Url" value={form.imageUrl}/>
         </label>
         <label name={form.description}>
-          <textarea onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
+          <textarea className='form-box-height text-size' onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
         </label>
         <label htmlFor="genderId">Gender:
           <select name="genderId" id="genderId" onChange={handleChange}>
@@ -130,12 +130,13 @@ function Register (props) {
             <option value="3">Non Binary/Other</option>
           </select>
         </label>
-        <label htmlFor="genre">Choose a Genre of Music:
+        <label className="para-description" htmlFor="genre">Choose a Genre of Music:
           {genres.map(genre => (
             <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id}/>{genre.name}</div>
           ))}
         </label>
-        <button onClick={handleSubmit}>Register</button>
+        <br></br>
+        <button className='form-button-primary' onClick={handleSubmit}>Register</button>
       </form>
     </section>
   )
