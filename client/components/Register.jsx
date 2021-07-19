@@ -1,9 +1,10 @@
-import { isAuthenticated, register } from 'authenticare/client'
+import { isAuthenticated, register, getDecodedToken, getEncodedToken } from 'authenticare/client'
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { createUser, fetchGenres } from '../actions/index'
 import { baseUrl } from '../config'
+import checkURL from '../utils/image-auth'
 
 function Register (props) {
   const history = useHistory()
@@ -13,8 +14,10 @@ function Register (props) {
     fullname: '',
     username: '',
     genderId: '',
+    imageUrl: '',
     description: ''
   })
+  const [image, setImage] = useState(null)
 
   useEffect(() => {
     props.dispatch(fetchGenres())
@@ -26,6 +29,11 @@ function Register (props) {
       ...form,
       [name]: value
     })
+    if (name === 'imageUrl' && checkURL(value)) {
+      setImage(value)
+    } else if (name === 'imageUrl' && !checkURL(value)) {
+      setImage(null)
+    }
   }
 
   function handleCheck (genreId, event) {
@@ -39,19 +47,20 @@ function Register (props) {
 
   function handleSubmit (event) {
     event.preventDefault()
-    const { fullname, username, genderId, description } = form
+    const { fullname, imageUrl, username, genderId, description } = form
     const userForm = {
       fullname,
       username,
       description,
-      genderId,
-      genre: genresForm
+      gender_id: genderId,
+      image_url: imageUrl
     }
-    props.dispatch(createUser(userForm))
+    // props.dispatch(createUser(userForm))
 
-    register({ username }, { baseUrl })
+    register(userForm, { baseUrl })
       .then(() => {
         if (isAuthenticated()) {
+          const { id } = getDecodedToken()
           props.history.push('/')
         }
         return null
@@ -96,13 +105,19 @@ function Register (props) {
 
   return (
     <section className='profile-container'>
-      <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
+      <img className='logo-image'  src='/resonatelogoS.png' alt="resonatelogo" />
+      <div>
+        <img src={image && image}/>
+      </div>
       <form className='form-title form-box'>
         <label name={form.fullname}>
           <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
         </label>
         <label name={form.username}>
           <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username}/>
+        </label>
+        <label name={form.imageUrl}>
+          <input onChange={handleChange} type="text" name="imageUrl" placeholder="Image Url" value={form.imageUrl}/>
         </label>
         <label name={form.description}>
           <textarea className='form-box-height text-size' onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>

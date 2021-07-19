@@ -15,6 +15,7 @@ function addUser (user, db = connection) {
       return db('users')
         .insert({ ...user, hash })
     })
+    .catch(console.error)
 }
 
 function updateUser (id, user, db = connection) {
@@ -140,5 +141,6 @@ module.exports = {
   getUserById,
   getGender,
   updateUser,
-  deleteUserGenres
+  deleteUserGenres,
+  userExists
 }
