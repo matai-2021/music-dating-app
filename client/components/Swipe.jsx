@@ -50,6 +50,7 @@ function Swipe (props) {
     <section>
       <div>
         <Link className='img-size' to="/chat"><GrChat /></Link>
+        <img src='/resonatelogoS.png' alt="resonatelogo" />
         <Link className='img-size' to="/profile"><CgProfile /></Link>
       </div>
       <div>

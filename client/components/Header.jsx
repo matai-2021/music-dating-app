@@ -17,11 +17,11 @@ function Header (props) {
     <>
       <section>
         <div className='flex-container'>
-          <h1 className='pre-title'>Music</h1>
+          <img src='/resonatelogo.png' alt="resonatelogo" />
         </div>
         <div>
           <p className='para-title'>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae amet minima quibusdam ratione! Quae praesentium alias reprehenderit molestiae hic libero ipsum quam tempora excepturi optio nostrum pariatur, rem quas aspernatur!
+          Everyone speaks the universal language that is music, and we believe some of the best relationships are formed over just that. A shared interest of an artist, band, album, or even a genre is enough to spark a lifetime connection. There&apos;s no better feeling when music resonates with you, and in turn, resonating with someone you&apos;ve shared it with. So create an account below and start resonating with people who love music just like you!
           </p>
         </div>
         <div>

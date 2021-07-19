@@ -16,8 +16,6 @@ function Profile (props) {
     description: user.description
   })
 
-  console.log(user)
-
   const [gendersForm, setGendersForm] = useState(null)
 
   const genders = [
@@ -78,6 +76,7 @@ function Profile (props) {
 
   return (
     <>
+      <img src='/resonatelogoS.png' alt="resonatelogo" />
       <div>
         <Link to="/matching">
           <MdQueueMusic />
