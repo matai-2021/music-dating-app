@@ -75,16 +75,15 @@ function Profile (props) {
   }
 
   return (
-    <>
-      <img src='/resonatelogoS.png' alt="resonatelogo" />
+    <section className='profile-container'>
       <div>
-        <Link to="/matching">
-          <MdQueueMusic />
+        <Link className='pre-title' to="/matching">
+          <h1><MdQueueMusic/></h1>
         </Link>
       </div>
-      <section className='whole-container'>
+      <img className='logo-image'  src='/resonatelogoS.png' alt="resonatelogo" />
         <div>
-          <img src={user.imageUrl ? user.imageUrl : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}/>
+          <img  className='profile-img'  src={user.imageUrl ? user.imageUrl : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}/>
         </div>
         <form className='form-title form-box'>
           <label name={form.username}>Username:
@@ -110,8 +109,7 @@ function Profile (props) {
           </label>
           <button onClick={handleSubmit}>Update Information</button>
         </form>
-      </section>
-    </>
+    </section>
   )
 }
 

@@ -23,9 +23,15 @@
 }
 
 .profile-container {
-  width: functions.colWidth(12);
-  @include mixins.media-queries(mobile, min) {
-    width: functions.colWidth(6);
-    padding: vars.$base-size;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: solid rgb(26, 25, 25);
+  margin: 50px;
 }

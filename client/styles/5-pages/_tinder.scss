@@ -1,11 +1,51 @@
+#root {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  /* background: linear-gradient(#fff, #999); */
+  background: linear-gradient(#e66465, #9198e5);
+}
+
+#root>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  flex-direction: row !important;
+}
+
+.row>* {
+  margin: 5px;
+}
+
 .swipe {
-  position: relative;
+  position: absolute;
+}
+
+.tinder-card-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .cardContainer {
-  width: 30%;
-  max-width: 100%;
-  height: 700px;
+  width: 90vw;
+  max-width: 260px;
+  height: 300px;
 }
 
 .card {
@@ -25,12 +65,11 @@
   height: 100%;
 }
 
-
 .card h3 {
-  position: absolute;
+  position: relative;
   bottom: 0;
   margin: 10px;
-  color: rgb(0, 0, 0);
+  color: #fff;
 }
 
 .infoText {
@@ -38,9 +77,14 @@
   height: 28px;
   justify-content: center;
   display: flex;
-  color: rgb(0, 0, 0);
+  color: #fff;
   animation-name: popup;
   animation-duration: 800ms;
+}
+
+.nav-img {
+  display: flex;
+  flex-direction: row;
 }
 
 .buttons {

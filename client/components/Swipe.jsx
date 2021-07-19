@@ -47,16 +47,17 @@ function Swipe (props) {
     swipee.filter(meme => meme.id !== username)
   }
   return (
-    <section>
-      <div>
+    <section className='tinder-card-container'>
+      <div className='nav-img'>
         <Link className='img-size' to="/chat"><GrChat /></Link>
-        <img src='/resonatelogoS.png' alt="resonatelogo" />
         <Link className='img-size' to="/profile"><CgProfile /></Link>
+      </div>
+      <div>  
+        <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
       </div>
       <div>
         <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
         <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
-        <h1>React Tinder Card</h1>
         <div className='cardContainer'>
           {swipee && swipee?.map((cardSwipe, index) =>
             <TinderCard className='swipe' key={cardSwipe.id} onSwipe={(dir) => swiped(dir, cardSwipe.id)} onCardLeftScreen={() => outOfFrame(cardSwipe.id)}>
