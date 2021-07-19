@@ -115,7 +115,7 @@ function Register (props) {
 
   return (
     <section className='profile-container'>
-      <img className='logo-image'  src='/resonatelogoS.png' alt="resonatelogo" />
+      <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
       <div>
         <img src={image && image}/>
       </div>
@@ -132,19 +132,19 @@ function Register (props) {
         <label name={form.description}>
           <textarea className='form-box-height text-size' onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
         </label>
-        <label htmlFor="genderId">Gender:
+        <label htmlFor="genderId">
           <select name="genderId" id="genderId" onChange={handleChange}>
-            <option value={form.genre}>Please Select an Option</option>
+            <option value={form.genre}>Select Gender</option>
             <option value="1">Male</option>
             <option value="2">Female</option>
             <option value="3">Non Binary/Other</option>
           </select>
         </label>
-        <label className="para-description" htmlFor="genre">Choose a Genre of Music:
-          {genres.map(genre => (
-            <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id}/>{genre.name}</div>
-          ))}
-        </label>
+        {genres.map(genre => (
+          <label key={genre.id} className="para-description" htmlFor={genre.id}>
+            <div ><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id}/>{genre.name}</div>
+          </label>
+        ))}
         <br></br>
         <button className='form-button-primary' onClick={handleSubmit}>Register</button>
       </form>

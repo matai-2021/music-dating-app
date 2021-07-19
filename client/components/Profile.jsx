@@ -81,34 +81,34 @@ function Profile (props) {
           <h1><MdQueueMusic/></h1>
         </Link>
       </div>
-      <img className='logo-image'  src='/resonatelogoS.png' alt="resonatelogo" />
-        <div>
-          <img  className='profile-img'  src={user.imageUrl ? user.imageUrl : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}/>
-        </div>
-        <form className='form-title form-box'>
-          <label name={form.username}>Username:
-            <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username} disabled/>
-          </label>
-          <label name={form.fullname}>Fullname:
-            <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
-          </label>
-          <label name={form.description}>Profile Description:
-            <textarea onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
-          </label>
-          <label htmlFor="genderId">Gender:
-            <select name="genderId" id="genderId" onChange={handleChange}>
-              {gendersForm && gendersForm.map(gender => (
-                <option key={gender.id} value={gender.id}>{gender.genderName}</option>
-              ))}
-            </select>
-          </label>
-          <label htmlFor="genre">Choose a Genre of Music:
-            {genresForm && genresForm.map(genre => (
-              <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked}/>{genre.name} </div>
+      <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
+      <div>
+        <img className='profile-img' src={user.imageUrl ? user.imageUrl : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}/>
+      </div>
+      <form className='form-title form-box'>
+        <label name={form.username}>Username:
+          <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username} disabled/>
+        </label>
+        <label name={form.fullname}>Fullname:
+          <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
+        </label>
+        <label name={form.description}>Profile Description:
+          <textarea onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
+        </label>
+        <label htmlFor="genderId">Gender:
+          <select name="genderId" id="genderId" onChange={handleChange}>
+            {gendersForm && gendersForm.map(gender => (
+              <option key={gender.id} value={gender.id}>{gender.genderName}</option>
             ))}
-          </label>
-          <button onClick={handleSubmit}>Update Information</button>
-        </form>
+          </select>
+        </label>
+        <label htmlFor="genre">Choose a Genre of Music:
+          {genresForm && genresForm.map(genre => (
+            <div key={genre.id}><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked}/>{genre.name} </div>
+          ))}
+        </label>
+        <button onClick={handleSubmit}>Update Information</button>
+      </form>
     </section>
   )
 }
