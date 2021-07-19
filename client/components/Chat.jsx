@@ -9,7 +9,7 @@ import { ChatEngine, ChatList, ChatCard, ChatFeed, ChatHeader, MessageBubble, Is
 
 const ChatPage = (props) => {
   return (
-    <section className='profile-container'>
+    <section className='container'>
       <Link className='pre-title' to={'/matching'}><h1><MdQueueMusic /></h1></Link>
       <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
       <ChatEngine
