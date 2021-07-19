@@ -12,13 +12,13 @@ function Nav (props) {
   }
 
   return (
-    <div>
+    <div className='form-button-signin'>
       <IfAuthenticated>
         <NavLink to="/" onClick={logout}>Sign Off</NavLink>
         <div><NavLink to="/profile">My Profile</NavLink></div>
       </IfAuthenticated>
       <IfNotAuthenticated>
-        <NavLink to="/signin">Sign in</NavLink>
+        <NavLink to="/signin" className='form-button-secondary nav-link'>Sign in</NavLink>
       </IfNotAuthenticated>
     </div>
   )

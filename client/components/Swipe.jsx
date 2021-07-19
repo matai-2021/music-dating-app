@@ -49,8 +49,8 @@ function Swipe (props) {
   return (
     <section>
       <div>
-        <Link to="/chat"><GrChat /></Link>
-        <Link to="/profile"><CgProfile /></Link>
+        <Link className='img-size' to="/chat"><GrChat /></Link>
+        <Link className='img-size' to="/profile"><CgProfile /></Link>
       </div>
       <div>
         <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />

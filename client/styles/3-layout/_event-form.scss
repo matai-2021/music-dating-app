@@ -156,3 +156,28 @@ input[type=text] {
   border-radius: vars.$base-size * 0.50;
   border: none;
 }
+
+.img-size {
+  font-size: xx-large;
+  border-radius: vars.$base-size * 0.50;
+  border: none;
+  padding: vars.$base-size;
+  width: 50%;
+   margin: 0 auto;
+   margin-top: vars.$base-size * 0.5;
+   color: #ffffff;
+  text-align: right;
+  display: flex;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: vars.$base-size * 0.5;
+
+  @include mixins.media-queries(tablet, min) {
+    width: 60%;
+  }
+
+  &:hover{
+    background-color: vars.$green;
+    color: #ffffff;
+  }
+}
