@@ -96,6 +96,7 @@ function Register (props) {
 
   return (
     <section className='whole-container'>
+      <img src='/resonatelogoS.png' alt="resonatelogo" />
       <form className='form-title form-box'>
         <label name={form.fullname}>
           <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>

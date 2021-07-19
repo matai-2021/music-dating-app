@@ -11,6 +11,7 @@ const ChatPage = (props) => {
   return (
     <>
       <Link to={'/matching'}><MdQueueMusic /></Link>
+      <img src='/resonatelogoS.png' alt="resonatelogo" />
       <ChatEngine
         height='100vh'
         userName={props.user.username}

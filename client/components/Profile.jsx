@@ -16,6 +16,8 @@ function Profile (props) {
     description: user.description
   })
 
+  console.log(user)
+
   const [gendersForm, setGendersForm] = useState(null)
 
   const genders = [
@@ -76,12 +78,16 @@ function Profile (props) {
 
   return (
     <>
+      <img src='/resonatelogoS.png' alt="resonatelogo" />
       <div>
         <Link to="/matching">
           <MdQueueMusic />
         </Link>
       </div>
       <section className='whole-container'>
+        <div>
+          <img src={user.imageUrl ? user.imageUrl : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}/>
+        </div>
         <form className='form-title form-box'>
           <label name={form.username}>Username:
             <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username} disabled/>
