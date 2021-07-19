@@ -14,7 +14,7 @@ router.post('/register', async (req, res) => {
       username: user.username,
       description: user.description,
       gender_id: user.genderId,
-      image_ur: user.imageUrl,
+      image_url: user.imageUrl,
       created_at: new Date(Date.now())
     })
 
@@ -47,6 +47,19 @@ router.get('/:id', async (req, res) => {
   } catch (error) {
     console.error(error)
     res.status(500).send(error)
+  }
+})
+
+// POST /api/v1/users/addgenres/:id
+router.post('/addgenres/:id', async (req, res) => {
+  const { id } = req.params
+  const genres = req.body
+  try {
+    await db.addGenres(id, genres.map(({ genreId }) => genreId))
+    res.sendStatus(200)
+  } catch (error) {
+    console.error(error)
+    throw error
   }
 })
 

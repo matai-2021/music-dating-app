@@ -19,6 +19,9 @@ export function postUser (user) {
     .then(res => {
       return res.body.id
     })
+    .catch(err => {
+      console.log(err)
+    })
 }
 
 export function getUsersToMatch (user) {

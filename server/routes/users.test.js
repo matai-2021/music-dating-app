@@ -49,7 +49,7 @@ describe('GET /api/v1/users/:id', () => {
 })
 
 describe('POST /api/v1/users/register', () => {
-  it('returns a user', () => {
+  it('returns the id of the created usr', () => {
     const id = 1
     const user = {
       username: 'username',

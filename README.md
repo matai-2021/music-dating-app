@@ -12,8 +12,6 @@ Matched users can chat with each others if there was a match.
 ### From the command line
 
 ```
-git clone https://github.com/dev-academy-challenges/boilerplate-fullstack [your-project-name]
-cd [your-project-name]
 npm install # to install dependencies
 npm run dev # to start the dev server
 npm run db:reset # to reset the database and seeds
