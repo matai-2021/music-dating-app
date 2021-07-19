@@ -73,3 +73,37 @@ describe('POST /api/v1/users/register', () => {
       })
   })
 })
+
+describe('GET /api/v1/users/username/:username', () => {
+  it('returns a users info based off their username', () => {
+    const user = {
+      id: 1,
+      username: 'username',
+      fullname: 'fullname',
+      description: 'description',
+      genres: [{ id: 1, name: 'genre' }],
+      genderId: 1,
+      genderName: 'gendername',
+      image_url: 'image_url'
+    }
+
+    db.getUser.mockImplementation(() => Promise.resolve(user))
+    db.getGender.mockImplementation(() => Promise.resolve({ genderName: user.genderName, genderId: user.genderId }))
+    db.getUserGenres.mockImplementation(() => Promise.resolve(user.genres))
+    expect.assertions(9)
+    return request(server)
+      .get('/api/v1/users/username/username')
+      .then(res => {
+        expect(res.body.id).toBe(1)
+        expect(res.body.username).toBe('username')
+        expect(res.body.fullname).toBe('fullname')
+        expect(res.body.description).toBe('description')
+        expect(res.body.genres).toContainEqual({ id: 1, name: 'genre' })
+        expect(res.body.genres).toHaveLength(1)
+        expect(res.body.genderId).toBe(1)
+        expect(res.body.genderName).toBe('gendername')
+        expect(res.body.imageUrl).toBe('image_url')
+        return null
+      })
+  })
+})
