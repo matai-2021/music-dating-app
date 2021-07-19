@@ -1,4 +1,4 @@
-import { isAuthenticated, register } from 'authenticare/client'
+import { isAuthenticated, register, getDecodedToken, getEncodedToken } from 'authenticare/client'
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -24,7 +24,6 @@ function Register (props) {
   }, [])
 
   function handleChange (event) {
-    console.log(form)
     const { name, value } = event.target
     setForm({
       ...form,
@@ -48,19 +47,20 @@ function Register (props) {
 
   function handleSubmit (event) {
     event.preventDefault()
-    const { fullname, username, genderId, description } = form
+    const { fullname, imageUrl, username, genderId, description } = form
     const userForm = {
       fullname,
       username,
       description,
-      genderId,
-      genre: genresForm
+      gender_id: genderId,
+      image_url: imageUrl
     }
-    props.dispatch(createUser(userForm))
+    // props.dispatch(createUser(userForm))
 
-    register({ username }, { baseUrl })
+    register(userForm, { baseUrl })
       .then(() => {
         if (isAuthenticated()) {
+          const { id } = getDecodedToken()
           props.history.push('/')
         }
         return null
