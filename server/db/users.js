@@ -17,6 +17,12 @@ function addUser (user, db = connection) {
     })
 }
 
+function updateUser (id, user, db = connection) {
+  return db('users')
+    .where('id', id)
+    .update(user)
+}
+
 function getUser (username, db = connection) {
   return db('users')
     .where('username', username)
@@ -28,7 +34,7 @@ function getUserById (id, db = connection) {
   return db('users')
     .where('users.id', id)
     .join('genders', 'users.gender_id', 'genders.id')
-    .select('genders.id as genderId', 'genders.name as genderName', 'users.id as id', 'fullname', 'description', 'username')
+    .select('genders.id as genderId', 'genders.name as genderName', 'users.id as id', 'fullname', 'description', 'image_url', 'username')
     .first()
 }
 
@@ -51,6 +57,12 @@ function addGenres (userId, genreIds, db = connection) {
       .insert({ user_id: userId, genre_id: id })
   )
   return Promise.all(promises)
+}
+
+function deleteUserGenres (id, db = connection) {
+  return db('users_genres')
+    .where('user_id', id)
+    .del()
 }
 
 function userExists (username, db = connection) {
@@ -120,5 +132,7 @@ module.exports = {
   createSwipe,
   varifyMatch,
   getUserById,
-  getGender
+  getGender,
+  updateUser,
+  deleteUserGenres
 }

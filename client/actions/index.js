@@ -1,4 +1,4 @@
-import { getUserByName, postUser, getUsersToMatch } from '../apis/users'
+import { getUserByName, postUser, getUsersToMatch, patchUserApi } from '../apis/users'
 import { checkForMatchApi } from '../apis/swipe'
 import { getGenres } from '../apis/genres'
 
@@ -10,10 +10,18 @@ export const LOGOUT = 'LOGOUT'
 export const SET_MATCHEES = 'SET_MATCHEES'
 export const MATCH = 'MATCH'
 export const RESET_MATCH = 'RESET_MATCH'
+export const UPDATED_USER = 'UPDATED_USER'
 
 export function setUser (user) {
   return {
     type: SET_USER,
+    user
+  }
+}
+
+export function updateUserInformation (user) {
+  return {
+    type: UPDATED_USER,
     user
   }
 }
@@ -129,5 +137,17 @@ export function checkForMatch (swipe) {
 export function invalidUsername () {
   return dispatch => {
     return dispatch(loginFail())
+  }
+}
+
+export function pathUserInformation (user) {
+  return dispatch => {
+    return patchUserApi(user)
+      .then(() => {
+        return null
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }

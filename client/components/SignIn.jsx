@@ -2,7 +2,7 @@ import { isAuthenticated, signIn } from 'authenticare/client'
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { fetchUserName, invalidUsername } from '../actions'
+import { fetchUserName, invalidUsername, fetchGenres } from '../actions'
 import { baseUrl } from '../config'
 
 function SignIn (props) {
@@ -21,6 +21,7 @@ function SignIn (props) {
   }
 
   async function handleSubmit (event) {
+    props.dispatch(fetchGenres())
     event.preventDefault()
     const { username } = form
     try {

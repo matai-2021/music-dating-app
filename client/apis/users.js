@@ -27,3 +27,11 @@ export function getUsersToMatch (user) {
       return res.body
     })
 }
+
+export function patchUserApi (user) {
+  return request.patch(rootUrl + `/${user.userId}`)
+    .send(user)
+    .then(res => {
+      return res.body
+    })
+}
