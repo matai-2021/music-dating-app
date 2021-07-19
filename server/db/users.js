@@ -34,7 +34,7 @@ function getUserById (id, db = connection) {
   return db('users')
     .where('users.id', id)
     .join('genders', 'users.gender_id', 'genders.id')
-    .select('genders.id as genderId', 'genders.name as genderName', 'users.id as id', 'fullname', 'description', 'username')
+    .select('genders.id as genderId', 'genders.name as genderName', 'users.id as id', 'fullname', 'description', 'image_url', 'username')
     .first()
 }
 

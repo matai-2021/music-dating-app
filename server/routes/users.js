@@ -40,7 +40,8 @@ router.get('/:id', async (req, res) => {
       description: user.description,
       genres: currentUsersGenres,
       genderId: user.genderId,
-      genderName: user.genderName
+      genderName: user.genderName,
+      imageUrl: user.image_url
     })
   } catch (error) {
     console.error(error)
