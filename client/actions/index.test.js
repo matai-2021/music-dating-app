@@ -14,7 +14,10 @@ import {
   setMatchees,
   SET_MATCHEES,
   setFalseMatch,
-  RESET_MATCH
+  RESET_MATCH,
+  UPDATED_USER,
+  updateUserInformation
+
 } from './index'
 
 describe('Setting User', () => {
@@ -93,5 +96,17 @@ describe('Resets the isMatch for when users signout', () => {
     const action = setFalseMatch()
     expect(action.type).toBe(RESET_MATCH)
     expect(action.matchees).toBe(false)
+  })
+})
+
+describe('Dispatches the action for changing the user information', () => {
+  it('Returns the object passed to it', () => {
+    const mockUserChange = [
+      { id: 4, username: 'Testing', genderId: 2, description: 'Hello this is a test' }
+    ]
+    const action = updateUserInformation(mockUserChange)
+    expect(action.type).toBe(UPDATED_USER)
+    expect(action.user).toBe(mockUserChange)
+    expect(action.user).toHaveLength(1)
   })
 })
