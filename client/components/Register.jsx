@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { createUser, fetchGenres } from '../actions/index'
 import { baseUrl } from '../config'
+import checkURL from '../utils/image-auth'
 
 function Register (props) {
   const history = useHistory()
@@ -13,19 +14,27 @@ function Register (props) {
     fullname: '',
     username: '',
     genderId: '',
+    imageUrl: '',
     description: ''
   })
+  const [image, setImage] = useState(null)
 
   useEffect(() => {
     props.dispatch(fetchGenres())
   }, [])
 
   function handleChange (event) {
+    console.log(form)
     const { name, value } = event.target
     setForm({
       ...form,
       [name]: value
     })
+    if (name === 'imageUrl' && checkURL(value)) {
+      setImage(value)
+    } else if (name === 'imageUrl' && !checkURL(value)) {
+      setImage(null)
+    }
   }
 
   function handleCheck (genreId, event) {
@@ -96,12 +105,18 @@ function Register (props) {
 
   return (
     <section className='whole-container'>
+      <div>
+        <img src={image && image}/>
+      </div>
       <form className='form-title form-box'>
         <label name={form.fullname}>
           <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
         </label>
         <label name={form.username}>
           <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username}/>
+        </label>
+        <label name={form.imageUrl}>
+          <input onChange={handleChange} type="text" name="imageUrl" placeholder="Image Url" value={form.imageUrl}/>
         </label>
         <label name={form.description}>
           <textarea onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
