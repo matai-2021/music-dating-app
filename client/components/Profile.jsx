@@ -93,7 +93,7 @@ function Profile (props) {
           <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
         </label>
         <label name={form.description}>Profile Description:
-          <textarea className='form-box-height text-size'  onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
+          <textarea className='form-box-height text-size' onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
         </label>
         <br></br>
         <label htmlFor="genderId">Gender:

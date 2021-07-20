@@ -17,73 +17,100 @@ function Nav (props) {
   }
 
   function Navigation () {
-    const pathname = window.location.href
-    switch (pathname) {
-      case 'http://localhost:3000/#/':
-      case 'http://localhost:3000/#':
-        return (
-          <>
-            <div>
-              <NavLink className='img-size' to="/profile"><CgProfile /></NavLink>
-              <NavLink className='pre-title' to='/matching'><MdQueueMusic /></NavLink>
-              <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
-            </div>
-          </>
-        )
-      case 'http://localhost:3000/#/matching':
-        return (
-          <>
-            <div>
-              <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
-            </div>
-            <div>
-              <NavLink className='img-size' to="/profile"><CgProfile /></NavLink>
-              <NavLink className={`img-size ${notifiactions ? 'notify' : ''}`} to="/chat">{notifiactions ? <RiChatNewLine /> : <RiChat4Line /> }</NavLink>
-              <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
-            </div>
-          </>
-        )
-      case 'http://localhost:3000/#/chat':
-        return (
-          <>
-            <div>
-              <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
-            </div>
-            <div>
-              <NavLink className='pre-title' to='/matching'><MdQueueMusic /></NavLink>
-              <NavLink className='img-size' to="/profile"><CgProfile /></NavLink>
-              <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
-            </div>
-          </>
-        )
-      case 'http://localhost:3000/#/profile':
-        return (
-          <>
-            <div>
-              <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
-            </div>
-            <div>
-              <NavLink className='pre-title' to='/matching'><MdQueueMusic /></NavLink>
-              <NavLink className={`img-size ${notifiactions ? 'notify' : ''}`} to="/chat">{notifiactions ? <RiChatNewLine /> : <RiChat4Line /> }</NavLink>
-              <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
-            </div>
-          </>
-        )
-      default:
-        return (
-          <>
-            <div>
-              <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
-            </div>
-            <div>
-              <NavLink className='img-size' to="/profile"><CgProfile /></NavLink>
-              <NavLink className='pre-title' to='/matching'><MdQueueMusic /></NavLink>
-              <NavLink className={`img-size ${notifiactions ? 'notify' : ''}`} to="/chat">{notifiactions ? <RiChatNewLine /> : <RiChat4Line /> }</NavLink>
-              <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
-            </div>
-          </>
-        )
+    const pathname = window.location.href.replace('http://localhost:3000/#', '')
+
+    const navigationLinks = [
+      { path: '/profile' },
+      { path: '/matching' },
+      { path: '/chat' },
+      { path: 'constant' }
+    ]
+
+    const navLinks = navigationLinks.map(element => (element.path !== pathname) ? { ...element, return: true } : { ...element, return: false })
+    if (pathname === '/') {
+      return null
+    } else {
+      return (
+        <>
+          <div>
+            <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
+          </div>
+          <div>
+            {navLinks[0].return && <NavLink className='img-size' to="/profile"><CgProfile /></NavLink>}
+            {navLinks[1].return && <NavLink className='pre-title' to='/matching'><MdQueueMusic /></NavLink>}
+            {navLinks[2].return && <NavLink className={`img-size ${notifiactions ? 'notify' : ''}`} to="/chat">{notifiactions ? <RiChatNewLine /> : <RiChat4Line /> }</NavLink>}
+            {navLinks[3].return && <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>}
+          </div>
+        </>
+      )
     }
+
+    // switch (pathname) {
+    //   case 'http://localhost:3000/#/':
+    //   case 'http://localhost:3000/#':
+    //     return (
+    //       <>
+    //         <div>
+    //           <NavLink className='img-size' to="/profile"><CgProfile /></NavLink>
+    //           <NavLink className='pre-title' to='/matching'><MdQueueMusic /></NavLink>
+    //           <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
+    //         </div>
+    //       </>
+    //     )
+    //   case 'http://localhost:3000/#/matching':
+    //     return (
+    //       <>
+    //         <div>
+    //           <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
+    //         </div>
+    //         <div>
+    //           <NavLink className='img-size' to="/profile"><CgProfile /></NavLink>
+    //           <NavLink className={`img-size ${notifiactions ? 'notify' : ''}`} to="/chat">{notifiactions ? <RiChatNewLine /> : <RiChat4Line /> }</NavLink>
+    //           <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
+    //         </div>
+    //       </>
+    //     )
+    //   case 'http://localhost:3000/#/chat':
+    //     return (
+    //       <>
+    //         <div>
+    //           <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
+    //         </div>
+    //         <div>
+    //           <NavLink className='pre-title' to='/matching'><MdQueueMusic /></NavLink>
+    //           <NavLink className='img-size' to="/profile"><CgProfile /></NavLink>
+    //           <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
+    //         </div>
+    //       </>
+    //     )
+    //   case 'http://localhost:3000/#/profile':
+    //     return (
+    //       <>
+    //         <div>
+    //           <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
+    //         </div>
+    //         <div>
+    //           <NavLink className='pre-title' to='/matching'><MdQueueMusic /></NavLink>
+    //           <NavLink className={`img-size ${notifiactions ? 'notify' : ''}`} to="/chat">{notifiactions ? <RiChatNewLine /> : <RiChat4Line /> }</NavLink>
+    //           <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
+    //         </div>
+    //       </>
+    //     )
+    //   default:
+    //     return (
+    //       <>
+    //         <div>
+    //           <img className='logo-image' src='/resonatelogoS.png' alt="resonatelogo" />
+    //         </div>
+    //         <div>
+    //           <NavLink className='img-size' to="/profile"><CgProfile /></NavLink>
+    //           <NavLink className='pre-title' to='/matching'><MdQueueMusic /></NavLink>
+    //           <NavLink className={`img-size ${notifiactions ? 'notify' : ''}`} to="/chat">{notifiactions ? <RiChatNewLine /> : <RiChat4Line /> }</NavLink>
+    //           <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
+    //         </div>
+    //       </>
+    //     )
+    // }
   }
 
   return (
