@@ -12,7 +12,7 @@ const ChatPage = (props) => {
 
   function Gif () {
     return (
-      <div>
+      <div className='form-container'>
         <img src="https://c.tenor.com/HJvqN2i4Zs4AAAAj/milk-and-mocha-cute.gif"/>
         <h2>Lets VIBE!!</h2>
       </div>
@@ -22,8 +22,7 @@ const ChatPage = (props) => {
   return (
     <section className='profile-container'>
       <ChatEngine
-        height='100vh'
-        width='80vw'
+        height='85vh'
         userName={props.user.username}
         userSecret='eda123'
         projectID='7565a494-51c5-49c2-943c-7c65ca00e965'
