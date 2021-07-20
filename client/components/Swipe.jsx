@@ -37,6 +37,7 @@ function Swipe (props) {
             <TinderCard className='swipe' key={cardSwipe.id} onSwipe={(dir) => swiped(dir, cardSwipe.id)} >
               <div style={{ backgroundImage: cardSwipe.imageUrl ? `url(${cardSwipe.imageUrl}` : `url(https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png`}} className='card'>
                 <h3>{cardSwipe.fullname}</h3>
+                {/* <h3>{cardSwipe.gender}</h3> */}
               </div>
               <div className='card'>
                 <h5>{cardSwipe.description}</h5>
