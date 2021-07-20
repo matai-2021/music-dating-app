@@ -95,6 +95,7 @@ function Profile (props) {
         <label name={form.description}>Profile Description:
           <textarea className='form-box-height text-size'  onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
         </label>
+        <br></br>
         <label htmlFor="genderId">Gender:
           <select name="genderId" id="genderId" onChange={handleChange}>
             {gendersForm && gendersForm.map(gender => (

@@ -56,7 +56,7 @@ function Swipe (props) {
                 <h3>{cardSwipe.fullname}</h3>
               </div>
               <div className='card'>
-                <h3>{cardSwipe.description}</h3>
+                <h5>{cardSwipe.description}</h5>
                 <ul>
                   {cardSwipe.genres.map((genre) =>
                     <li key={genre.genreId}>{genre.name}</li>

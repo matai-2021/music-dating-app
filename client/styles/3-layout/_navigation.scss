@@ -109,3 +109,14 @@
        display: none;
     } 
 }
+
+.nav-container {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.nav-logo {
+    display: flex;
+    justify-content: flex-start;
+}

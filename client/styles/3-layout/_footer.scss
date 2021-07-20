@@ -3,9 +3,17 @@
 
 
 .footer {
-    height: 100px;
-    background-color: vars.$primary;
-    display: flex;
-    justify-content: flex-start;
-    align-content: flex-end;
+position: fixed;
+bottom: 0;
+}
+
+.footer-container {
+    // z-index: -900;
+    // height: 100%;
+    // width: 100%;
+    position: fixed;
+    // top: 0;
+    // left: 0;
+    // overflow: hidden;
+    bottom: 0;
 }

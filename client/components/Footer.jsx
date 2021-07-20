@@ -4,7 +4,7 @@ import { AiOutlineTwitter, AiFillFacebook, AiFillInstagram } from 'react-icons/a
 
 function Footer () {
   return (
-    <>
+    <footer className='footer-container'>
       <div className='footer'>
         <p>@weResonate</p>
       </div>
@@ -13,7 +13,7 @@ function Footer () {
         <AiFillFacebook />
         <AiFillInstagram />
       </div>
-    </>
+    </footer>
   )
 }
 

@@ -58,10 +58,5 @@ function App (props) {
     </>
   )
 }
-const mapStateToProps = (globalState) => {
-  return {
-    fruits: globalState.fruits
-  }
-}
 
-export default connect(mapStateToProps)(App)
+export default connect()(App)

@@ -86,13 +86,13 @@ function Nav (props) {
   }
 
   return (
-    <div className='form-button-signin'>
+    <>
       <IfAuthenticated>
-        <nav>
+        <nav className='nav-container'>
           <Navigation />
         </nav>
       </IfAuthenticated>
-    </div>
+    </>
   )
 }
 

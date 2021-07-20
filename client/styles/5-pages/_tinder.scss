@@ -5,8 +5,6 @@
   width: 100vw;
   min-height: 100vh;
   overflow: hidden;
-  /* background: linear-gradient(#fff, #999); */
-  background: linear-gradient(#e66465, #9198e5);
 }
 
 #root>div {
@@ -34,6 +32,7 @@
 .swipe {
   position: absolute;
 }
+
 
 .tinder-card-container {
   display: grid;
@@ -66,10 +65,18 @@
 }
 
 .card h3 {
-  position: relative;
+  position: absolute;
   bottom: 0;
   margin: 10px;
   color: #fff;
+}
+
+.card h5 {
+  position: absolute;
+  bottom: 0;
+  margin: 10px;
+  color: rgb(0, 0, 0);
+  font-size: large;
 }
 
 .infoText {
