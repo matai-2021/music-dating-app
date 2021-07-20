@@ -7,9 +7,11 @@ import { IfAuthenticated } from './Authenticated'
 import { IoIosLogOut } from 'react-icons/io'
 import { MdQueueMusic } from 'react-icons/md'
 import { CgProfile } from 'react-icons/cg'
-import { GrChat } from 'react-icons/gr'
+import { RiChatNewLine, RiChat4Line } from 'react-icons/ri'
 
 function Nav (props) {
+  const { notifications } = props
+
   function logout () {
     logOff()
     props.dispatch(logoutUser())
@@ -37,7 +39,7 @@ function Nav (props) {
             </div>
             <div>
               <NavLink className='img-size' to="/profile"><CgProfile /></NavLink>
-              <NavLink className='img-size' to="/chat"><GrChat /></NavLink>
+              <NavLink className={`img-size ${notifications ? 'notify' : ''}`} to="/chat">{notifications ? <RiChatNewLine /> : <RiChat4Line /> }</NavLink>
               <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
             </div>
           </>
@@ -63,7 +65,7 @@ function Nav (props) {
             </div>
             <div>
               <NavLink className='pre-title' to='/matching'><MdQueueMusic /></NavLink>
-              <NavLink className='img-size' to="/chat"><GrChat /></NavLink>
+              <NavLink className={`img-size ${notifications && 'notify'}`} to="/chat">{notifications ? <RiChatNewLine /> : <RiChat4Line /> }</NavLink>
               <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
             </div>
           </>
@@ -77,7 +79,7 @@ function Nav (props) {
             <div>
               <NavLink className='img-size' to="/profile"><CgProfile /></NavLink>
               <NavLink className='pre-title' to='/matching'><MdQueueMusic /></NavLink>
-              <NavLink className='img-size' to="/chat"><GrChat /></NavLink>
+              <NavLink className={`img-size ${notifications && 'notify'}`} to="/chat">{notifications ? <RiChatNewLine /> : <RiChat4Line /> }</NavLink>
               <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>
             </div>
           </>
@@ -100,7 +102,8 @@ const mapStateToProps = (globalState) => {
   return {
     user: globalState.user,
     swipee: globalState.swipee,
-    match: globalState.match
+    match: globalState.match,
+    notifications: globalState.notifications
   }
 }
 

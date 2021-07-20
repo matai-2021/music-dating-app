@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { clearUserNotification } from '../actions'
 
 import { ChatEngine, ChatList, ChatCard, ChatFeed, ChatHeader, MessageBubble, IsTyping, ScrollDownBar, NewMessageForm } from 'react-chat-engine'
 
 const ChatPage = (props) => {
+  useEffect(() => {
+    props.dispatch(clearUserNotification())
+  }, [])
+
   return (
     <section className='profile-container'>
       <ChatEngine

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import TinderCard from 'react-tinder-card'
-import { fetchUnMatchedUsers, checkForMatch } from '../actions'
+import { fetchUnMatchedUsers, checkForMatch, createUserNotification } from '../actions'
 
 function Swipe (props) {
   const { user, swipee, match } = props
@@ -14,6 +14,12 @@ function Swipe (props) {
       props.dispatch(fetchUnMatchedUsers(user))
     }
   }, [user])
+
+  useEffect(() => {
+    if (match.isMatch) {
+      props.dispatch(createUserNotification())
+    }
+  }, [match])
 
   useEffect(() => {
       props.dispatch(fetchUnMatchedUsers(user))
