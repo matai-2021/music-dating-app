@@ -39,7 +39,7 @@ function Nav (props) {
             {navLinks[0].return && <NavLink className='img-size' to="/profile"><CgProfile /></NavLink>}
             {navLinks[1].return && <NavLink className='pre-title' to='/matching'><MdQueueMusic /></NavLink>}
             {navLinks[2].return && <NavLink className={`img-size ${notifiactions ? 'notify' : ''}`} to="/chat">{notifiactions ? <RiChatNewLine /> : <RiChat4Line /> }</NavLink>}
-            {navLinks[3].return && <NavLink to="/" onClick={logout}><IoIosLogOut /></NavLink>}
+            {navLinks[3].return && <NavLink className='img-size' to="/" onClick={logout}><IoIosLogOut /></NavLink>}
           </div>
         </>
       )
