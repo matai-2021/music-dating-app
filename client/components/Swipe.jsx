@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import TinderCard from 'react-tinder-card'
 import { fetchUnMatchedUsers, checkForMatch, createUserNotification, resetIsMatchState } from '../actions'
+import { ImCross } from 'react-icons/im'
+import { TiTick } from 'react-icons/ti'
 
 function Swipe (props) {
   const { user, swipee, match } = props
@@ -15,51 +17,30 @@ function Swipe (props) {
     }
   }, [user])
 
-  useEffect(() => {
-    if (match.isMatch) {
-      props.dispatch(createUserNotification(true))
-    }
-  }, [match])
-
-  useEffect(() => {
-      props.dispatch(fetchUnMatchedUsers(user))
-  }, [])
-
   const swiped = (direction, card) => {
-    if (direction === 'right' || direction === 'up') {
       const swipe = {
         userId: user.id,
         receiverId: card,
-        isMatch: true
+        isMatch: direction === 'right' || direction === 'up'
       }
       setCheckingMatch(swipe)
-      setLastDirection('right')
+      setLastDirection(direction === 'right' || direction === 'up' ? 'right' : 'left')
       return props.dispatch(checkForMatch(swipe))
-    } else {
-      const swipe = {
-        userId: user.id,
-        receiverId: card,
-        isMatch: false
-      }
-      setLastDirection('left')
-      props.dispatch(checkForMatch(swipe))
-      return null
     }
-  }
+  
 
-  const outOfFrame = (username) => {
-    swipee.filter(meme => meme.id !== username)
-  }
   return (
+    <>
     <section className='tinder-card-container'>
       <div>
         <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
         <link href='https://fonts.googleapis.com/css?family=Alatsi&display=swap' rel='stylesheet' />
         <div className='cardContainer'>
           {swipee && swipee?.map((cardSwipe, index) =>
-            <TinderCard className='swipe' key={cardSwipe.id} onSwipe={(dir) => swiped(dir, cardSwipe.id)} onCardLeftScreen={() => outOfFrame(cardSwipe.id)}>
+            <TinderCard className='swipe' key={cardSwipe.id} onSwipe={(dir) => swiped(dir, cardSwipe.id)} >
               <div style={{ backgroundImage: cardSwipe.imageUrl ? `url(${cardSwipe.imageUrl}` : `url(https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png`}} className='card'>
                 <h3>{cardSwipe.fullname}</h3>
+                {/* <h3>{cardSwipe.gender}</h3> */}
               </div>
               <div className='card'>
                 <h5>{cardSwipe.description}</h5>
@@ -72,10 +53,19 @@ function Swipe (props) {
             </TinderCard>
           )}
         </div>
-        {match.isMatch && <p>You matched with {swipee.find(item => item.id === checkingMatch.receiverId).fullname} <Link to="/chat">Chat Now</Link></p>}
-        {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
+        {/* {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />} */}
+        {match.isMatch && <p>{`You matched with ${swipee.find(item => item.id === checkingMatch.receiverId).fullname}`}<Link to='/chat'>Chat Now</Link></p>}
       </div>
     </section>
+    <div>
+      <div>
+        <span className={`default-classname ${lastDirection == 'left' ? 'red' : ''}`}><ImCross /></span>
+      </div>
+      <div>
+        <span className={`default-classname ${lastDirection == 'right' ? 'green' : ''}`}><TiTick /></span>
+      </div>
+    </div>
+    </>
   )
 }
 

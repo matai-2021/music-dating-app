@@ -17,7 +17,6 @@ function Register (props) {
     imageUrl: '',
     description: ''
   })
-  const [image, setImage] = useState(null)
 
   useEffect(() => {
     props.dispatch(fetchGenres())
@@ -29,11 +28,6 @@ function Register (props) {
       ...form,
       [name]: value
     })
-    if (name === 'imageUrl' && checkURL(value)) {
-      setImage(value)
-    } else if (name === 'imageUrl' && !checkURL(value)) {
-      setImage(null)
-    }
   }
 
   function handleCheck (genreId, event) {
@@ -55,7 +49,6 @@ function Register (props) {
       gender_id: genderId,
       image_url: imageUrl
     }
-    // props.dispatch(createUser(userForm))
 
     const filteredGenres = genres.map(genre => {
       if (genresForm.map(genreSelected => genreSelected).find(element => element === genre.id)) {
@@ -116,7 +109,7 @@ function Register (props) {
   return (
     <section className='profile-container'>
       <div>
-        <img className='profile-img' src={image && image}/>
+        <img className='profile-img' src={checkURL(form.imageUrl) ? form.imageUrl : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}/>
       </div>
       <form className='form-title form-box'>
         <label name={form.fullname}>

@@ -8,6 +8,7 @@ function Profile (props) {
   const { user, genres } = props
   const history = useHistory()
   const [genresForm, setGenresForm] = useState(false)
+  const [gendersForm, setGendersForm] = useState(null)
   const [form, setForm] = useState({
     userId: user.id,
     fullname: user.fullname,
@@ -16,8 +17,6 @@ function Profile (props) {
     imageUrl: user.imageUrl,
     description: user.description
   })
-
-  const [gendersForm, setGendersForm] = useState(null)
 
   const genders = [
     { id: 1, genderName: 'Male' },
@@ -30,9 +29,6 @@ function Profile (props) {
       const updateGenreForm = genres.map(genre => { if (user.genres.map(genre => genre.genreId).find(element => element === genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
       setGenresForm(updateGenreForm)
     }
-  }, [user])
-
-  useEffect(() => {
     if (user.genderName) {
       setGendersForm([...genders.filter(element => element.genderName === user.genderName), ...genders.filter(element => element.genderName !== user.genderName)])
     }
