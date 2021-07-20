@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import TinderCard from 'react-tinder-card'
 import { fetchUnMatchedUsers, checkForMatch, createUserNotification, resetIsMatchState } from '../actions'
-import { ImCross } from 'react-icons/im'
-import { TiTick } from 'react-icons/ti'
+import { TiTick, TiTimes } from 'react-icons/ti'
 
 function Swipe (props) {
   const { user, swipee, match } = props
@@ -57,12 +56,12 @@ function Swipe (props) {
         {match.isMatch && <p>{`You matched with ${swipee.find(item => item.id === checkingMatch.receiverId).fullname}`}<Link to='/chat'>Chat Now</Link></p>}
       </div>
     </section>
-    <div>
+    <div className='swipe-markers'>
       <div>
-        <span className={`default-classname ${lastDirection == 'left' ? 'red' : ''}`}><ImCross /></span>
+        <span className={`img-size ${lastDirection == 'left' ? 'red' : ''}`}><TiTimes /></span>
       </div>
       <div>
-        <span className={`default-classname ${lastDirection == 'right' ? 'green' : ''}`}><TiTick /></span>
+        <span className={`img-size ${lastDirection == 'right' ? 'green' : ''}`}><TiTick /></span>
       </div>
     </div>
     </>
