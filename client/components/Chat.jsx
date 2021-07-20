@@ -11,7 +11,7 @@ const ChatPage = (props) => {
   }, [])
 
   return (
-    <section className='profile-container'>
+    <section container>
       <ChatEngine
         height='100vh'
         userName={props.user.username}
