@@ -1,18 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { MdQueueMusic } from 'react-icons/md'
-
-import { Link } from 'react-router-dom'
-
 import { ChatEngine, ChatList, ChatCard, ChatFeed, ChatHeader, MessageBubble, IsTyping, ScrollDownBar, NewMessageForm } from 'react-chat-engine'
+import { clearIsMatch, createUserNotification } from '../actions'
 
 const ChatPage = (props) => {
+  useEffect(() => {
+    props.dispatch(createUserNotification(false))
+    props.dispatch(clearIsMatch())
+  }, [])
+
+  function Gif () {
+    return (
+      <div className='form-container'>
+        <img src="https://c.tenor.com/HJvqN2i4Zs4AAAAj/milk-and-mocha-cute.gif"/>
+        <h2>Lets VIBE!!</h2>
+      </div>
+    )
+  }
+
   return (
-    <>
-      <Link to={'/matching'}><MdQueueMusic /></Link>
+    <section className='profile-container'>
       <ChatEngine
-        height='100vh'
+        height='85vh'
         userName={props.user.username}
         userSecret='eda123'
         projectID='7565a494-51c5-49c2-943c-7c65ca00e965'
@@ -31,8 +41,9 @@ const ChatPage = (props) => {
         renderPeopleSettings={(creds, chat) => {}}
         renderPhotosSettings={(chat) => {}}
         renderOptionsSettings={(creds, chat) => {}}
+        renderIceBreaker={(chat) => <Gif /> }
       />
-    </>
+    </section>
   )
 }
 

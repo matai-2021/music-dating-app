@@ -1,4 +1,4 @@
-import { getUserByName, postUser, getUsersToMatch, patchUserApi } from '../apis/users'
+import { getUserByName, postUser, getUsersToMatch, patchUserApi, createUserGenres } from '../apis/users'
 import { checkForMatchApi } from '../apis/swipe'
 import { getGenres } from '../apis/genres'
 
@@ -11,6 +11,7 @@ export const SET_MATCHEES = 'SET_MATCHEES'
 export const MATCH = 'MATCH'
 export const RESET_MATCH = 'RESET_MATCH'
 export const UPDATED_USER = 'UPDATED_USER'
+export const SET_NOTIFICATIONS = 'SET_NOTIFICATIONS'
 
 export function setUser (user) {
   return {
@@ -71,6 +72,13 @@ export function setFalseMatch () {
   }
 }
 
+export function setNotifications (notification) {
+  return {
+    type: SET_NOTIFICATIONS,
+    notification: notification
+  }
+}
+
 export function fetchUserName (user) {
   return dispatch => {
     return getUserByName(user.username)
@@ -108,6 +116,8 @@ export function createUser (user) {
 
 export function logoutUser () {
   return dispatch => {
+    dispatch(setMatch(false))
+    dispatch(setNotifications(false))
     dispatch(setFalseMatch())
     return dispatch(resetUser())
   }
@@ -129,6 +139,9 @@ export function checkForMatch (swipe) {
     return checkForMatchApi(swipe)
       .then((res) => {
         dispatch(setMatch(res))
+        if (res.isMatch === true) {
+          dispatch(setNotifications(true))
+        }
         return null
       })
   }
@@ -149,5 +162,30 @@ export function pathUserInformation (user) {
       .catch(err => {
         console.log(err)
       })
+  }
+}
+
+export function setUsersGenres (user, genres) {
+  return dispatch => {
+    return createUserGenres(user, genres)
+      .then(() => {
+        return null
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}
+
+export function createUserNotification (notification) {
+  return dispatch => {
+    return dispatch(setNotifications(notification))
+  }
+}
+
+export function clearIsMatch () {
+  return dispatch => {
+    dispatch(setMatch(false))
+    return dispatch(setFalseMatch())
   }
 }

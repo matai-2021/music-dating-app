@@ -2,7 +2,7 @@ const { generateHash } = require('authenticare/server')
 const connection = require('./connection')
 
 function addUser (user, db = connection) {
-  return userExists(user.username)
+  return userExists(user.username, db)
     .then((exists) => {
       if (exists) {
         throw new Error('User already exists')
@@ -34,7 +34,13 @@ function getUserById (id, db = connection) {
   return db('users')
     .where('users.id', id)
     .join('genders', 'users.gender_id', 'genders.id')
-    .select('genders.id as genderId', 'genders.name as genderName', 'users.id as id', 'fullname', 'description', 'image_url', 'username')
+    .select('genders.id as genderId',
+      'genders.name as genderName',
+      'users.id as id',
+      'fullname',
+      'description',
+      'image_url as imageUrl',
+      'username')
     .first()
 }
 
@@ -134,5 +140,6 @@ module.exports = {
   getUserById,
   getGender,
   updateUser,
-  deleteUserGenres
+  deleteUserGenres,
+  userExists
 }

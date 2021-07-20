@@ -39,20 +39,18 @@ function SignIn (props) {
   }
 
   return (
-    <>
-      <section>
-        {loginError &&
-  <div>
+    <section>
+      {loginError &&
+  <div className='preview-title'>
     <p>Username not found</p>
   </div>}
-        <form className='form-title'>
-          <label name="UserName">
-            <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username}/>
-          </label>
-          <button onClick={handleSubmit}>Sign In</button>
-        </form>
-      </section>
-    </>
+      <form className='form-title'>
+        <label className='form-button-signin' name="UserName">
+          <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username}/>
+        </label>
+        <button onClick={handleSubmit}>Sign In</button>
+      </form>
+    </section>
   )
 }
 

@@ -8,7 +8,8 @@
 }
 
 .nav-link {
-    display: none;
+    display:none;
+    justify-content: flex-end;
     font-size: vars.$base-size * 1.5;
     font-family: vars.$paragraph;
     color: #fff;
@@ -107,4 +108,21 @@
     @include mixins.media-queries(mobile, min) {
        display: none;
     } 
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: sticky;
+}
+
+.nav-logo {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: flex-end;
 }
