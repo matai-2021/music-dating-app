@@ -51,6 +51,9 @@ test('user can navigate to profile page and upate their profile', async () => {
   await page.fill('[name=description]', 'description')
 
   await page.selectOption('select#genderId', { label: 'Female' })
+  await page.check('[name=Rock]')
+  await page.check('[name=Country]')
+  await page.check('[name=Country]')
 
   await page.click('text=Update Information')
   expect(await page.url()).toBe(`${serverUrl}/#/matching`)
