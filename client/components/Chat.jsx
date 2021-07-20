@@ -10,10 +10,20 @@ const ChatPage = (props) => {
     props.dispatch(clearIsMatch())
   }, [])
 
+  function Gif () {
+    return (
+      <div>
+        <img src="https://c.tenor.com/HJvqN2i4Zs4AAAAj/milk-and-mocha-cute.gif"/>
+        <h2>Lets VIBE!!</h2>
+      </div>
+    )
+  }
+
   return (
     <section className='profile-container'>
       <ChatEngine
         height='100vh'
+        width='80vw'
         userName={props.user.username}
         userSecret='eda123'
         projectID='7565a494-51c5-49c2-943c-7c65ca00e965'
@@ -32,6 +42,7 @@ const ChatPage = (props) => {
         renderPeopleSettings={(creds, chat) => {}}
         renderPhotosSettings={(chat) => {}}
         renderOptionsSettings={(creds, chat) => {}}
+        renderIceBreaker={(chat) => <Gif /> }
       />
     </section>
   )

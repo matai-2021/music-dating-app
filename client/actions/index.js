@@ -139,6 +139,9 @@ export function checkForMatch (swipe) {
     return checkForMatchApi(swipe)
       .then((res) => {
         dispatch(setMatch(res))
+        if (res.isMatch === true) {
+          dispatch(setNotifications(true))
+        }
         return null
       })
   }
