@@ -11,6 +11,7 @@ export const SET_MATCHEES = 'SET_MATCHEES'
 export const MATCH = 'MATCH'
 export const RESET_MATCH = 'RESET_MATCH'
 export const UPDATED_USER = 'UPDATED_USER'
+export const SET_NOTIFICATIONS = 'SET_NOTIFICATIONS'
 
 export function setUser (user) {
   return {
@@ -68,6 +69,13 @@ export function setFalseMatch () {
   return {
     type: RESET_MATCH,
     matchees: false
+  }
+}
+
+export function setNotifications (notification) {
+  return {
+    type: SET_NOTIFICATIONS,
+    notification: notification
   }
 }
 
@@ -161,5 +169,18 @@ export function setUsersGenres (user, genres) {
       .catch(err => {
         console.log(err)
       })
+  }
+}
+
+export function createUserNotification (notification) {
+  return dispatch => {
+    return dispatch(setNotifications(notification))
+  }
+}
+
+export function clearIsMatch () {
+  return dispatch => {
+    dispatch(setMatch(false))
+    return dispatch(setFalseMatch())
   }
 }
