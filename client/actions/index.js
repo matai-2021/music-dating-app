@@ -116,6 +116,8 @@ export function createUser (user) {
 
 export function logoutUser () {
   return dispatch => {
+    dispatch(setMatch(false))
+    dispatch(setNotifications(false))
     dispatch(setFalseMatch())
     return dispatch(resetUser())
   }
