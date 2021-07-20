@@ -11,7 +11,8 @@ header {
 
 .logo-image {
     width: 5rem;
-    height: 10%;
+    height: 80%;
+    border-radius: 50px;
 
     @include mixins.media-queries(mobile, min) {
         width: 10rem;

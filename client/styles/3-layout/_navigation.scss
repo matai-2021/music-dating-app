@@ -112,11 +112,17 @@
 
 .nav-container {
     display: flex;
-    justify-content: flex-end;
     flex-direction: row;
+    justify-content: space-around;
+    position: sticky;
 }
 
 .nav-logo {
     display: flex;
     justify-content: flex-start;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: flex-end;
 }
