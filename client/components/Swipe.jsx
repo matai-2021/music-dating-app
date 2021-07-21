@@ -30,6 +30,10 @@ function Swipe (props) {
 
   return (
     <>
+    {!lastDirection && 
+    <div>
+      <h4>Swipe to Start</h4>
+    </div>}
     <section className='tinder-card-container'>
       <div>
         <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
