@@ -56,6 +56,9 @@ function Swipe (props) {
               </div>
             </TinderCard>
           )}
+          <div>
+            <h2>You have no more matches! Check back later.</h2>
+          </div>
         </div>
       </div>
     </section>

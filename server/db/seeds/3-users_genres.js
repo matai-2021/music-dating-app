@@ -301,6 +301,181 @@ exports.seed = function (knex) {
           id: 72,
           user_id: 25,
           genre_id: 9
+        },
+        {
+          id: 73,
+          user_id: 26,
+          genre_id: 14
+        },
+        {
+          id: 74,
+          user_id: 26,
+          genre_id: 3
+        },
+        {
+          id: 75,
+          user_id: 26,
+          genre_id: 11
+        },
+        {
+          id: 76,
+          user_id: 27,
+          genre_id: 5
+        },
+        {
+          id: 77,
+          user_id: 27,
+          genre_id: 13
+        },
+        {
+          id: 78,
+          user_id: 27,
+          genre_id: 15
+        },
+        {
+          id: 79,
+          user_id: 28,
+          genre_id: 7
+        },
+        {
+          id: 80,
+          user_id: 28,
+          genre_id: 3
+        },
+        {
+          id: 81,
+          user_id: 28,
+          genre_id: 11
+        },
+        {
+          id: 82,
+          user_id: 28,
+          genre_id: 16
+        },
+        {
+          id: 83,
+          user_id: 29,
+          genre_id: 1
+        },
+        {
+          id: 84,
+          user_id: 29,
+          genre_id: 8
+        },
+        {
+          id: 85,
+          user_id: 29,
+          genre_id: 6
+        },
+        {
+          id: 86,
+          user_id: 30,
+          genre_id: 3
+        },
+        {
+          id: 87,
+          user_id: 30,
+          genre_id: 12
+        },
+        {
+          id: 88,
+          user_id: 30,
+          genre_id: 15
+        },
+        {
+          id: 89,
+          user_id: 30,
+          genre_id: 5
+        },
+        {
+          id: 90,
+          user_id: 31,
+          genre_id: 7
+        },
+        {
+          id: 91,
+          user_id: 31,
+          genre_id: 13
+        },
+        {
+          id: 92,
+          user_id: 31,
+          genre_id: 16
+        },
+        {
+          id: 93,
+          user_id: 31,
+          genre_id: 4
+        },
+        {
+          id: 94,
+          user_id: 32,
+          genre_id: 15
+        },
+        {
+          id: 95,
+          user_id: 32,
+          genre_id: 8
+        },
+        {
+          id: 96,
+          user_id: 32,
+          genre_id: 11
+        },
+        {
+          id: 97,
+          user_id: 32,
+          genre_id: 2
+        },
+        {
+          id: 98,
+          user_id: 33,
+          genre_id: 1
+        },
+        {
+          id: 99,
+          user_id: 33,
+          genre_id: 9
+        },
+        {
+          id: 100,
+          user_id: 33,
+          genre_id: 7
+        },
+        {
+          id: 101,
+          user_id: 34,
+          genre_id: 7
+        },
+        {
+          id: 102,
+          user_id: 34,
+          genre_id: 10
+        },
+        {
+          id: 103,
+          user_id: 34,
+          genre_id: 12
+        },
+        {
+          id: 104,
+          user_id: 35,
+          genre_id: 14
+        },
+        {
+          id: 105,
+          user_id: 35,
+          genre_id: 1
+        },
+        {
+          id: 106,
+          user_id: 35,
+          genre_id: 9
+        },
+        {
+          id: 107,
+          user_id: 35,
+          genre_id: 13
         }
       ])
     })
