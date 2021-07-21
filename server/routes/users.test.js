@@ -2,8 +2,10 @@ const request = require('supertest')
 
 const server = require('../server')
 const db = require('../db/users')
+const chatengine = require('../apis/chatengine')
 
 jest.mock('../db/users')
+jest.mock('../apis/chatengine')
 
 describe('PATCH /api/v1/users/:id', () => {
   it('responds with 200', () => {
@@ -103,6 +105,44 @@ describe('GET /api/v1/users/username/:username', () => {
         expect(res.body.genderId).toBe(1)
         expect(res.body.genderName).toBe('gendername')
         expect(res.body.imageUrl).toBe('image_url')
+        return null
+      })
+  })
+})
+
+describe('POST /api/v1/users/swipe', () => {
+  it('should return false', () => {
+    const body = {
+      userId: 1,
+      receiverId: 6,
+      isMatch: false
+    }
+
+    db.createSwipe.mockImplementation(() => Promise.resolve())
+    return request(server)
+      .post('/api/v1/users/swipe')
+      .send(body)
+      .then((res) => {
+        expect(res.body.isMatch).toBeFalsy()
+        return null
+      })
+  })
+
+  it('should return true', () => {
+    const body = {
+      userId: 1,
+      receiverId: 2,
+      isMatch: true
+    }
+
+    db.createSwipe.mockImplementation(() => Promise.resolve())
+    db.varifyMatch.mockImplementation(() => Promise.resolve(true))
+    chatengine.createChatRoom.mockImplementation(() => Promise.resolve())
+    return request(server)
+      .post('/api/v1/users/swipe')
+      .send(body)
+      .then((res) => {
+        expect(res.body.isMatch).toBeTruthy()
         return null
       })
   })
