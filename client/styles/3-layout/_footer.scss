@@ -8,12 +8,19 @@ bottom: 0;
 }
 
 .footer-container {
+    display: none;
     // z-index: -900;
     // height: 100%;
     // width: 100%;
-    position: fixed;
+    // position: fixed;
     // top: 0;
     // left: 0;
     // overflow: hidden;
-    bottom: 0;
+    // bottom: 0;
+
+    @include mixins.media-queries(tablet, min) {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+     } 
 }

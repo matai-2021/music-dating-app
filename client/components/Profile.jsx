@@ -99,13 +99,7 @@ function Profile (props) {
             ))}
           </select>
         </label>
-        {/* {genresForm && genresForm.map(genre => (
-          <label key={genre.id} className="para-description" htmlFor={genre.id}>
-            <div ><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked}/>{genre.name} </div>
-          </label>
-        ))} */}
         <table>
-
           {genresForm && genresForm.map(genre => (
             <tr key={genre}>
               <td>
@@ -116,7 +110,6 @@ function Profile (props) {
               </td>
             </tr>
           ))}
-
         </table>
         <button onClick={handleSubmit}>Update Information</button>
       </form>
