@@ -27,12 +27,6 @@ function similarity (arr1, arr2, genres) {
   const vectorLength1 = vectorLength(arr1WithListens.map(x => x.listens))
   const vectorLength2 = vectorLength(arr2WithListens.map(x => x.listens))
   const similarity = dotResult / (vectorLength1 * vectorLength2)
-  console.log('arr1WithListens', arr1WithListens)
-  console.log('arr2WithListens', arr2WithListens)
-  console.log('dotResult', dotResult)
-  console.log('vectorLength1', vectorLength1)
-  console.log('vectorLength2', vectorLength2)
-  console.log('similarity', similarity)
   return similarity.toFixed(2)
 }
 
