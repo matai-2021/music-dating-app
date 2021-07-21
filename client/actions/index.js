@@ -116,6 +116,8 @@ export function createUser (user) {
 
 export function logoutUser () {
   return dispatch => {
+    dispatch(setMatch(false))
+    dispatch(setNotifications(false))
     dispatch(setFalseMatch())
     return dispatch(resetUser())
   }
@@ -137,6 +139,9 @@ export function checkForMatch (swipe) {
     return checkForMatchApi(swipe)
       .then((res) => {
         dispatch(setMatch(res))
+        if (res.isMatch === true) {
+          dispatch(setNotifications(true))
+        }
         return null
       })
   }

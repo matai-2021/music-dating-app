@@ -8,6 +8,7 @@ function Profile (props) {
   const { user, genres } = props
   const history = useHistory()
   const [genresForm, setGenresForm] = useState(false)
+  const [gendersForm, setGendersForm] = useState(null)
   const [form, setForm] = useState({
     userId: user.id,
     fullname: user.fullname,
@@ -16,8 +17,6 @@ function Profile (props) {
     imageUrl: user.imageUrl,
     description: user.description
   })
-
-  const [gendersForm, setGendersForm] = useState(null)
 
   const genders = [
     { id: 1, genderName: 'Male' },
@@ -30,9 +29,6 @@ function Profile (props) {
       const updateGenreForm = genres.map(genre => { if (user.genres.map(genre => genre.genreId).find(element => element === genre.id)) { return { ...genre, checked: true } } else { return { ...genre, checked: false } } })
       setGenresForm(updateGenreForm)
     }
-  }, [user])
-
-  useEffect(() => {
     if (user.genderName) {
       setGendersForm([...genders.filter(element => element.genderName === user.genderName), ...genders.filter(element => element.genderName !== user.genderName)])
     }
@@ -80,20 +76,20 @@ function Profile (props) {
   return (
     <section className='profile-container'>
       <div>
-        <img className='profile-img' src={checkURL(form.imageUrl) ? form.imageUrl : user.imageUrl}/>
+        <img className='profile-img' src={checkURL(form.imageUrl) ? form.imageUrl : user.imageUrl} />
       </div>
       <form className='form-title form-box'>
         <label name={form.username}>Username:
-          <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username} disabled/>
+          <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username} disabled />
         </label>
         <label name={form.imageUrl}>Image:
-          <input onChange={handleChange} type="text" name="imageUrl" placeholder="Image Url" value={form.imageUrl}/>
+          <input onChange={handleChange} type="text" name="imageUrl" placeholder="Image Url" value={form.imageUrl} />
         </label>
         <label name={form.fullname}>Fullname:
-          <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
+          <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname} />
         </label>
         <label name={form.description}>Profile Description:
-          <textarea className='form-box-height text-size' onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
+          <textarea className='form-box-height text-size' onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description} />
         </label>
         <br></br>
         <label htmlFor="genderId">Gender:
@@ -103,11 +99,18 @@ function Profile (props) {
             ))}
           </select>
         </label>
-        {genresForm && genresForm.map(genre => (
-          <label key={genre.id} className="para-description" htmlFor={genre.id}>
-            <div ><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked}/>{genre.name} </div>
-          </label>
-        ))}
+        <table>
+          {genresForm && genresForm.map(genre => (
+            <tr key={genre}>
+              <td>
+                <input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked} />
+              </td>
+              <td style={{ textAlign: 'left' }}>
+                <label key={genre.id} className="para-description" htmlFor={genre.id}>{genre.name}</label>
+              </td>
+            </tr>
+          ))}
+        </table>
         <button onClick={handleSubmit}>Update Information</button>
       </form>
     </section>
