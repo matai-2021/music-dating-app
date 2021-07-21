@@ -39,13 +39,6 @@ exports.seed = function (knex) {
           receiver_id: 3,
           is_match: true,
           created_at: new Date(Date.now())
-        },
-        {
-          id: 7,
-          sender_id: 3,
-          receiver_id: 4,
-          is_match: true,
-          created_at: new Date(Date.now())
         }
 
       ])
