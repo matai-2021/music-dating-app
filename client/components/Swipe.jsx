@@ -27,6 +27,18 @@ function Swipe (props) {
       return props.dispatch(checkForMatch(swipe))
     }
   
+    function perc2color(perc) {
+      if(perc < 33) {
+        return 'rgb(249 15 15)'
+      }
+      if(perc < 66) {
+        return 'rgb(140 142 140)'
+      }
+      else {
+        return '#348a27'
+      }
+
+    }
 
   return (
     <>
@@ -42,11 +54,9 @@ function Swipe (props) {
         <div className='cardContainer'>
           {swipee && swipee?.map((cardSwipe, index) =>
             <TinderCard className='swipe' key={cardSwipe.id} onSwipe={(dir) => swiped(dir, cardSwipe.id)} >
-              <div style={{ backgroundImage: cardSwipe.imageUrl ? `url(${cardSwipe.imageUrl}` : `url(https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png`}} className='card'>
-                {/* <h3>{cardSwipe.gender}</h3> */}
-              </div>
+              <div style={{ backgroundImage: cardSwipe.imageUrl ? `url(${cardSwipe.imageUrl}` : `url(https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png`}} className='card'>              </div>
               <div className='card'>
-                <h5>{cardSwipe.fullname}</h5>
+                <h5>{cardSwipe.fullname} <span style={{color: perc2color(cardSwipe.similarity * 100)}}>({(cardSwipe.similarity * 100).toFixed(0)}%)</span></h5>
                 <h5>{cardSwipe.description}</h5>
                 <ul>
                   {cardSwipe.genres.map((genre) =>

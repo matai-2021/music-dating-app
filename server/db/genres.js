@@ -1,6 +1,6 @@
 const connection = require('./connection')
 
-function getGenres (user, db = connection) {
+function getGenres (db = connection) {
   return db('genres')
     .select()
 }
