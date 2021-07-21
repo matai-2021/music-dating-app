@@ -134,8 +134,18 @@ input[type=text] {
   font-size: normal;
   font-weight: bold;
   text-align: center;
-  margin: 10px;
+  margin: 20px;
 }
+
+.tinder-para {
+  color: vars.$primary;
+  font-family: vars.$paragraph;
+  font-size: normal;
+  font-weight: bold;
+  text-align: center;
+  margin: -20px;
+}
+
 
 .para-description {
   color: vars.$primary;

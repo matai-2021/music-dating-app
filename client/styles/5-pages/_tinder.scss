@@ -1,3 +1,5 @@
+@use '../1-helpers/mixins';
+
 #root {
   text-align: center;
   display: flex;
@@ -51,7 +53,9 @@
   display: flex;
   justify-content: space-between;
   position: relative;
-  margin: 20px;
+  @include mixins.media-queries(tablet, min) {
+  justify-content: space-around;
+}
 }
 
 .red {
