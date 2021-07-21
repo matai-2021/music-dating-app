@@ -10,7 +10,7 @@ exports.seed = function (knex) {
           username: 'ahmadanwar',
           hash: hash,
           fullname: 'Ahmad Anwar',
-          description: 'I am ranked as the first DJ on the first settlement on planet Mars.',
+          description: 'I always put my headset on all day listening to music while coding.',
           gender_id: 1,
           image_url: 'https://avatars.githubusercontent.com/u/7552088?s=400&u=9f72eb888bd6ce0d18e8b4ebfcf52ea075e3d3ef&v=4',
           created_at: new Date(Date.now())
