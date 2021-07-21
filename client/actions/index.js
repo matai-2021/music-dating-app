@@ -83,6 +83,9 @@ export function fetchUserName (user) {
   return dispatch => {
     return getUserByName(user.username)
       .then(res => {
+        dispatch(setMatch(false))
+        dispatch(setNotifications(false))
+        dispatch(setFalseMatch())
         dispatch(setUser(res))
         return null
       })

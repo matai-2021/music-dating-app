@@ -1,3 +1,6 @@
 export default function checkURL (url) {
-  return (url.match(/\.(jpeg|jpg|gif|png)$/) != null)
+  if (url) {
+    return (url.match(/\.(jpeg|jpg|gif|png)$/) != null)
+  }
+  return false
 }
