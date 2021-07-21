@@ -71,6 +71,9 @@ function Swipe (props) {
               </div>
             </TinderCard>
           )}
+          <div>
+            <h2>You have no more matches! Check back later.</h2>
+          </div>
         </div>
         {match.isMatch && <p>You matched with {swipee.find(item => item.id === checkingMatch.receiverId).fullname} <Link to="/chat">Chat Now</Link></p>}
         {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}

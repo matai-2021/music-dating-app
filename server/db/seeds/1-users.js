@@ -254,6 +254,106 @@ exports.seed = function (knex) {
           gender_id: 2,
           image_url: 'https://ca.slack-edge.com/T02SQPVAC-U01KHB6BVHU-f7d6ded39c48-512',
           created_at: new Date(Date.now())
+        },
+        {
+          id: 26,
+          username: 'nellanoyer',
+          hash: hash,
+          fullname: 'Nella Noyer',
+          description: 'Just looking to form a indie-rock band. Let me know if you\'re interested.',
+          gender_id: 3,
+          image_url: 'https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-5.jpg',
+          created_at: new Date(Date.now())
+        },
+        {
+          id: 27,
+          username: 'thedude',
+          hash: hash,
+          fullname: 'The Dude',
+          description: 'I\'ve got two spare tickets to the Guns & Roses show next week. Anyone interested?',
+          gender_id: 1,
+          image_url: 'https://media.gq-magazine.co.uk/photos/5d13a04bb744d364a425653b/master/pass/The-Big-Lebowski-hp-GQ-25Feb16_rex_b.jpg',
+          created_at: new Date(Date.now())
+        },
+        {
+          id: 28,
+          username: 'barrackobama',
+          hash: hash,
+          fullname: 'Barrack Obama',
+          description: 'Can we agree that hip-hop is the best genre? Yes we can.',
+          gender_id: 1,
+          image_url: 'hthttps://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTE4MDAzNDEwNzg5ODI4MTEw/barack-obama-12782369-1-402.jpg',
+          created_at: new Date(Date.now())
+        },
+        {
+          id: 29,
+          username: 'jacindaardern',
+          hash: hash,
+          fullname: 'Aunty Cindy',
+          description: 'I\'m tired of listening to Clarke\'s djing. Please send me your recommendations.',
+          gender_id: 2,
+          image_url: 'https://www.beehive.govt.nz/sites/default/files/styles/portrait_image/public/2020-11/j-ardern.jpg?itok=3SoPJ2Dj',
+          created_at: new Date(Date.now())
+        },
+        {
+          id: 30,
+          username: 'oprahwinfrey',
+          hash: hash,
+          fullname: 'Oprah Winfrey',
+          description: 'You get my recommendations! You get my my recommendations! You all get my recommendations!',
+          gender_id: 2,
+          image_url: 'https://www.biography.com/.image/t_share/MTY2NTIzMDQzOTIzODk1NTM4/oprah-photo-by-vera-anderson_wireimage.jpg',
+          created_at: new Date(Date.now())
+        },
+        {
+          id: 31,
+          username: 'jonsnow',
+          hash: hash,
+          fullname: 'Jon Snow',
+          description: 'Looking for a bassist to join my band, The Brothers of the Night\'s Watch.',
+          gender_id: 1,
+          image_url: 'https://s1.r29static.com/bin/entry/e47/0,3,2000,1500/x/1801540/image.png',
+          created_at: new Date(Date.now())
+        },
+        {
+          id: 32,
+          username: 'gandalf',
+          hash: hash,
+          fullname: 'Gandalf',
+          description: 'If anyone wants to smoke some pipeweed and listen to classical Celtic folk music, I\'m your wizard.',
+          gender_id: 1,
+          image_url: 'https://static.wixstatic.com/media/065e6b_dd1a8624bd5b40c9848aeec671ed811b.png/v1/fit/w_936%2Ch_733%2Cal_c/file.png',
+          created_at: new Date(Date.now())
+        },
+        {
+          id: 33,
+          username: 'forrestgump',
+          hash: hash,
+          fullname: 'Forrest Gump',
+          description: 'Life is like a playlist on shuffle. You never know what\'s going to play next.',
+          gender_id: 1,
+          image_url: 'hhttps://www.indiewire.com/wp-content/uploads/2020/09/forrest-gump.png?w=655',
+          created_at: new Date(Date.now())
+        },
+        {
+          id: 34,
+          username: 'billmurray',
+          hash: hash,
+          fullname: 'Bill Murray',
+          description: 'I\'m making a career shift from acting to music. Need all the tips I can get.',
+          gender_id: 1,
+          image_url: 'https://junkee.com/wp-content/uploads/2015/10/murray1.jpg',
+          created_at: new Date(Date.now())
+        },
+        {
+          id: 35,
+          username: 'beyonce',
+          hash: hash,
+          fullname: 'Beyoncé',
+          description: 'Don\'t really know why I\'m here. I\'m already Queen B.',
+          gender_id: 2,
+          image_url: 'https://pyxis.nymag.com/v1/imgs/6c0/570/056961772f9239c7ad26e784b020e410ae-beyonce.rsquare.w1200.jpg',
+          created_at: new Date(Date.now())
         }
       ])
     })
