@@ -12,7 +12,7 @@ exports.seed = function (knex) {
           fullname: 'Ahmad Anwar',
           description: 'I am ranked as the first DJ on the first settlement on planet Mars.',
           gender_id: 1,
-          image_url: 'https://ca.slack-edge.com/T02SQPVAC-U01TLETH2P3-191de1acb1aa-512',
+          image_url: 'https://avatars.githubusercontent.com/u/7552088?s=400&u=9f72eb888bd6ce0d18e8b4ebfcf52ea075e3d3ef&v=4',
           created_at: new Date(Date.now())
         },
         {
