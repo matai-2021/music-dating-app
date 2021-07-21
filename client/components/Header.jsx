@@ -10,7 +10,7 @@ function Header (props) {
     <>
       <section>
         <div className='flex-container'>
-          <img src='/resonatelogo.png' alt="resonatelogo" />
+          <img className='logo-img' src='/resonatelogo.png' alt="resonatelogo" />
         </div>
         <div>
           <p className='para-title'>
