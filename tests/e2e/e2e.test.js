@@ -37,7 +37,7 @@ test('given an existing username, the user navigates to the matching page', asyn
   expect(await page.url()).toBe(`${serverUrl}/#/matching`)
 })
 
-test('user can navigate to profile page and upate their profile', async () => {
+test('users can navigate to profile page and upate their profile', async () => {
   await page.goto(serverUrl)
   await Promise.all([
     page.waitForNavigation(),
@@ -51,6 +51,9 @@ test('user can navigate to profile page and upate their profile', async () => {
   await page.fill('[name=description]', 'description')
 
   await page.selectOption('select#genderId', { label: 'Female' })
+  await page.check('[name=Rock]')
+  await page.check('[name=Country]')
+  await page.check('[name=Country]')
 
   await page.click('text=Update Information')
   expect(await page.url()).toBe(`${serverUrl}/#/matching`)
