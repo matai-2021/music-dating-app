@@ -37,7 +37,6 @@ function Swipe (props) {
       else {
         return '#348a27'
       }
-
     }
 
   return (
