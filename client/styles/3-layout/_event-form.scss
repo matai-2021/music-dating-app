@@ -204,3 +204,12 @@ input[type=text] {
     color: #ffffff;
   }
 }
+
+.image {
+  position: relative;
+  left: 48px;
+
+  @include mixins.media-queries(tablet, min) {
+    left: 200px;
+  }
+}
