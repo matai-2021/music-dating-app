@@ -20,8 +20,9 @@ exports.seed = function (knex) {
         }, {
           id: 4,
           user_id: 1,
-          genre_id: 7
-        }, {
+          genre_id: 8
+        },
+        {
           id: 5,
           user_id: 3,
           genre_id: 9
@@ -475,6 +476,10 @@ exports.seed = function (knex) {
         {
           id: 107,
           user_id: 35,
+          genre_id: 13
+        }, {
+          id: 109,
+          user_id: 1,
           genre_id: 13
         }
       ])
