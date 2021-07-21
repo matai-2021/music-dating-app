@@ -282,7 +282,7 @@ exports.seed = function (knex) {
           fullname: 'Barrack Obama',
           description: 'Can we agree that hip-hop is the best genre? Yes we can.',
           gender_id: 1,
-          image_url: 'hthttps://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTE4MDAzNDEwNzg5ODI4MTEw/barack-obama-12782369-1-402.jpg',
+          image_url: 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTE4MDAzNDEwNzg5ODI4MTEw/barack-obama-12782369-1-402.jpg',
           created_at: new Date(Date.now())
         },
         {
@@ -332,7 +332,7 @@ exports.seed = function (knex) {
           fullname: 'Forrest Gump',
           description: 'Life is like a playlist on shuffle. You never know what\'s going to play next.',
           gender_id: 1,
-          image_url: 'hhttps://www.indiewire.com/wp-content/uploads/2020/09/forrest-gump.png?w=655',
+          image_url: 'https://www.indiewire.com/wp-content/uploads/2020/09/forrest-gump.png?w=655',
           created_at: new Date(Date.now())
         },
         {
