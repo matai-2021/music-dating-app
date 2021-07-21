@@ -16,7 +16,9 @@ import {
   setFalseMatch,
   RESET_MATCH,
   UPDATED_USER,
-  updateUserInformation
+  updateUserInformation,
+  SET_NOTIFICATIONS,
+  setNotifications
 
 } from './index'
 
@@ -108,5 +110,13 @@ describe('Dispatches the action for changing the user information', () => {
     expect(action.type).toBe(UPDATED_USER)
     expect(action.user).toBe(mockUserChange)
     expect(action.user).toHaveLength(1)
+  })
+})
+
+describe('Dispatches the action for updating the chat notification', () => {
+  it('Changes the Notifications status to what is passed as an parameter', () => {
+    const action = setNotifications(true)
+    expect(action.type).toBe(SET_NOTIFICATIONS)
+    expect(action.notification).toBe(true)
   })
 })
