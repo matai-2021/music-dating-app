@@ -110,7 +110,7 @@ function Register (props) {
   return (
     <section className='profile-container'>
       <div>
-        {/* <img className='profile-img' src={checkURL(form.imageUrl) ? form.imageUrl : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'} /> */}
+        <img className='profile-img' src={checkURL(form.imageUrl) ? form.imageUrl : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'} />
       </div>
       <form className='form-title form-box'>
         <label name={form.fullname}>
