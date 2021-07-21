@@ -9,7 +9,7 @@ exports.seed = function (knex) {
           id: 1,
           username: 'ahmadanwar',
           hash: hash,
-          fullname: 'TheAnwar',
+          fullname: 'Ahmad Anwar',
           description: 'I always put my headset on all day listening to music while coding.',
           gender_id: 1,
           image_url: 'https://avatars.githubusercontent.com/u/7552088?s=400&u=9f72eb888bd6ce0d18e8b4ebfcf52ea075e3d3ef&v=4',

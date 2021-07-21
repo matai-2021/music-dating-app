@@ -26,7 +26,7 @@ describe('getUser', () => {
       .then((user) => {
         expect(user.id).toBe(1)
         expect(user.fullname).toBe('Ahmad Anwar')
-        expect(user.description).toMatch('DJ')
+        expect(user.description).toMatch('headset')
         expect(user.hash).toBeDefined()
         expect(user.gender_id).toBe('1')
         return null
@@ -41,7 +41,7 @@ describe('getUserById', () => {
       .then((user) => {
         expect(user.id).toBe(1)
         expect(user.fullname).toBe('Ahmad Anwar')
-        expect(user.description).toMatch('DJ')
+        expect(user.description).toMatch('headset')
         expect(user.genderName).toBe('Male')
         expect(user.genderId).toBe(1)
         return null
@@ -54,9 +54,9 @@ describe('getUserGenres', () => {
     expect.assertions(3)
     return db.getUserGenres(1, testDb)
       .then((genres) => {
-        expect(genres).toHaveLength(2)
+        expect(genres).toHaveLength(3)
         expect(genres).toContainEqual({ genreId: 3, name: 'Electronic' })
-        expect(genres).toContainEqual({ genreId: 7, name: 'Hip hop' })
+        expect(genres).toContainEqual({ genreId: 8, name: 'Ambient' })
         return null
       })
   })
@@ -127,7 +127,7 @@ describe('addGenres', () => {
     return db.addGenres(userId, genreIds, testDb)
       .then(() => db.getUserGenres(userId, testDb))
       .then(genres => {
-        expect(genres).toHaveLength(4)
+        expect(genres).toHaveLength(5)
         expect(genres).toContainEqual({ genreId: 2, name: 'Country' })
         expect(genres).toContainEqual({ genreId: 4, name: 'Euro-Dance' })
         return null
