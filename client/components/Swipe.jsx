@@ -45,7 +45,7 @@ function Swipe (props) {
     <div>
       <h4 className='tinder-para'>Swipe to Start</h4>
     </div>}
-    {match.isMatch && <p className='para-title'>{`You matched with ${swipee.find(item => item.id === checkingMatch.receiverId).fullname}`}<Link to='/chat'>Chat Now</Link></p>}
+    {match.isMatch && <p className='para-title'>{`You matched with ${swipee.find(item => item.id === checkingMatch.receiverId).fullname}`} <Link to='/chat'>Chat Now</Link></p>}
     <section className='tinder-card-container'>
       <div>
         <link href='https://fonts.googleapis.com/css?family=Damion&display=swap' rel='stylesheet' />
