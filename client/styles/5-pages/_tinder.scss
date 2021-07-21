@@ -79,18 +79,19 @@
 }
 
 .card h3 {
-  position: absolute;
-  bottom: 0;
-  margin: 10px;
-  color: #fff;
-}
-
-.card h5 {
-  position: absolute;
+  position: relative;
   bottom: 0;
   margin: 10px;
   color: rgb(0, 0, 0);
-  font-size: large;
+}
+
+.card h5 {
+  position: relative;
+  bottom: 0;
+  margin: 5px;
+  padding: 9px;
+  color: rgb(0, 0, 0);
+  font-size: medium;
 }
 
 .infoText {

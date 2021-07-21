@@ -38,10 +38,10 @@ function Swipe (props) {
           {swipee && swipee?.map((cardSwipe, index) =>
             <TinderCard className='swipe' key={cardSwipe.id} onSwipe={(dir) => swiped(dir, cardSwipe.id)} >
               <div style={{ backgroundImage: cardSwipe.imageUrl ? `url(${cardSwipe.imageUrl}` : `url(https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png`}} className='card'>
-                <h3>{cardSwipe.fullname}</h3>
                 {/* <h3>{cardSwipe.gender}</h3> */}
               </div>
               <div className='card'>
+                <h5>{cardSwipe.fullname}</h5>
                 <h5>{cardSwipe.description}</h5>
                 <ul>
                   {cardSwipe.genres.map((genre) =>
@@ -52,7 +52,6 @@ function Swipe (props) {
             </TinderCard>
           )}
         </div>
-        {/* {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />} */}
         {match.isMatch && <p>{`You matched with ${swipee.find(item => item.id === checkingMatch.receiverId).fullname}`}<Link to='/chat'>Chat Now</Link></p>}
       </div>
     </section>
