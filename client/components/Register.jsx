@@ -140,7 +140,7 @@ function Register (props) {
                   <input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked} />
                 </td>
                 <td key={`td-label-${genre.id}`} className='text-align'>
-                  <label key={genre.id} className="para-description" htmlFor={genre.id}>{genre.name}</label>
+                  <label key={genre.id + 'label'} className="para-description" htmlFor={genre.id}>{genre.name}</label>
                 </td>
               </tr>
             ))}
