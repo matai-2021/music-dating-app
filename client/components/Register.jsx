@@ -132,11 +132,18 @@ function Register (props) {
             <option value="3">Non Binary/Other</option>
           </select>
         </label>
-        {genres.map(genre => (
-          <label key={genre.id} className="para-description" htmlFor={genre.id}>
-            <div ><input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id}/>{genre.name}</div>
-          </label>
-        ))}
+        <table>
+          {genres.map(genre => (
+            <tr key={genre}>
+              <td>
+                <input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked} />
+              </td>
+              <td style={{ textAlign: 'left' }}>
+                <label key={genre.id} className="para-description" htmlFor={genre.id}>{genre.name}</label>
+              </td>
+            </tr>
+          ))}
+        </table>
         <br></br>
         <button className='form-button-primary' onClick={handleSubmit}>Register</button>
       </form>
