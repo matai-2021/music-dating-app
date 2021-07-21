@@ -13,8 +13,8 @@ const ChatPage = (props) => {
   function Gif () {
     return (
       <div>
-        <img src="https://c.tenor.com/HJvqN2i4Zs4AAAAj/milk-and-mocha-cute.gif"/>
-        <h2>Lets VIBE!!</h2>
+        <img className='image' src="https://c.tenor.com/HJvqN2i4Zs4AAAAj/milk-and-mocha-cute.gif"/>
+        <h2 className='para-title'>Lets VIBE!!</h2>
       </div>
     )
   }
