@@ -57,7 +57,7 @@ function Swipe (props) {
             </TinderCard>
           )}
           <div>
-            <h2>You have no more matches! Check back later.</h2>
+            <h2 className='para-title'>You have no more matches! Check back later.</h2>
           </div>
         </div>
       </div>
