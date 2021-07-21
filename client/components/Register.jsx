@@ -109,20 +109,20 @@ function Register (props) {
   return (
     <section className='profile-container'>
       <div>
-        <img className='profile-img' src={checkURL(form.imageUrl) ? form.imageUrl : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}/>
+        <img className='profile-img' src={checkURL(form.imageUrl) ? form.imageUrl : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'} />
       </div>
       <form className='form-title form-box'>
         <label name={form.fullname}>
-          <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname}/>
+          <input onChange={handleChange} type="text" name="fullname" placeholder="Name" value={form.fullname} />
         </label>
         <label name={form.username}>
-          <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username}/>
+          <input onChange={handleChange} type="text" name="username" placeholder="Username" value={form.username} />
         </label>
         <label name={form.imageUrl}>
-          <input onChange={handleChange} type="text" name="imageUrl" placeholder="Image Url" value={form.imageUrl}/>
+          <input onChange={handleChange} type="text" name="imageUrl" placeholder="Image Url" value={form.imageUrl} />
         </label>
         <label name={form.description}>
-          <textarea className='form-box-height text-size' onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description}/>
+          <textarea className='form-box-height text-size' onChange={handleChange} type="textarea" name="description" placeholder="Tell everyone about your taste...." value={form.description} />
         </label>
         <label htmlFor="genderId">
           <select name="genderId" id="genderId" onChange={handleChange}>
@@ -133,16 +133,18 @@ function Register (props) {
           </select>
         </label>
         <table className='table-container'>
-          {genres.map(genre => (
-            <tr key={genre}>
-              <td>
-                <input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked} />
-              </td>
-              <td className='text-align'>
-                <label key={genre.id} className="para-description" htmlFor={genre.id}>{genre.name}</label>
-              </td>
-            </tr>
-          ))}
+          <tbody>
+            {genres.map(genre => (
+              <tr key={`tr-${genre.id}`}>
+                <td key={`td-input-${genre.id}`}>
+                  <input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked} />
+                </td>
+                <td key={`td-label-${genre.id}`} className='text-align'>
+                  <label key={genre.id} className="para-description" htmlFor={genre.id}>{genre.name}</label>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
         <br></br>
         <button className='form-button-primary' onClick={handleSubmit}>Register</button>
