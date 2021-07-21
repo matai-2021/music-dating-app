@@ -70,7 +70,7 @@ exports.seed = function (knex) {
           username: 'sujicho',
           hash: hash,
           fullname: 'The Suj',
-          description: 'K-pop is life.',
+          description: 'One good thing about music, when it hits you, you feel no pain',
           gender_id: 2,
           image_url: 'https://ca.slack-edge.com/T02SQPVAC-U01QJ0YCE5U-ec22b49e38ce-512',
           created_at: new Date(Date.now())
@@ -277,9 +277,9 @@ exports.seed = function (knex) {
         },
         {
           id: 28,
-          username: 'barrackobama',
+          username: 'barackobama',
           hash: hash,
-          fullname: 'Barrack Obama',
+          fullname: 'Barack Obama',
           description: 'Can we agree that hip-hop is the best genre? Yes we can.',
           gender_id: 1,
           image_url: 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTE4MDAzNDEwNzg5ODI4MTEw/barack-obama-12782369-1-402.jpg',
