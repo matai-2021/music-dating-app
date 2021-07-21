@@ -99,13 +99,13 @@ function Profile (props) {
             ))}
           </select>
         </label>
-        <table>
+        <table className='table-container'>
           {genresForm && genresForm.map(genre => (
             <tr key={genre}>
               <td>
                 <input onChange={(event) => handleCheck(genre.id, event)} type="checkbox" id={genre.id} name={genre.name} value={genre.id} checked={genre.checked} />
               </td>
-              <td style={{ textAlign: 'left' }}>
+              <td className='text-align'>
                 <label key={genre.id} className="para-description" htmlFor={genre.id}>{genre.name}</label>
               </td>
             </tr>

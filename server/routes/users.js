@@ -1,7 +1,9 @@
 const express = require('express')
 const { createChatRoom } = require('../apis/chatengine')
 const db = require('../db/users')
+const dbGenres = require('../db/genres')
 
+const similarity = require('../similarity')
 const router = express.Router()
 
 // POST /api/v1/users/register
@@ -113,8 +115,24 @@ router.get('/:id/unmatched', async (req, res) => {
 
     const unmatchedUsers = (await Promise.all(promises))
       .filter(user => user.genres.some(genre => currentUsersGenres.map(obj => obj.genreId).includes(genre.genreId)))
+    const allGenres = await dbGenres.getGenres()
 
-    res.json(unmatchedUsers)
+    const unmatchedUsersWithSimilarity =
+      unmatchedUsers
+        .map(unmatchedUser =>
+          ({
+            ...unmatchedUser,
+            similarity: similarity(
+              currentUsersGenres.map(g => ({ id: g.genreId, name: g.name })),
+              unmatchedUser.genres.map(g => ({ id: g.genreId, name: g.name })),
+              allGenres
+
+            )
+
+          })
+        )
+
+    res.json(unmatchedUsersWithSimilarity)
   } catch (error) {
     console.log(error)
     res.status(500).send(error)
