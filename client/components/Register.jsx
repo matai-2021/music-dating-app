@@ -133,6 +133,9 @@ function Register (props) {
             <option value="3">Non Binary/Other</option>
           </select>
         </label>
+        <br></br>
+        <br></br>
+        <span>Genres:</span>
         <table className='table-container'>
           <tbody>
             {genres.map(genre => (

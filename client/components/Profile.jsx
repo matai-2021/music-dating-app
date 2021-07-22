@@ -99,6 +99,9 @@ function Profile (props) {
             ))}
           </select>
         </label>
+        <br></br>
+        <br></br>
+        <span>Genres:</span>
         <table className='table-container'>
           {genresForm && genresForm.map(genre => (
             <tr key={genre}>
